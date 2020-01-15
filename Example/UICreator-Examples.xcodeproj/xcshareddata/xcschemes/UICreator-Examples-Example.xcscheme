@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1110"
+   LastUpgradeVersion = "0900"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0C37B5AA23AA8CFD00282356"
-               BuildableName = "Teste1.app"
-               BlueprintName = "Teste1"
-               ReferencedContainer = "container:Teste1.xcodeproj">
+               BlueprintIdentifier = "607FACCF1AFB9204008FA782"
+               BuildableName = "UICreator_Examples_Example.app"
+               BlueprintName = "UICreator-Examples_Example"
+               ReferencedContainer = "container:UICreator-Examples.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "607FACE41AFB9204008FA782"
+               BuildableName = "UICreator-Examples_Tests.xctest"
+               BlueprintName = "UICreator-Examples_Tests"
+               ReferencedContainer = "container:UICreator-Examples.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -27,15 +41,24 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
+            BuildableName = "UICreator_Examples_Example.app"
+            BlueprintName = "UICreator-Examples_Example"
+            ReferencedContainer = "container:UICreator-Examples.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0C44257423BFC97D0006B14F"
-               BuildableName = "Teste1UITests.xctest"
-               BlueprintName = "Teste1UITests"
-               ReferencedContainer = "container:Teste1.xcodeproj">
+               BlueprintIdentifier = "607FACE41AFB9204008FA782"
+               BuildableName = "UICreator-Examples_Tests.xctest"
+               BlueprintName = "UICreator-Examples_Tests"
+               ReferencedContainer = "container:UICreator-Examples.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -54,10 +77,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0C37B5AA23AA8CFD00282356"
-            BuildableName = "Teste1.app"
-            BlueprintName = "Teste1"
-            ReferencedContainer = "container:Teste1.xcodeproj">
+            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
+            BuildableName = "UICreator_Examples_Example.app"
+            BlueprintName = "UICreator-Examples_Example"
+            ReferencedContainer = "container:UICreator-Examples.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -71,10 +94,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0C37B5AA23AA8CFD00282356"
-            BuildableName = "Teste1.app"
-            BlueprintName = "Teste1"
-            ReferencedContainer = "container:Teste1.xcodeproj">
+            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
+            BuildableName = "UICreator_Examples_Example.app"
+            BlueprintName = "UICreator-Examples_Example"
+            ReferencedContainer = "container:UICreator-Examples.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
