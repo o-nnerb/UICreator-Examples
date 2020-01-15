@@ -12,6 +12,7 @@ import UIContainer
 import UICreator
 
 class MyLabel: UIHost, TextElement {
+
     required init(_ text: String?) {
         self.uiView.text = text
     }
@@ -24,6 +25,12 @@ class MyLabel: UIHost, TextElement {
 
     func makeUIView() -> View {
         return .init()
+    }
+
+    public class ViewContext: UICreator.ViewContext {
+        public typealias Manager = MyLabel
+
+        public func update(view: UILabel) {}
     }
 }
 

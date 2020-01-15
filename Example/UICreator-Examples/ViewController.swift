@@ -34,7 +34,7 @@ class ContentView: Root, TemplateView, ViewControllerType {
     var body: ViewCreator {
         Spacer {
             Navigation {
-                SignupView()
+                ListView()
             }
         }.background(color: .white)
     }

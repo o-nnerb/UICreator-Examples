@@ -22,6 +22,22 @@ class NumberView: Root {
     func configure(with number: Int) {
         self.numberLabel.text = "\(number)"
     }
+
+    init(number: Int) {
+        super.init()
+//        self.context.number.value = number
+        self.onInTheScene { _ in
+            self.numberLabel.text = "\(number)"
+        }
+    }
+
+//    func updateContext(_ context: Root.ViewContext) {
+//        <#code#>
+//    }
+
+    override init() {
+        super.init()
+    }
 }
 
 extension NumberView: TemplateView {
@@ -62,11 +78,11 @@ extension NumberView: TemplateView {
         .isExclusiveTouch(false)
         .onTouchMaker {
             $0.onBegan { touch in
-                self.animate(0.05) {
+                self.animate(0.05) {_ in
                     self.highlightedView.alpha = 0.15
                 }
             }.onEnded { _ in
-                self.animate(0.075) {
+                self.animate(0.075) {_ in
                     self.highlightedView.alpha = 0
                 }
             }.cancelWhenTouchMoves(true).cancelsTouches(inView: false)
@@ -93,8 +109,8 @@ class ListView: Root {
         }
     }
 
-    lazy var numbers: [Int] = {
-        return self.newNumbers()
+    lazy var numbers: Value<[Int]> = {
+        return .init(value: self.newNumbers())
     }()
 
     override func viewDidLoad() {
@@ -105,18 +121,22 @@ class ListView: Root {
 
 extension ListView: TemplateView {
     var body: ViewCreator {
-        Table(style: .plain, .section(
-            .header {
+        Table(style: .plain, .init(
+            Header {
                 Child(
                     Blur(blur: .extraLight),
                     NumberView().insets()
                 )
             },
-            .row {
-                NumberView()
+            ForEach(self.numbers) { number in
+                Row {
+                    NumberView(number: number)
+                }
             }
         ))
-        .dynamicDataSource(self)
+        .onInTheScene { _ in
+            self.numbers.value = self.newNumbers()
+        }
         .row(height: UITableView.automaticDimension)
         .row(estimatedHeight: 44)
         .as(&self.tableView)
@@ -158,17 +178,6 @@ extension ListView: TemplateView {
                 )
         }
     }
-}
-
-extension ListView: TableDataSource {
-    func numberOfRows(in section: Int, estimatedRows: Int) -> Int {
-        return self.numbers.count
-    }
-
-    func cell(at indexPath: IndexPath, content: ViewCreator) {
-        (content as? NumberView)?.configure(with: self.numbers[indexPath.row])
-    }
-
 }
 
 #if DEBUG
