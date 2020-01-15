@@ -8,7 +8,6 @@ target 'Teste1' do
   # Pods for Teste1
 
   pod "SnapKit"
-  pod "UIContainer", :path => "../../umobi/UIContainer"
-  pod "UICreator", :path => "../../umobi/UICreator"
-
+  pod "UIContainer", '~> 1.2.0-beta.3'
+  pod "UICreator", '~> 1.0.0-alpha.5'
 end

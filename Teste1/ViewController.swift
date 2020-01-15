@@ -34,7 +34,7 @@ class ContentView: Root, TemplateView, ViewControllerType {
     var body: ViewCreator {
         Spacer {
             Navigation {
-                ListView()
+                SignupView()
             }
         }.background(color: .white)
     }
@@ -76,17 +76,6 @@ extension SignupView {
                 Stack(
                     Spacer(spacing: 15) {
                         Stack(
-                            Segmented(
-                                    Segment(content: .text("Teste"))
-                                        .onSelected {
-                                            $0.navigationItem.title = "Teste"
-                                        }.isSelected(true),
-                                    Segment(content: .text("Opa"))
-                                        .onSelected {
-                                            $0.navigationItem.title = "Opa"
-                                        }
-                                ).background(color: .yellow)
-                                .selectedTintColor(.blue),
                             TextField.spacer {
                                 TextField.base("Nome")
                                     .keyboard(type: .asciiCapable)
@@ -198,27 +187,6 @@ extension SignupView {
                                         $0.navigation?.push(animated: true) {
                                             SignupView()
                                         }
-                                    }.accessibily {
-                                        $0.onGrayScaleChanged {
-                                            $0.backgroundColor = UIAccessibility.isGrayscaleEnabled ? UIColor(white: 0.5, alpha: 1) : .brown
-                                        }
-                                    }
-                            }
-                        }.shadow(offset: .init(width: 2, height: 3))
-                        .shadow(radius: 3)
-                        .shadow(ocupacity: 0.45),
-                    Spacer(vertical: 0, horizontal: 15) {
-                            Rounder(radius: 5) {
-                                Button("Present")
-                                    .title(color: .black)
-                                    .background(color: .brown)
-                                    .height(equalTo: 55)
-                                    .onTouchInside {
-                                        $0.navigationItem.title = "Submitted"
-                                        (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = UIViewController()
-//                                        $0.navigation?.present(animated: true) {
-//                                            ListView()
-//                                        }
                                     }.accessibily {
                                         $0.onGrayScaleChanged {
                                             $0.backgroundColor = UIAccessibility.isGrayscaleEnabled ? UIColor(white: 0.5, alpha: 1) : .brown

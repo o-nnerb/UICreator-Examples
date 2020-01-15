@@ -22,17 +22,6 @@ class NumberView: Root {
     func configure(with number: Int) {
         self.numberLabel.text = "\(number)"
     }
-
-    init(number: Int) {
-        super.init()
-        self.onInTheScene { _ in
-            self.numberLabel.text = "\(number)"
-        }
-    }
-
-    override init() {
-        super.init()
-    }
 }
 
 extension NumberView: TemplateView {
@@ -73,11 +62,11 @@ extension NumberView: TemplateView {
         .isExclusiveTouch(false)
         .onTouchMaker {
             $0.onBegan { touch in
-                self.animate(0.05) { _ in
+                self.animate(0.05) {
                     self.highlightedView.alpha = 0.15
                 }
             }.onEnded { _ in
-                self.animate(0.075) { _ in
+                self.animate(0.075) {
                     self.highlightedView.alpha = 0
                 }
             }.cancelWhenTouchMoves(true).cancelsTouches(inView: false)
@@ -104,8 +93,8 @@ class ListView: Root {
         }
     }
 
-    lazy var numbers: Value<[Int]> = {
-        return .init(value: newNumbers())
+    lazy var numbers: [Int] = {
+        return self.newNumbers()
     }()
 
     override func viewDidLoad() {
@@ -116,51 +105,46 @@ class ListView: Root {
 
 extension ListView: TemplateView {
     var body: ViewCreator {
-        Table(style: .plain, .init(
-            UICreator.Section(
-                Header {
-                    Child(
-                        Blur(blur: .extraLight),
-                        NumberView().insets()
-                    )
-                },
-                ForEach(self.numbers) { number in
-                    Row {
-                        NumberView(number: number)
-                    }
-                }
-            )
-            )).onInTheScene { _ in
-                self.numbers.value = self.newNumbers()
+        Table(style: .plain, .section(
+            .header {
+                Child(
+                    Blur(blur: .extraLight),
+                    NumberView().insets()
+                )
+            },
+            .row {
+                NumberView()
             }
-            .row(height: UITableView.automaticDimension)
-            .row(estimatedHeight: 44)
-            .as(&self.tableView)
-            .header(size: .init(width: 0, height: 60)) {
-                Spacer(spacing: 5) {
-                    Rounder(radius: 15) {
-                        Spacer(spacing: 15) {
-                            HStack(
-                                Dashed(color: .black) {
-                                    Rounder(radius: 0.5) {
-                                        Image(image: #imageLiteral(resourceName: "GettyImages-139496979"))
-                                            .aspectRatio(priority: .required)
-                                            .content(mode: .scaleAspectFill)
-                                            .clips(toBounds: true)
-                                    }
-                                },
-                                Label("Hello World!")
-                                    .font(.boldSystemFont(ofSize: 18))
-                                    .text(color: .white)
-                                    .navigation(title: "Lista Numérica")
-                            ).spacing(15)
-                        }.background(color: .orange)
+        ))
+        .dynamicDataSource(self)
+        .row(height: UITableView.automaticDimension)
+        .row(estimatedHeight: 44)
+        .as(&self.tableView)
+        .header(size: .init(width: 0, height: 60)) {
+            Spacer(spacing: 5) {
+                Rounder(radius: 15) {
+                    Spacer(spacing: 15) {
+                        HStack(
+                            Dashed(color: .black) {
+                                Rounder(radius: 0.5) {
+                                    Image(image: #imageLiteral(resourceName: "GettyImages-139496979"))
+                                        .aspectRatio(priority: .required)
+                                        .content(mode: .scaleAspectFill)
+                                        .clips(toBounds: true)
+                                }
+                            },
+                            Label("Hello World!")
+                                .font(.boldSystemFont(ofSize: 18))
+                                .text(color: .white)
+                                .navigation(title: "Lista Numérica")
+                        ).spacing(15)
+                    }.background(color: .orange)
                         .onTap {
                             $0.backgroundColor = [UIColor]([.black, .orange])[Int.random(in: 0...1)]
-                        }
                     }
                 }
-            }.background(color: .white)
+            }
+        }.background(color: .white)
             .safeArea(topEqualTo: 0)
             .navigation(largeTitleMode: .always)
             .navigation(prefersLargeTitles: true)
@@ -172,26 +156,20 @@ extension ListView: TemplateView {
                         .insets(),
                     Blur(blur: .extraLight)
                 )
-            }
+        }
     }
 }
 
-//extension ListView: UITableViewDataSource {
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return 1
-//    }
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return self.numbers.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as! NumberView.Cell
-//        cell.prepareContainer(inside: self.parent)
-//        cell.view.configure(with: self.numbers[indexPath.row])
-//        return cell
-//    }
-//}
+extension ListView: TableDataSource {
+    func numberOfRows(in section: Int, estimatedRows: Int) -> Int {
+        return self.numbers.count
+    }
+
+    func cell(at indexPath: IndexPath, content: ViewCreator) {
+        (content as? NumberView)?.configure(with: self.numbers[indexPath.row])
+    }
+
+}
 
 #if DEBUG
 import SwiftUI
