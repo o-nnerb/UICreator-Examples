@@ -26,12 +26,6 @@ class MyLabel: UIHost, TextElement {
     func makeUIView() -> View {
         return .init()
     }
-
-    public class ViewContext: UICreator.ViewContext {
-        public typealias Manager = MyLabel
-
-        public func update(view: UILabel) {}
-    }
 }
 
 class BackgroundView: Root {
