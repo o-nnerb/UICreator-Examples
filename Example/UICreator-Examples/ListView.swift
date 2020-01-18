@@ -33,8 +33,8 @@ class NumberView: UICView, UIViewContext {
     }
 
     func bindContext(_ context: Context) {
-        context.number.sync {
-            self.numberLabel.text = "\($0 ?? 0)"
+        context.number.sync { [weak self] in
+            self?.numberLabel.text = "\($0 ?? 0)"
         }
     }
 }
@@ -128,13 +128,18 @@ extension ListView {
                 )
             },
             ForEach(self.numbers) { number in
-                Row {
-                    NumberView(number: number)
-                }
+                NumberView(number: number)
             }
         ))
-        .onInTheScene { _ in
-            self.numbers.value = self.newNumbers()
+        .onInTheScene { [weak self] _ in
+            func loop() {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self?.numbers.value = self?.newNumbers() ?? []
+                    loop()
+                }
+            }
+
+            loop()
         }
         .row(height: UITableView.automaticDimension)
         .row(estimatedHeight: 44)

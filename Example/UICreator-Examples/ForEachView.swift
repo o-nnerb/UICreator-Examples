@@ -34,8 +34,7 @@ extension ForEachView: TemplateView {
         VScroll {
             VStack(
                 ForEach(self.array) {
-                    Label("\($0)")
-                        .vertical(hugging: .required, compression: .required)
+                    NumberView(number: $0)
                 }
             )
         }
