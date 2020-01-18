@@ -11,7 +11,7 @@ import UIKit
 import UIContainer
 import UICreator
 
-class NumberView: Root {
+class NumberView: UICView, UIViewContext {
     weak var numberLabel: UILabel!
     weak var highlightedView: UIView!
 
@@ -25,22 +25,21 @@ class NumberView: Root {
 
     init(number: Int) {
         super.init()
-//        self.context.number.value = number
-        self.onInTheScene { _ in
-            self.numberLabel.text = "\(number)"
-        }
+        self.context.number.value = number
     }
 
-//    func updateContext(_ context: Root.ViewContext) {
-//        <#code#>
-//    }
+    class Context: UICreator.Context {
+        let number: Value<Int?> = .init(value: nil)
+    }
 
-    override init() {
-        super.init()
+    func bindContext(_ context: Context) {
+        context.number.sync {
+            self.numberLabel.text = "\($0 ?? 0)"
+        }
     }
 }
 
-extension NumberView: TemplateView {
+extension NumberView {
     var body: ViewCreator {
         Child(
             Spacer(vertical: 15, horizontal: 30) { [unowned self] in
@@ -100,7 +99,7 @@ extension NumberView: TemplateView {
 //    }
 //}
 
-class ListView: Root {
+class ListView: UICView {
     weak var tableView: UITableView!
 
     func newNumbers() -> [Int] {
@@ -119,13 +118,13 @@ class ListView: Root {
     }
 }
 
-extension ListView: TemplateView {
+extension ListView {
     var body: ViewCreator {
         Table(style: .plain, .init(
             Header {
                 Child(
                     Blur(blur: .extraLight),
-                    NumberView().insets()
+                    NumberView(number: 1).insets()
                 )
             },
             ForEach(self.numbers) { number in

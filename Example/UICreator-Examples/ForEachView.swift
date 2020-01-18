@@ -11,7 +11,7 @@ import UICreator
 import UIContainer
 
 class ForEachView: Root {
-    let array: Value<[Int]> = .init(value: [])
+    var array: Value<[Int]> = .init(value: [])
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +23,6 @@ class ForEachView: Root {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
             if Bool.random() {
                 self?.array.value.append(Int.random(in: 0..<1000))
-            } else {
-                _ = self?.array.value.popLast()
             }
             self?.updateEvery1Seconds()
         }
