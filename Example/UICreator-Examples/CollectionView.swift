@@ -109,9 +109,9 @@ extension CollectionView: TemplateView {
                 .onPageChanged {
                     print(($0 as? UIPageControl)?.currentPage ?? "0")
                 }.as(&self.pageControl),
-            FlowCollection(.row {
+            FlowCollection(
                 BackgroundView()
-            }).layoutMaker {
+            ).layoutMaker {
                 .section {
                     .sequence(
                         self.firstGroup,

@@ -116,6 +116,13 @@ class ListView: UICView {
         super.viewDidLoad()
         self.tableView.reloadData()
     }
+
+    func loop() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            self?.numbers.value = self?.newNumbers() ?? []
+            self?.loop()
+        }
+    }
 }
 
 extension ListView {
@@ -131,15 +138,8 @@ extension ListView {
                 NumberView(number: number)
             }
         ))
-        .onInTheScene { [weak self] _ in
-            func loop() {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self?.numbers.value = self?.newNumbers() ?? []
-                    loop()
-                }
-            }
-
-            loop()
+        .onInTheScene { _ in
+            self.loop()
         }
         .row(height: UITableView.automaticDimension)
         .row(estimatedHeight: 44)
