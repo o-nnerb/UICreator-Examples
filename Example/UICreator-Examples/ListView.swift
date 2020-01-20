@@ -134,7 +134,7 @@ extension ListView {
                     NumberView(number: 1).insets()
                 )
             },
-            ForEach(self.numbers) { number in
+            UICForEach(self.numbers) { number in
                 NumberView(number: number)
             }
         ))

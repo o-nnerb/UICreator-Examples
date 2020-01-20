@@ -11,7 +11,7 @@ import UIKit
 import UIContainer
 import UICreator
 
-class MyLabel: UIHost, TextElement {
+class MyLabel: UICViewRepresentable, TextElement {
 
     required init(_ text: String?) {
         self.uiView.text = text

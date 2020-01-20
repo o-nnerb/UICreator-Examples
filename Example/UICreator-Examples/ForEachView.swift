@@ -33,7 +33,7 @@ extension ForEachView: TemplateView {
     var body: ViewCreator {
         UICVScroll {
             UICVStack(
-                ForEach(self.array) {
+                UICForEach(self.array) {
                     NumberView(number: $0)
                 }
             )
