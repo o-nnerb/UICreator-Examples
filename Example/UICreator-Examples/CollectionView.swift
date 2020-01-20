@@ -11,7 +11,8 @@ import UIKit
 import UIContainer
 import UICreator
 
-class MyLabel: UIHost, TextElement {
+class MyLabel: UICViewRepresentable, TextElement {
+
     required init(_ text: String?) {
         self.uiView.text = text
     }
@@ -54,7 +55,7 @@ class BackgroundView: Root {
 
 extension BackgroundView: TemplateView {
     var body: ViewCreator {
-        Spacer()
+        UICSpacer()
             .as(&self.backgrounView)
     }
 }
@@ -102,15 +103,15 @@ extension CollectionView: TemplateView {
     }
 
     var body: ViewCreator {
-        return VStack(
-            Page(numberOfPages: 2)
+        return UICVStack(
+            UICPageControl(numberOfPages: 2)
                 .background(color: .black)
                 .onPageChanged {
                     print(($0 as? UIPageControl)?.currentPage ?? "0")
                 }.as(&self.pageControl),
-            FlowCollection(.row {
+            UICFlow(
                 BackgroundView()
-            }).layoutMaker {
+            ).layoutMaker {
                 .section {
                     .sequence(
                         self.firstGroup,
@@ -126,12 +127,12 @@ extension CollectionView: TemplateView {
             .scroll(direction: .vertical)
             .background {
                 Child(
-                    Image(image: #imageLiteral(resourceName: "GettyImages-139496979"))
+                    UICImage(image: #imageLiteral(resourceName: "GettyImages-139496979"))
                         .content(mode: .scaleAspectFill)
                         .clips(toBounds: true)
                         .insets(),
-                    Blur(blur: .extraLight),
-                    Spacer()
+                    UICBlur(blur: .extraLight),
+                    UICSpacer()
                         .background(color: .white)
                         .safeArea(topEqualTo: 0)
                 )

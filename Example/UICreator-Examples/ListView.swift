@@ -11,7 +11,7 @@ import UIKit
 import UIContainer
 import UICreator
 
-class NumberView: Root {
+class NumberView: UICView, UIViewContext {
     weak var numberLabel: UILabel!
     weak var highlightedView: UIView!
 
@@ -22,31 +22,46 @@ class NumberView: Root {
     func configure(with number: Int) {
         self.numberLabel.text = "\(number)"
     }
+
+    init(number: Int) {
+        super.init()
+        self.context.number.value = number
+    }
+
+    class Context: UICreator.Context {
+        let number: Value<Int?> = .init(value: nil)
+    }
+
+    func bindContext(_ context: Context) {
+        context.number.sync { [weak self] in
+            self?.numberLabel.text = "\($0 ?? 0)"
+        }
+    }
 }
 
-extension NumberView: TemplateView {
+extension NumberView {
     var body: ViewCreator {
         Child(
-            Spacer(vertical: 15, horizontal: 30) { [unowned self] in
-                HStack(
-                    VStack(
-                        Label("Detalhe")
+            UICSpacer(vertical: 15, horizontal: 30) { [unowned self] in
+                UICHStack(
+                    UICVStack(
+                        UICLabel("Detalhe")
                             .vertical(hugging: .defaultHigh, compression: .required)
                             .font(.callout)
                             .text(color: .black),
-                        Label("Número: ")
+                        UICLabel("Número: ")
                             .horizontal(hugging: .defaultHigh, compression: .required)
                             .font(.body(weight: .bold))
                             .text(color: .black)
                     ),
-                    Label("1")
+                    UICLabel("1")
                         .horizontal(compression: .required)
                         .font(.systemFont(ofSize: 18))
                         .text(color: .black)
                         .text(alignment: .right)
                         .as(&self.numberLabel)
                         .toolbar(
-                            Spacer()
+                            UICSpacer()
                                 .background(color: .black)
                                 .insets(priority: .required)
                         ).toolbar(isHidden: false)
@@ -54,7 +69,7 @@ extension NumberView: TemplateView {
                         .toolbar(isTranslucent: false)
                 )
             }.insets(),
-            Spacer()
+            UICSpacer()
                 .background(color: .black)
                 .alpha(0)
                 .as(&self.highlightedView)
@@ -62,11 +77,11 @@ extension NumberView: TemplateView {
         .isExclusiveTouch(false)
         .onTouchMaker {
             $0.onBegan { touch in
-                self.animate(0.05) {
+                self.animate(0.05) {_ in
                     self.highlightedView.alpha = 0.15
                 }
             }.onEnded { _ in
-                self.animate(0.075) {
+                self.animate(0.075) {_ in
                     self.highlightedView.alpha = 0
                 }
             }.cancelWhenTouchMoves(true).cancelsTouches(inView: false)
@@ -74,17 +89,7 @@ extension NumberView: TemplateView {
     }
 }
 
-//extension NumberView {
-//    class Cell: ContainerTableViewCell<NumberView> {
-//        override func containerDidLoad() {
-//            super.containerDidLoad()
-//            self.selectionStyle = .none
-//            self.backgroundColor = .white
-//        }
-//    }
-//}
-
-class ListView: Root {
+class ListView: UICView {
     weak var tableView: UITableView!
 
     func newNumbers() -> [Int] {
@@ -93,47 +98,56 @@ class ListView: Root {
         }
     }
 
-    lazy var numbers: [Int] = {
-        return self.newNumbers()
+    lazy var numbers: Value<[Int]> = {
+        return .init(value: self.newNumbers())
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.reloadData()
     }
+
+    func loop() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            self?.numbers.value = self?.newNumbers() ?? []
+            self?.loop()
+        }
+    }
 }
 
-extension ListView: TemplateView {
+extension ListView {
     var body: ViewCreator {
-        Table(style: .plain, .section(
-            .header {
+        UICList(style: .plain, .init(
+            UICHeader {
                 Child(
-                    Blur(blur: .extraLight),
-                    NumberView().insets()
+                    UICBlur(blur: .extraLight),
+                    NumberView(number: 1).insets()
                 )
             },
-            .row {
-                NumberView()
+            UICForEach(self.numbers) { number in
+                NumberView(number: number)
             }
         ))
-        .dynamicDataSource(self)
+        .onInTheScene { _ in
+            self.loop()
+        }
         .row(height: UITableView.automaticDimension)
         .row(estimatedHeight: 44)
         .as(&self.tableView)
         .header(size: .init(width: 0, height: 60)) {
-            Spacer(spacing: 5) {
-                Rounder(radius: 15) {
-                    Spacer(spacing: 15) {
-                        HStack(
-                            Dashed(color: .black) {
-                                Rounder(radius: 0.5) {
-                                    Image(image: #imageLiteral(resourceName: "GettyImages-139496979"))
+            UICSpacer(spacing: 5) {
+                UICRounder(radius: 15) {
+                    UICSpacer(spacing: 15) {
+                        UICHStack(
+                            UICDashed(color: .black) {
+                                UICRounder(radius: 0.5) {
+                                    UICImage(image: #imageLiteral(resourceName: "GettyImages-139496979"))
                                         .aspectRatio(priority: .required)
                                         .content(mode: .scaleAspectFill)
                                         .clips(toBounds: true)
                                 }
                             },
-                            Label("Hello World!")
+                            UICLabel("Hello World!")
                                 .font(.boldSystemFont(ofSize: 18))
                                 .text(color: .white)
                                 .navigation(title: "Lista Numérica")
@@ -150,25 +164,14 @@ extension ListView: TemplateView {
             .navigation(prefersLargeTitles: true)
             .background {
                 Child(
-                    Image(image: #imageLiteral(resourceName: "GettyImages-139496979"))
+                    UICImage(image: #imageLiteral(resourceName: "GettyImages-139496979"))
                         .content(mode: .scaleAspectFill)
                         .clips(toBounds: true)
                         .insets(),
-                    Blur(blur: .extraLight)
+                    UICBlur(blur: .extraLight)
                 )
         }
     }
-}
-
-extension ListView: TableDataSource {
-    func numberOfRows(in section: Int, estimatedRows: Int) -> Int {
-        return self.numbers.count
-    }
-
-    func cell(at indexPath: IndexPath, content: ViewCreator) {
-        (content as? NumberView)?.configure(with: self.numbers[indexPath.row])
-    }
-
 }
 
 #if DEBUG

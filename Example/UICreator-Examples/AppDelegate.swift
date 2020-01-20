@@ -19,12 +19,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
 
         let window = UIWindow(frame: UIScreen.main.bounds)
-        window.rootViewController = ContainerController(Host {
+        window.rootViewController = ContainerController(UICHost {
             ContentView()
         })
         window.makeKeyAndVisible()
         self.window = window
 
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+            self.window?.rootViewController = .init()
+        }
         return true
     }
 
