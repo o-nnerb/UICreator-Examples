@@ -10,9 +10,9 @@ import UIKit
 import UIContainer
 import UICreator
 
-extension TextField {
-    static func base(_ placeholder: String) -> Field {
-        Field(placeholder: placeholder)
+extension UICText {
+    static func base(_ placeholder: String) -> UICText {
+        UICText(placeholder: placeholder)
             .font(UIFont.boldSystemFont(ofSize: 24))
             .text(color: .white)
             .border(style: .none)
@@ -21,8 +21,8 @@ extension TextField {
             .placeholder(font: .systemFont(ofSize: 24, weight: .regular))
     }
 
-    static func spacer(_ handler: @escaping () -> ViewCreator) -> Spacer {
-        Spacer(vertical: 0, horizontal: 10) {
+    static func spacer(_ handler: @escaping () -> ViewCreator) -> UICSpacer {
+        UICSpacer(vertical: 0, horizontal: 10) {
             handler()
         }.border(color: .white)
         .border(width: 1)
@@ -32,7 +32,7 @@ extension TextField {
 
 class ContentView: Root, TemplateView, ViewControllerType {
     var body: ViewCreator {
-        Spacer {
+        UICSpacer {
             Navigation {
                 ListView()
             }
@@ -58,31 +58,31 @@ extension SignupView {
 
     var body: ViewCreator {
         Child(
-            Image(image: nil)
+            UICImage(image: nil)
                 .image(#imageLiteral(resourceName: "GettyImages-139496979"))
                 .content(mode: .scaleAspectFill)
                 .insets()
                 .clips(toBounds: true),
-            Stack(
+            UICStack(
                 (0...20).map {
-                    Spacer()
+                    UICSpacer()
                         .background(color: .init(white: CGFloat($0) / 40, alpha: 1))
                 }
             ).distribution(.fillEqually),
-            Spacer()
+            UICSpacer()
                 .background(color: .black)
                 .alpha(0.35),
-            Scroll {
-                Stack(
-                    Spacer(spacing: 15) {
-                        Stack(
-                            TextField.spacer {
-                                TextField.base("Nome")
+            UICScroll {
+                UICStack(
+                    UICSpacer(spacing: 15) {
+                        UICStack(
+                            UICText.spacer {
+                                UICText.base("Nome")
                                     .keyboard(type: .asciiCapable)
                                     .as(&self.nameField)
                                     .inputView {
-                                        Input(size: .init(width: UIScreen.main.bounds.width, height: 250), style: .keyboard) {
-                                            DatePicker(calendar: nil)
+                                        UICInput(size: .init(width: UIScreen.main.bounds.width, height: 250), style: .keyboard) {
+                                            UICDatePicker(calendar: nil)
                                                 .maximumDate(.init())
                                                 .tintColor(.black)
                                                 .mode(.date)
@@ -92,21 +92,21 @@ extension SignupView {
                                     }.onEditingChanged {
                                         $0.navigationItem.title = ($0 as? UITextField)?.text
                                     }.leftView {
-                                        Content {
-                                            Spacer(spacing: 5) {
-                                                Stack(axis: .horizontal, .init(
-                                                    Rounder(radius: 0.5) {
-                                                        Spacer()
+                                        UICContent {
+                                            UICSpacer(spacing: 5) {
+                                                UICStack(axis: .horizontal, .init(
+                                                    UICRounder(radius: 0.5) {
+                                                        UICSpacer()
                                                             .background(color: .red)
                                                             .aspectRatio(priority: .low)
                                                     },
-                                                    Rounder(radius: 0.5) {
-                                                        Spacer()
+                                                    UICRounder(radius: 0.5) {
+                                                        UICSpacer()
                                                             .background(color: .black)
                                                             .aspectRatio(priority: .low)
                                                     },
-                                                    Rounder(radius: 0.5) {
-                                                        Spacer()
+                                                    UICRounder(radius: 0.5) {
+                                                        UICSpacer()
                                                             .background(color: .green)
                                                             .aspectRatio(priority: .low)
                                                     }
@@ -115,38 +115,38 @@ extension SignupView {
                                         }.content(mode: .scaleAspectFit).height(equalTo: 55)
                                     }
                             },
-                            TextField.spacer {
-                                TextField.base("Sobrenome")
+                            UICText.spacer {
+                                UICText.base("Sobrenome")
                                     .keyboard(type: .asciiCapable)
                                     .as(&self.lastNameField)
                             },
-                            Spacer(vertical: 15, horizontal: 0) {
-                                Stack(
-                                    TextField.spacer {
-                                        TextField.base("Estado")
+                            UICSpacer(vertical: 15, horizontal: 0) {
+                                UICStack(
+                                    UICText.spacer {
+                                        UICText.base("Estado")
                                             .keyboard(type: .asciiCapable)
                                             .as(&self.stateField)
                                     },
-                                    TextField.spacer {
-                                        TextField.base("Cidade")
+                                    UICText.spacer {
+                                        UICText.base("Cidade")
                                             .keyboard(type: .asciiCapable)
                                             .as(&self.cityField)
                                     },
-                                    Stack(axis: .horizontal, .init(
-                                        TextField.spacer {
-                                            TextField.base("Rua")
+                                    UICStack(axis: .horizontal, .init(
+                                        UICText.spacer {
+                                            UICText.base("Rua")
                                                 .keyboard(type: .asciiCapable)
                                                 .as(&self.streetField)
                                         },
-                                        TextField.spacer {
-                                            TextField.base("Número")
+                                        UICText.spacer {
+                                            UICText.base("Número")
                                                 .keyboard(type: .asciiCapable)
                                         }.width(equalToSuperview: 0.35)
                                         .navigation(title: "Cadastro")
                                         .navigation(background: #imageLiteral(resourceName: "GettyImages-139496979"))
                                         .navigation(titleColor: .white)
                                         .navigation(backButton: {
-                                            Button("Sair")
+                                            UICButton("Sair")
                                                 .title(color: .black)
                                                 .onTouchInside {
                                                     $0.navigation?.pop(animated: true)
@@ -155,30 +155,30 @@ extension SignupView {
                                     )).spacing(30)
                                 ).spacing(30)
                             },
-                            TextField.spacer {
-                                TextField.base("Gênero")
+                            UICText.spacer {
+                                UICText.base("Gênero")
                             },
-                            TextField.spacer {
-                                TextField.base("CPF")
+                            UICText.spacer {
+                                UICText.base("CPF")
                             },
-                            TextField.spacer {
-                                TextField.base("Senha")
+                            UICText.spacer {
+                                UICText.base("Senha")
                                     .secureText()
                             },
-                            HStack(
-                                Label("Aceito os termos")
+                            UICHStack(
+                                UICLabel("Aceito os termos")
                                     .text(color: .black),
-                                Switch(on: false)
+                                UICSwitch(on: false)
                                     .onValueChanged {
                                         $0.navigationItem.title = "Aceito"
                                     }
                             ),
-                            Spacer()
+                            UICSpacer()
                         ).spacing(30)
                     },
-                    Spacer(vertical: 0, horizontal: 15) {
-                            Rounder(radius: 5) {
-                                Button("Save")
+                    UICSpacer(vertical: 0, horizontal: 15) {
+                            UICRounder(radius: 5) {
+                                UICButton("Save")
                                     .title(color: .black)
                                     .background(color: .brown)
                                     .height(equalTo: 55)

@@ -44,4 +44,4 @@ class BaseNavigationController: UINavigationController {
 
 import UICreator
 
-typealias Navigation = UICreator.Navigation.Other<BaseNavigationController>
+typealias Navigation = UICNavigation.Other<BaseNavigationController>

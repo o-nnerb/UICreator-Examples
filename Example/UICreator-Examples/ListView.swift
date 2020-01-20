@@ -42,26 +42,26 @@ class NumberView: UICView, UIViewContext {
 extension NumberView {
     var body: ViewCreator {
         Child(
-            Spacer(vertical: 15, horizontal: 30) { [unowned self] in
-                HStack(
-                    VStack(
-                        Label("Detalhe")
+            UICSpacer(vertical: 15, horizontal: 30) { [unowned self] in
+                UICHStack(
+                    UICVStack(
+                        UICLabel("Detalhe")
                             .vertical(hugging: .defaultHigh, compression: .required)
                             .font(.callout)
                             .text(color: .black),
-                        Label("Número: ")
+                        UICLabel("Número: ")
                             .horizontal(hugging: .defaultHigh, compression: .required)
                             .font(.body(weight: .bold))
                             .text(color: .black)
                     ),
-                    Label("1")
+                    UICLabel("1")
                         .horizontal(compression: .required)
                         .font(.systemFont(ofSize: 18))
                         .text(color: .black)
                         .text(alignment: .right)
                         .as(&self.numberLabel)
                         .toolbar(
-                            Spacer()
+                            UICSpacer()
                                 .background(color: .black)
                                 .insets(priority: .required)
                         ).toolbar(isHidden: false)
@@ -69,7 +69,7 @@ extension NumberView {
                         .toolbar(isTranslucent: false)
                 )
             }.insets(),
-            Spacer()
+            UICSpacer()
                 .background(color: .black)
                 .alpha(0)
                 .as(&self.highlightedView)
@@ -127,10 +127,10 @@ class ListView: UICView {
 
 extension ListView {
     var body: ViewCreator {
-        Table(style: .plain, .init(
-            Header {
+        UICList(style: .plain, .init(
+            UICHeader {
                 Child(
-                    Blur(blur: .extraLight),
+                    UICBlur(blur: .extraLight),
                     NumberView(number: 1).insets()
                 )
             },
@@ -145,19 +145,19 @@ extension ListView {
         .row(estimatedHeight: 44)
         .as(&self.tableView)
         .header(size: .init(width: 0, height: 60)) {
-            Spacer(spacing: 5) {
-                Rounder(radius: 15) {
-                    Spacer(spacing: 15) {
-                        HStack(
-                            Dashed(color: .black) {
-                                Rounder(radius: 0.5) {
-                                    Image(image: #imageLiteral(resourceName: "GettyImages-139496979"))
+            UICSpacer(spacing: 5) {
+                UICRounder(radius: 15) {
+                    UICSpacer(spacing: 15) {
+                        UICHStack(
+                            UICDashed(color: .black) {
+                                UICRounder(radius: 0.5) {
+                                    UICImage(image: #imageLiteral(resourceName: "GettyImages-139496979"))
                                         .aspectRatio(priority: .required)
                                         .content(mode: .scaleAspectFill)
                                         .clips(toBounds: true)
                                 }
                             },
-                            Label("Hello World!")
+                            UICLabel("Hello World!")
                                 .font(.boldSystemFont(ofSize: 18))
                                 .text(color: .white)
                                 .navigation(title: "Lista Numérica")
@@ -174,11 +174,11 @@ extension ListView {
             .navigation(prefersLargeTitles: true)
             .background {
                 Child(
-                    Image(image: #imageLiteral(resourceName: "GettyImages-139496979"))
+                    UICImage(image: #imageLiteral(resourceName: "GettyImages-139496979"))
                         .content(mode: .scaleAspectFill)
                         .clips(toBounds: true)
                         .insets(),
-                    Blur(blur: .extraLight)
+                    UICBlur(blur: .extraLight)
                 )
         }
     }

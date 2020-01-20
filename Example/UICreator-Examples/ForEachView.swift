@@ -31,8 +31,8 @@ class ForEachView: Root {
 
 extension ForEachView: TemplateView {
     var body: ViewCreator {
-        VScroll {
-            VStack(
+        UICVScroll {
+            UICVStack(
                 ForEach(self.array) {
                     NumberView(number: $0)
                 }
