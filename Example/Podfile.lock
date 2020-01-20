@@ -1,36 +1,34 @@
 PODS:
   - SnapKit (5.0.1)
-  - UIContainer (1.2.0-beta.3):
+  - UIContainer (1.2.0-beta.4):
     - SnapKit (~> 5.0.1)
-  - UICreator (1.0.0-alpha.5):
+  - UICreator (1.0.0-alpha.6):
     - SnapKit (~> 5.0.1)
-    - UIContainer (~> 1.2.0-beta.3)
+    - UIContainer (~> 1.2.0-beta.4)
   - UICreator-Examples (0.1.0)
 
 DEPENDENCIES:
   - SnapKit
-  - UIContainer (from `../../../umobi/UIContainer`)
-  - UICreator (from `../../../umobi/UICreator`)
+  - UIContainer (~> 1.2.0-beta.4)
+  - UICreator (~> 1.0.0-alpha.6)
   - UICreator-Examples (from `../`)
 
 SPEC REPOS:
   trunk:
     - SnapKit
+    - UIContainer
+    - UICreator
 
 EXTERNAL SOURCES:
-  UIContainer:
-    :path: "../../../umobi/UIContainer"
-  UICreator:
-    :path: "../../../umobi/UICreator"
   UICreator-Examples:
     :path: "../"
 
 SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  UIContainer: c02fa5ca99a274c8f5761fa752c8e02655179f00
-  UICreator: 95436349c92ec44a98919e8256a51dec549703e6
+  UIContainer: 6784815e668ee89f1afb22179e70186694c979d1
+  UICreator: cdd07501261f441f3378286993ecbd6290cb8b9f
   UICreator-Examples: cff1b41bb6c040132ce7e69cb077a4f0ff03bc20
 
-PODFILE CHECKSUM: 67476b21d0d79c6f7536d13670534eee7fa7de1b
+PODFILE CHECKSUM: 139567d2544a8e39f599dc2ba6e4c13db6c5ad9a
 
 COCOAPODS: 1.8.4

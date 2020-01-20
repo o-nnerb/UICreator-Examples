@@ -89,16 +89,6 @@ extension NumberView {
     }
 }
 
-//extension NumberView {
-//    class Cell: ContainerTableViewCell<NumberView> {
-//        override func containerDidLoad() {
-//            super.containerDidLoad()
-//            self.selectionStyle = .none
-//            self.backgroundColor = .white
-//        }
-//    }
-//}
-
 class ListView: UICView {
     weak var tableView: UITableView!
 
