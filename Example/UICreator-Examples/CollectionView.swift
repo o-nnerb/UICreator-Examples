@@ -12,6 +12,7 @@ import UIContainer
 import UICreator
 
 class MyLabel: UICViewRepresentable, TextElement {
+    typealias View = UILabel
 
     required init(_ text: String?) {
         self.uiView.text = text
@@ -21,11 +22,11 @@ class MyLabel: UICViewRepresentable, TextElement {
         self.uiView.attributedText = attributedText
     }
 
-    typealias View = UILabel
-
     func makeUIView() -> View {
         return .init()
     }
+
+    func updateView(_ view: UILabel) {}
 }
 
 class BackgroundView: Root {

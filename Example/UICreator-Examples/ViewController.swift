@@ -33,8 +33,8 @@ extension UICText {
 class ContentView: Root, TemplateView, ViewControllerType {
     var body: ViewCreator {
         UICSpacer {
-            Navigation {
-                ListView()
+            UICNavigation {
+                LandmarkList()
             }
         }.background(color: .white)
     }
@@ -59,7 +59,7 @@ extension SignupView {
     var body: ViewCreator {
         Child(
             UICImage(image: nil)
-                .image(#imageLiteral(resourceName: "GettyImages-139496979"))
+                .image(#imageLiteral(resourceName: "cristoredentor"))
                 .content(mode: .scaleAspectFill)
                 .insets()
                 .clips(toBounds: true),
@@ -143,7 +143,7 @@ extension SignupView {
                                                 .keyboard(type: .asciiCapable)
                                         }.width(equalToSuperview: 0.35)
                                         .navigation(title: "Cadastro")
-                                        .navigation(background: #imageLiteral(resourceName: "GettyImages-139496979"))
+                                        .navigation(background: #imageLiteral(resourceName: "cristoredentor"))
                                         .navigation(titleColor: .white)
                                         .navigation(backButton: {
                                             UICButton("Sair")

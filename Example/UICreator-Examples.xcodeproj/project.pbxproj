@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C2115F923D752FB00AF6BE1 /* CristoRedentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2115F823D752FB00AF6BE1 /* CristoRedentor.swift */; };
+		0C2115FB23D7562E00AF6BE1 /* CristoRedentor.CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2115FA23D7562E00AF6BE1 /* CristoRedentor.CircleImage.swift */; };
+		0C2115FD23D757F400AF6BE1 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2115FC23D757F400AF6BE1 /* MapView.swift */; };
+		0C21160223D7612D00AF6BE1 /* Landmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C21160123D7612D00AF6BE1 /* Landmark.swift */; };
+		0C21160423D7617700AF6BE1 /* LandmarkDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C21160323D7617700AF6BE1 /* LandmarkDetail.swift */; };
+		0C21160623D761B900AF6BE1 /* LandmarkRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C21160523D761B900AF6BE1 /* LandmarkRow.swift */; };
+		0C2C774623D89C240012E60D /* Example.2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C2C774523D89C240012E60D /* Example.2.xcassets */; };
+		0C2C774823D89D750012E60D /* LandmarkImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2C774723D89D750012E60D /* LandmarkImage.swift */; };
 		0C2F030023CF6A5200B932AE /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2F02FA23CF6A5100B932AE /* CollectionView.swift */; };
 		0C2F030123CF6A5200B932AE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2F02FB23CF6A5200B932AE /* SceneDelegate.swift */; };
 		0C2F030223CF6A5200B932AE /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2F02FC23CF6A5200B932AE /* ListView.swift */; };
@@ -14,6 +22,7 @@
 		0C2F030423CF6A5200B932AE /* PagedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2F02FE23CF6A5200B932AE /* PagedView.swift */; };
 		0C2F030523CF6A5200B932AE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2F02FF23CF6A5200B932AE /* ViewController.swift */; };
 		0C2F030723CF6C0800B932AE /* ForEachView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2F030623CF6C0800B932AE /* ForEachView.swift */; };
+		0CF725DE23D7944400F674BC /* LandmarkList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF725DD23D7944400F674BC /* LandmarkList.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
@@ -34,6 +43,14 @@
 
 /* Begin PBXFileReference section */
 		0788A4E779724DDBBA66C446 /* Pods-UICreator-Examples_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UICreator-Examples_Example.release.xcconfig"; path = "Target Support Files/Pods-UICreator-Examples_Example/Pods-UICreator-Examples_Example.release.xcconfig"; sourceTree = "<group>"; };
+		0C2115F823D752FB00AF6BE1 /* CristoRedentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CristoRedentor.swift; sourceTree = "<group>"; };
+		0C2115FA23D7562E00AF6BE1 /* CristoRedentor.CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CristoRedentor.CircleImage.swift; sourceTree = "<group>"; };
+		0C2115FC23D757F400AF6BE1 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		0C21160123D7612D00AF6BE1 /* Landmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landmark.swift; sourceTree = "<group>"; };
+		0C21160323D7617700AF6BE1 /* LandmarkDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkDetail.swift; sourceTree = "<group>"; };
+		0C21160523D761B900AF6BE1 /* LandmarkRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkRow.swift; sourceTree = "<group>"; };
+		0C2C774523D89C240012E60D /* Example.2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Example.2.xcassets; sourceTree = "<group>"; };
+		0C2C774723D89D750012E60D /* LandmarkImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkImage.swift; sourceTree = "<group>"; };
 		0C2F02FA23CF6A5100B932AE /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		0C2F02FB23CF6A5200B932AE /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0C2F02FC23CF6A5200B932AE /* ListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
@@ -41,6 +58,7 @@
 		0C2F02FE23CF6A5200B932AE /* PagedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagedView.swift; sourceTree = "<group>"; };
 		0C2F02FF23CF6A5200B932AE /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0C2F030623CF6C0800B932AE /* ForEachView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForEachView.swift; sourceTree = "<group>"; };
+		0CF725DD23D7944400F674BC /* LandmarkList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LandmarkList.swift; path = "UICreator-Examples/Building Lists and Navigation/LandmarkList.swift"; sourceTree = "<group>"; };
 		457B3C5F5502C5F513FDCC50 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* UICreator_Examples_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UICreator_Examples_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -79,6 +97,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C2115FF23D760DF00AF6BE1 /* Creating And Combining Views */ = {
+			isa = PBXGroup;
+			children = (
+				607FACDC1AFB9204008FA782 /* Images.xcassets */,
+				0C2115F823D752FB00AF6BE1 /* CristoRedentor.swift */,
+				0C2115FA23D7562E00AF6BE1 /* CristoRedentor.CircleImage.swift */,
+				0C2115FC23D757F400AF6BE1 /* MapView.swift */,
+			);
+			path = "Creating And Combining Views";
+			sourceTree = "<group>";
+		};
+		0C21160023D7610900AF6BE1 /* Building Lists and Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				0C21160123D7612D00AF6BE1 /* Landmark.swift */,
+				0C21160323D7617700AF6BE1 /* LandmarkDetail.swift */,
+				0C21160523D761B900AF6BE1 /* LandmarkRow.swift */,
+				0C2C774723D89D750012E60D /* LandmarkImage.swift */,
+				0C2C774523D89C240012E60D /* Example.2.xcassets */,
+			);
+			path = "Building Lists and Navigation";
+			sourceTree = "<group>";
+		};
 		21885E1928988181AD4F0A4E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +143,7 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
+				0CF725DD23D7944400F674BC /* LandmarkList.swift */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for UICreator-Examples */,
 				607FACE81AFB9204008FA782 /* Tests */,
@@ -125,13 +167,14 @@
 			children = (
 				0C2F030623CF6C0800B932AE /* ForEachView.swift */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
+				0C21160023D7610900AF6BE1 /* Building Lists and Navigation */,
+				0C2115FF23D760DF00AF6BE1 /* Creating And Combining Views */,
 				0C2F02FD23CF6A5200B932AE /* BaseNavigationController.swift */,
 				0C2F02FA23CF6A5100B932AE /* CollectionView.swift */,
 				0C2F02FC23CF6A5200B932AE /* ListView.swift */,
 				0C2F02FE23CF6A5200B932AE /* PagedView.swift */,
 				0C2F02FB23CF6A5200B932AE /* SceneDelegate.swift */,
 				0C2F02FF23CF6A5200B932AE /* ViewController.swift */,
-				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
@@ -263,6 +306,7 @@
 			files = (
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				0C2C774623D89C240012E60D /* Example.2.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,13 +396,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C2F030223CF6A5200B932AE /* ListView.swift in Sources */,
+				0C2115FB23D7562E00AF6BE1 /* CristoRedentor.CircleImage.swift in Sources */,
 				0C2F030023CF6A5200B932AE /* CollectionView.swift in Sources */,
+				0C2C774823D89D750012E60D /* LandmarkImage.swift in Sources */,
+				0C2115FD23D757F400AF6BE1 /* MapView.swift in Sources */,
+				0CF725DE23D7944400F674BC /* LandmarkList.swift in Sources */,
 				0C2F030423CF6A5200B932AE /* PagedView.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				0C2F030523CF6A5200B932AE /* ViewController.swift in Sources */,
+				0C21160423D7617700AF6BE1 /* LandmarkDetail.swift in Sources */,
 				0C2F030323CF6A5200B932AE /* BaseNavigationController.swift in Sources */,
 				0C2F030123CF6A5200B932AE /* SceneDelegate.swift in Sources */,
+				0C2115F923D752FB00AF6BE1 /* CristoRedentor.swift in Sources */,
 				0C2F030723CF6C0800B932AE /* ForEachView.swift in Sources */,
+				0C21160623D761B900AF6BE1 /* LandmarkRow.swift in Sources */,
+				0C21160223D7612D00AF6BE1 /* Landmark.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
