@@ -118,19 +118,28 @@ class ListView: UICView {
 extension ListView {
     var body: ViewCreator {
         UICList(style: .plain, .init(
-            UICHeader {
-                Child(
-                    UICBlur(blur: .extraLight),
-                    NumberView(number: 1).insets()
-                )
-            },
+            UICSection(
+                UICRow {
+                    UICSpacer()
+                        .height(equalTo: 45)
+                        .background(color: .black)
+                }
+            ),
             UICForEach(self.numbers) { number in
-                NumberView(number: number)
+                UICSection(
+                    UICHeader {
+                        Child(
+                            UICBlur(blur: .extraLight),
+                            NumberView(number: number).insets()
+                        )
+                    },
+
+                    UICRow {
+                        NumberView(number: number)
+                    }
+                )
             }
         ))
-        .onInTheScene { _ in
-            self.loop()
-        }
         .row(height: UITableView.automaticDimension)
         .row(estimatedHeight: 44)
         .as(&self.tableView)
@@ -141,7 +150,7 @@ extension ListView {
                         UICHStack(
                             UICDashed(color: .black) {
                                 UICRounder(radius: 0.5) {
-                                    UICImage(image: #imageLiteral(resourceName: "GettyImages-139496979"))
+                                    UICImage(image: #imageLiteral(resourceName: "cristoredentor"))
                                         .aspectRatio(priority: .required)
                                         .content(mode: .scaleAspectFill)
                                         .clips(toBounds: true)
@@ -164,7 +173,7 @@ extension ListView {
             .navigation(prefersLargeTitles: true)
             .background {
                 Child(
-                    UICImage(image: #imageLiteral(resourceName: "GettyImages-139496979"))
+                    UICImage(image: #imageLiteral(resourceName: "cristoredentor"))
                         .content(mode: .scaleAspectFill)
                         .clips(toBounds: true)
                         .insets(),

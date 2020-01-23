@@ -29,6 +29,7 @@ class LandmarkDetail: UICView {
                         LandmarkImage(image: self.landmark.image)
                             .top(equalTo: -130)
                             .insets(.bottom, .leading, .trailing)
+                            .height(equalTo: 260)
                     )
                 },
 
