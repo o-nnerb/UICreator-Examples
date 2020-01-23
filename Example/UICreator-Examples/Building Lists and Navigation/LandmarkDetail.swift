@@ -20,7 +20,7 @@ class LandmarkDetail: UICView {
     var body: ViewCreator {
         UICSpacer {
             UICVStack(
-                MapView()
+                LandmarkMapView(coordinate: self.landmark.locationCoordinate)
                     .leading()
                     .height(equalTo: 300),
 
