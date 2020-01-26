@@ -125,7 +125,7 @@ extension ListView {
                         .background(color: .black)
                 }
             ),
-            UICForEach(self.numbers) { number in
+            UICForEach(self.numbers) { [weak self] number in
                 UICSection(
                     UICHeader {
                         Child(
@@ -136,7 +136,17 @@ extension ListView {
 
                     UICRow {
                         NumberView(number: number)
-                    }
+                    }.trailingActions(
+                        UICContextualAction("Delete", style: .destructive)
+                            .deleteAction(with: .left) {
+                                self?.numbers.value.remove(at: $0.section - 1)
+                        },
+                        UICContextualAction("Edit", style: .normal)
+                            .onAction { _ in
+                                print("edit")
+                                return true
+                            }
+                    )
                 )
             }
         ))
@@ -150,7 +160,7 @@ extension ListView {
                         UICHStack(
                             UICDashed(color: .black) {
                                 UICRounder(radius: 0.5) {
-                                    UICImage(image: #imageLiteral(resourceName: "cristoredentor"))
+                                    UICImage(image: #imageLiteral(resourceName: "waterfall"))
                                         .aspectRatio(priority: .required)
                                         .content(mode: .scaleAspectFill)
                                         .clips(toBounds: true)
@@ -173,7 +183,7 @@ extension ListView {
             .navigation(prefersLargeTitles: true)
             .background {
                 Child(
-                    UICImage(image: #imageLiteral(resourceName: "cristoredentor"))
+                    UICImage(image: #imageLiteral(resourceName: "waterfall"))
                         .content(mode: .scaleAspectFill)
                         .clips(toBounds: true)
                         .insets(),

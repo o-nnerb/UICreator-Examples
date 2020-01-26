@@ -128,7 +128,7 @@ extension CollectionView: TemplateView {
             .scroll(direction: .vertical)
             .background {
                 Child(
-                    UICImage(image: #imageLiteral(resourceName: "GettyImages-139496979"))
+                    UICImage(image: #imageLiteral(resourceName: "waterfall"))
                         .content(mode: .scaleAspectFill)
                         .clips(toBounds: true)
                         .insets(),

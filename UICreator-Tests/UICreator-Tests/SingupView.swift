@@ -49,7 +49,7 @@ extension SignupView {
     var body: ViewCreator {
         Child(
             UICImage(image: nil)
-                .image(#imageLiteral(resourceName: "cristoredentor"))
+                .image(#imageLiteral(resourceName: "waterfall"))
                 .content(mode: .scaleAspectFill)
                 .insets()
                 .clips(toBounds: true),
@@ -133,7 +133,7 @@ extension SignupView {
                                                 .keyboard(type: .asciiCapable)
                                         }.width(equalToSuperview: 0.35)
                                         .navigation(title: "Cadastro")
-                                        .navigation(background: #imageLiteral(resourceName: "cristoredentor"))
+                                        .navigation(background: #imageLiteral(resourceName: "waterfall"))
                                         .navigation(titleColor: .white)
                                         .navigation(backButton: {
                                             UICButton("Sair")
