@@ -32,11 +32,11 @@ class ForEachView: Root {
 extension ForEachView: TemplateView {
     var body: ViewCreator {
         UICVScroll {
-            UICVStack(
+            UICVStack {[
                 UICForEach(self.array) {
                     NumberView(number: $0)
                 }
-            )
+            ]}
         }
     }
 }

@@ -41,10 +41,10 @@ class NumberView: UICView, UIViewContext {
 
 extension NumberView {
     var body: ViewCreator {
-        Child(
-            UICSpacer(vertical: 15, horizontal: 30) { [unowned self] in
-                UICHStack(
-                    UICVStack(
+        Child { [unowned self] in [
+            UICSpacer(vertical: 15, horizontal: 30) {
+                UICHStack {[
+                    UICVStack {[
                         UICLabel("Detalhe")
                             .vertical(hugging: .defaultHigh, compression: .required)
                             .font(.callout)
@@ -53,27 +53,27 @@ extension NumberView {
                             .horizontal(hugging: .defaultHigh, compression: .required)
                             .font(.body(weight: .bold))
                             .text(color: .black)
-                    ),
+                    ]},
                     UICLabel("1")
                         .horizontal(compression: .required)
                         .font(.systemFont(ofSize: 18))
                         .text(color: .black)
                         .text(alignment: .right)
                         .as(&self.numberLabel)
-                        .toolbar(
+                        .toolbar {[
                             UICSpacer()
                                 .background(color: .black)
                                 .insets(priority: .required)
-                        ).toolbar(isHidden: false)
+                        ]}.toolbar(isHidden: false)
                         .toolbar(barTintColor: .black)
                         .toolbar(isTranslucent: false)
-                )
+                ]}
             }.insets(),
             UICSpacer()
                 .background(color: .black)
                 .alpha(0)
                 .as(&self.highlightedView)
-        ).isUserInteractionEnabled(true)
+        ]}.isUserInteractionEnabled(true)
         .isExclusiveTouch(false)
         .onTouchMaker {
             $0.onBegan { touch in
@@ -91,14 +91,16 @@ extension NumberView {
 
 class ListView: UICView {
     weak var tableView: UITableView!
+    let removeRows: Value<[IndexPath]> = .init(value: [])
+    let addRows: Value<[IndexPath]> = .init(value: [])
 
-    func newNumbers() -> [Int] {
+    func newNumbers() -> [(Int, [Int])] {
         return (1...100).map {
-            $0
+            ($0, [$0])
         }
     }
 
-    lazy var numbers: Value<[Int]> = {
+    lazy var numbers: Value<[(Int, [Int])]> = {
         return .init(value: self.newNumbers())
     }()
 
@@ -116,48 +118,12 @@ class ListView: UICView {
 }
 
 extension ListView {
-    var body: ViewCreator {
-        UICList(style: .plain, .init(
-            UICSection(
-                UICRow {
-                    UICSpacer()
-                        .height(equalTo: 45)
-                        .background(color: .black)
-                }
-            ),
-            UICForEach(self.numbers) { [weak self] number in
-                UICSection(
-                    UICHeader {
-                        Child(
-                            UICBlur(blur: .extraLight),
-                            NumberView(number: number).insets()
-                        )
-                    },
-
-                    UICRow {
-                        NumberView(number: number)
-                    }.trailingActions(
-                        UICContextualAction("Delete", style: .destructive)
-                            .deleteAction(with: .left) {
-                                self?.numbers.value.remove(at: $0.section - 1)
-                        },
-                        UICContextualAction("Edit", style: .normal)
-                            .onAction { _ in
-                                print("edit")
-                                return true
-                            }
-                    )
-                )
-            }
-        ))
-        .row(height: UITableView.automaticDimension)
-        .row(estimatedHeight: 44)
-        .as(&self.tableView)
-        .header(size: .init(width: 0, height: 60)) {
+    class Header: UICView {
+        var body: ViewCreator {
             UICSpacer(spacing: 5) {
                 UICRounder(radius: 15) {
                     UICSpacer(spacing: 15) {
-                        UICHStack(
+                        UICHStack(spacing: 15) {[
                             UICDashed(color: .black) {
                                 UICRounder(radius: 0.5) {
                                     UICImage(image: #imageLiteral(resourceName: "waterfall"))
@@ -170,26 +136,107 @@ extension ListView {
                                 .font(.boldSystemFont(ofSize: 18))
                                 .text(color: .white)
                                 .navigation(title: "Lista Numérica")
-                        ).spacing(15)
+                        ]}
                     }.background(color: .orange)
                         .onTap {
                             $0.backgroundColor = [UIColor]([.black, .orange])[Int.random(in: 0...1)]
                     }
                 }
             }
-        }.background(color: .white)
-            .safeArea(topEqualTo: 0)
-            .navigation(largeTitleMode: .always)
-            .navigation(prefersLargeTitles: true)
-            .background {
-                Child(
-                    UICImage(image: #imageLiteral(resourceName: "waterfall"))
-                        .content(mode: .scaleAspectFill)
-                        .clips(toBounds: true)
-                        .insets(),
-                    UICBlur(blur: .extraLight)
-                )
         }
+    }
+
+    class Background: UICView {
+        var body: ViewCreator {
+            Child {[
+                UICImage(image: #imageLiteral(resourceName: "waterfall"))
+                    .content(mode: .scaleAspectFill)
+                    .clips(toBounds: true)
+                    .insets(),
+                UICBlur(blur: .extraLight)
+            ]}
+        }
+    }
+}
+
+extension ListView {
+    var body: ViewCreator {
+        UICSpacer { [unowned self] in
+            UICList(style: .plain) {[
+                UICSection {[
+                    UICRow {
+                        UICSpacer()
+                            .height(equalTo: 45)
+                            .background(color: .black)
+                    }
+                ]},
+
+                UICForEach(self.numbers) { number in
+                    UICSection {[
+                        UICHeader {
+                            Child {[
+                                UICBlur(blur: .extraLight),
+                                NumberView(number: number.0).insets()
+                            ]}
+                        },
+
+                        UICForEach(number.1) { number in
+                            UICRow {
+                                NumberView(number: number)
+                            }.trailingActions {[
+                                UICContextualAction("Delete", style: .destructive)
+                                    .deleteAction(with: .left) {
+                                        self.numbers.value.remove(at: $0.section - 1)
+                                },
+                                UICContextualAction("Edit", style: .normal)
+                                    .onAction { _ in
+                                        print("edit")
+                                        return true
+                                    }
+                            ]}
+                        }
+                    ]}
+                }
+            ]}.deleteRows(with: .left, self.removeRows) { [weak self] indexPaths in
+                indexPaths.forEach {
+                    self?.numbers.value[$0.section].1.removeFirst()
+                }
+            }.insertRows(with: .right, self.addRows) { [weak self] indexPaths in
+                indexPaths.forEach {
+                    self?.numbers.value[$0.section].1.append($0.section)
+                }
+            }
+            .row(height: UITableView.automaticDimension)
+            .row(estimatedHeight: 44)
+            .as(&self.tableView)
+            .header(size: .init(width: 0, height: 60)) {
+                Header()
+            }.background(color: .white)
+            .background {
+                Background()
+            }
+        }
+        .safeArea(topEqualTo: 0)
+        .navigation(largeTitleMode: .always)
+        .navigation(prefersLargeTitles: true)
+        .navigation(leftButton: { [weak self] in
+            UICButton("Delete")
+                .title(color: .black)
+                .onTap { _ in
+                    self?.removeRows.value = (0..<10).map {
+                        IndexPath(row: 0, section: $0+1)
+                    }
+                }
+        })
+        .navigation(rightButton: { [weak self] in
+            UICButton("Add")
+                .title(color: .black)
+                .onTap { _ in
+                    self?.addRows.value = (0..<10).map {
+                        IndexPath(row: 0, section: $0+1)
+                    }
+            }
+        })
     }
 }
 

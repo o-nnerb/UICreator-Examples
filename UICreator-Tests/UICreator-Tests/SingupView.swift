@@ -47,25 +47,25 @@ class SignupView: UICView {
 extension SignupView {
 
     var body: ViewCreator {
-        Child(
+        Child {[
             UICImage(image: nil)
                 .image(#imageLiteral(resourceName: "waterfall"))
                 .content(mode: .scaleAspectFill)
                 .insets()
                 .clips(toBounds: true),
-            UICStack(
+            UICVStack {
                 (0...20).map {
                     UICSpacer()
                         .background(color: .init(white: CGFloat($0) / 40, alpha: 1))
                 }
-            ).distribution(.fillEqually),
+            }.distribution(.fillEqually),
             UICSpacer()
                 .background(color: .black)
                 .alpha(0.35),
             UICScroll {
-                UICStack(
+                UICVStack {[
                     UICSpacer(spacing: 15) {
-                        UICStack(
+                        UICVStack {[
                             UICText.spacer {
                                 UICText.base("Nome")
                                     .keyboard(type: .asciiCapable)
@@ -84,7 +84,7 @@ extension SignupView {
                                     }.leftView {
                                         UICContent {
                                             UICSpacer(spacing: 5) {
-                                                UICStack(axis: .horizontal, .init(
+                                                UICHStack {[
                                                     UICRounder(radius: 0.5) {
                                                         UICSpacer()
                                                             .background(color: .red)
@@ -100,7 +100,7 @@ extension SignupView {
                                                             .background(color: .green)
                                                             .aspectRatio(priority: .low)
                                                     }
-                                                )).spacing(5)
+                                                ]}.spacing(5)
                                             }
                                         }.content(mode: .scaleAspectFit).height(equalTo: 55)
                                     }
@@ -111,7 +111,7 @@ extension SignupView {
                                     .as(&self.lastNameField)
                             },
                             UICSpacer(vertical: 15, horizontal: 0) {
-                                UICStack(
+                                UICVStack(spacing: 30) {[
                                     UICText.spacer {
                                         UICText.base("Estado")
                                             .keyboard(type: .asciiCapable)
@@ -122,7 +122,7 @@ extension SignupView {
                                             .keyboard(type: .asciiCapable)
                                             .as(&self.cityField)
                                     },
-                                    UICStack(axis: .horizontal, .init(
+                                    UICHStack(spacing: 30) {[
                                         UICText.spacer {
                                             UICText.base("Rua")
                                                 .keyboard(type: .asciiCapable)
@@ -142,8 +142,8 @@ extension SignupView {
                                                     $0.navigation?.pop(animated: true)
                                                 }
                                         })
-                                    )).spacing(30)
-                                ).spacing(30)
+                                    ]}
+                                ]}
                             },
                             UICText.spacer {
                                 UICText.base("Gênero")
@@ -155,16 +155,16 @@ extension SignupView {
                                 UICText.base("Senha")
                                     .secureText()
                             },
-                            UICHStack(
+                            UICHStack {[
                                 UICLabel("Aceito os termos")
                                     .text(color: .black),
                                 UICSwitch(on: false)
                                     .onValueChanged {
                                         $0.navigationItem.title = "Aceito"
                                     }
-                            ),
+                            ]},
                             UICSpacer()
-                        ).spacing(30)
+                        ]}.spacing(30)
                     },
                     UICSpacer(vertical: 0, horizontal: 15) {
                             UICRounder(radius: 5) {
@@ -186,9 +186,9 @@ extension SignupView {
                         }.shadow(offset: .init(width: 2, height: 3))
                         .shadow(radius: 3)
                         .shadow(ocupacity: 0.45)
-                )
+                ]}
             }.insets()
             .insets(behavior: .always)
-        ).background(color: .white)
+        ]}.background(color: .white)
     }
 }

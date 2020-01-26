@@ -25,6 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.makeKeyAndVisible()
         self.window = window
 
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+            window.rootViewController = .init()
+        }
+
         return true
     }
 

@@ -23,10 +23,10 @@ extension PagedView: TemplateView {
     }
     var body: ViewCreator {
         UICPage(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-            .pages(direction: .reverse, .init(
+            .pages(direction: .reverse) {[
                 BackgroundView(254333),
                 BackgroundView(10254333),
-                Child(
+                Child {[
                     BackgroundView(50254333),
                     UICTop {
                         UICButton("Tap here!")
@@ -34,11 +34,11 @@ extension PagedView: TemplateView {
                                 $0.window?.rootViewController = .init()
                             }
                     }.safeAreaInsets()
-                )
+                ]}
 //                BackgroundView()
-            )).addIndicator(atLocation: .bottom) {
+            ]}.addIndicator(atLocation: .bottom) {
                 UICSpacer(top: 0, bottom: 15, leading: 15, trailing: 15) {
-                    UICVStack(
+                    UICVStack {[
                         UICPageControl(numberOfPages: 3)
                             .as(&self.pageView)
                             .onPageChanged { _ in
@@ -47,10 +47,10 @@ extension PagedView: TemplateView {
                                 }
                             },
                         UICRounder(radius: 30) {
-                            Child(
+                            Child {[
                                 UICBlur(blur: .dark),
                                 UICSpacer(vertical: 15, horizontal: 30) {
-                                    UICHStack(spacing: 15, .init(
+                                    UICHStack(spacing: 15) {[
                                         UICCenter {
                                             UICSpacer {
                                                 UICRounder(radius: 15) {
@@ -84,12 +84,12 @@ extension PagedView: TemplateView {
                                             .top()
                                             .bottom()
                                         }
-                                    )).distribution(.fillEqually)
+                                    ]}.distribution(.fillEqually)
                                     .height(equalTo: 70)
                                 }.insets()
-                            )
+                            ]}
                         }
-                    )
+                    ]}
                 }.insets()
             }.insets()
             .as(&self.pageViewController)

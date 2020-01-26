@@ -96,28 +96,28 @@ extension CollectionView: TemplateView {
         }
 
         return .group(vertical: .equalTo(60 * 3)) {
-            .sequence(
+            .sequence {[
                 first3items,
                 .item(vertical: .flexible(1), horizontal: .flexible(2/3))
-            )
+            ]}
         }
     }
 
     var body: ViewCreator {
-        return UICVStack(
+        UICVStack {[
             UICPageControl(numberOfPages: 2)
                 .background(color: .black)
                 .onPageChanged {
                     print(($0 as? UIPageControl)?.currentPage ?? "0")
                 }.as(&self.pageControl),
-            UICFlow(
+            UICFlow {[
                 BackgroundView()
-            ).layoutMaker {
+            ]}.layoutMaker {
                 .section {
-                    .sequence(
+                    .sequence {[
                         self.firstGroup,
                         self.secondGroup
-                    )
+                    ]}
                 }
             }
             .line(minimumSpacing: 0)
@@ -127,7 +127,7 @@ extension CollectionView: TemplateView {
             .background(color: .clear)
             .scroll(direction: .vertical)
             .background {
-                Child(
+                Child {[
                     UICImage(image: #imageLiteral(resourceName: "waterfall"))
                         .content(mode: .scaleAspectFill)
                         .clips(toBounds: true)
@@ -136,9 +136,9 @@ extension CollectionView: TemplateView {
                     UICSpacer()
                         .background(color: .white)
                         .safeArea(topEqualTo: 0)
-                )
+                ]}
             }
-        ).safeAreaInsets()
+        ]}.safeAreaInsets()
     }
 }
 
