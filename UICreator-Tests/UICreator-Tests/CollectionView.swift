@@ -30,34 +30,27 @@ class MyLabel: UICViewRepresentable, TextElement {
 }
 
 class BackgroundView: Root {
-    weak var backgrounView: UIView!
+    let randomNumber: Int
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    func configure(with number: Int) {
-        self.backgrounView.backgroundColor = UIColor(red: {
-            CGFloat(number % 255) / 255
+    var color: UIColor {
+        UIColor(red: {
+            CGFloat(randomNumber % 255) / 255
         }(), green: {
-            CGFloat(Int(CGFloat(number) / 255) % 255) / 255
+            CGFloat(Int(CGFloat(randomNumber) / 255) % 255) / 255
         }(), blue: {
-            CGFloat(Int((CGFloat(number) / 255) / 255) % 255) / 255
+            CGFloat(Int((CGFloat(randomNumber) / 255) / 255) % 255) / 255
         }(), alpha: 1)
     }
 
-    convenience init(_ number: Int) {
-        self.init()
-        self.onNotRendered { _ in
-            self.configure(with: number)
-        }
+    init(_ randomNumber: Int) {
+        self.randomNumber = randomNumber
     }
 }
 
 extension BackgroundView: TemplateView {
     var body: ViewCreator {
         UICSpacer()
-            .as(&self.backgrounView)
+            .background(color: self.color)
     }
 }
 
@@ -111,7 +104,11 @@ extension CollectionView: TemplateView {
                     print(($0 as? UIPageControl)?.currentPage ?? "0")
                 }.as(&self.pageControl),
             UICFlow {[
-                BackgroundView()
+                UICForEach(self.numbers) { number in
+                    UICRow {
+                        BackgroundView(number)
+                    }
+                }
             ]}.layoutMaker {
                 .section {
                     .sequence {[
@@ -122,7 +119,6 @@ extension CollectionView: TemplateView {
             }
             .line(minimumSpacing: 0)
             .interItem(minimumSpacing: 0)
-            .dynamicDataSource(self)
             .as(&self.collectionView)
             .background(color: .clear)
             .scroll(direction: .vertical)
@@ -139,15 +135,5 @@ extension CollectionView: TemplateView {
                 ]}
             }
         ]}.safeAreaInsets()
-    }
-}
-
-extension CollectionView: CollectionDataSource {
-    func numberOfRows(in section: Int, estimatedRows: Int) -> Int {
-        return self.numbers.count
-    }
-
-    func cell(at indexPath: IndexPath, content: ViewCreator) {
-        (content as? BackgroundView)?.configure(with: self.numbers[indexPath.row])
     }
 }

@@ -30,6 +30,8 @@ class LandmarkRow: UICView {
     }
 }
 
+#if DEBUG
+
 import SwiftUI
 
 struct LandmarkRow_Preview: PreviewProvider {
@@ -38,3 +40,4 @@ struct LandmarkRow_Preview: PreviewProvider {
     }
 }
 
+#endif

@@ -32,6 +32,8 @@ class LandmarkList: UICView {
     }
 }
 
+#if DEBUG
+
 import SwiftUI
 
 struct LandmarkList_Preview: PreviewProvider {
@@ -40,3 +42,4 @@ struct LandmarkList_Preview: PreviewProvider {
     }
 }
 
+#endif

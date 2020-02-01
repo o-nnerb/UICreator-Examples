@@ -28,6 +28,7 @@ class LandmarkDetail: UICView {
                     UICCenter {
                         CircleImage(image: self.landmark.image)
                             .insets(.top)
+                            .height(equalTo: 260)
                     }.top(equalTo: -130)
                 ]},
 
@@ -55,6 +56,8 @@ class LandmarkDetail: UICView {
     }
 }
 
+#if DEBUG
+
 import SwiftUI
 
 struct LandmarkDetail_Preview: PreviewProvider {
@@ -64,4 +67,4 @@ struct LandmarkDetail_Preview: PreviewProvider {
     }
 }
 
-
+#endif

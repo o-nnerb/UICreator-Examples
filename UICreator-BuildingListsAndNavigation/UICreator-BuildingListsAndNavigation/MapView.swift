@@ -30,9 +30,13 @@ class MapView: UIViewCreator, UICViewRepresentable {
     }
 }
 
+#if DEBUG
+
 import SwiftUI
 class MapView_Preview: PreviewProvider {
     static var previews: some View {
         LivePreview(MapView(coordinate: landmarkData[0].locationCoordinate))
     }
 }
+
+#endif

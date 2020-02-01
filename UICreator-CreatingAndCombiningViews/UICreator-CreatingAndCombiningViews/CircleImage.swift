@@ -23,6 +23,7 @@ class CircleImage: UICView {
     }
 }
 
+#if DEBUG
 import SwiftUI
 
 struct CircleImage_Preview: PreviewProvider {
@@ -30,3 +31,4 @@ struct CircleImage_Preview: PreviewProvider {
         LivePreview(CircleImage())
     }
 }
+#endif
