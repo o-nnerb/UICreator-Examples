@@ -17,7 +17,7 @@ class LandmarkRow: UICView {
 
     var body: ViewCreator {
         UICSpacer(vertical: 5) {
-            UICHStack(
+            UICHStack {[
                 UICImage(image: self.landmark.image)
                     .aspectRatio()
                     .height(equalTo: 50)
@@ -25,7 +25,7 @@ class LandmarkRow: UICView {
                     .clips(toBounds: true),
                 UICLabel(self.landmark.name),
                 UICSpacer()
-            ).spacing(15)
+            ]}.spacing(15)
         }
     }
 }

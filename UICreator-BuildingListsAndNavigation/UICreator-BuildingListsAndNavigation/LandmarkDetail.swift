@@ -19,37 +19,35 @@ class LandmarkDetail: UICView {
 
     var body: ViewCreator {
         UICSpacer {
-            UICVStack(
+            UICVStack {[
                 MapView(coordinate: self.landmark.locationCoordinate)
                     .leading()
                     .height(equalTo: 300),
 
-                UICSpacer {
-                    Child(
+                Child {[
+                    UICCenter {
                         CircleImage(image: self.landmark.image)
-                            .top(equalTo: -130)
-                            .insets(.bottom, .leading, .trailing)
-                            .height(equalTo: 260)
-                    )
-                },
+                            .insets(.top)
+                    }.top(equalTo: -130)
+                ]},
 
                 UICSpacer()
                     .height(equalTo: 15),
 
-                UICVStack(
+                UICVStack {[
                     UICLabel(self.landmark.name)
                         .font(.title1),
-                    UICHStack(
+                    UICHStack {[
                         UICLabel(self.landmark.city)
                             .font(.subheadline),
                         UICSpacer(),
                         UICLabel(self.landmark.country)
                             .font(.subheadline)
-                    )
-                ).safeArea(leadingEqualTo: 15),
+                    ]}
+                ]}.safeArea(leadingEqualTo: 15),
 
                 UICSpacer()
-            ).alignment(.center)
+            ]}.alignment(.center)
         }.safeArea(.top)
         .background(color: .white)
         .navigation(title: landmark.name)

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C118E5B23DE25BF0051B3D5 /* NumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C118E5A23DE25BF0051B3D5 /* NumberView.swift */; };
 		0C27DE7623DA171A00BB9AFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C27DE7523DA171A00BB9AFD /* AppDelegate.swift */; };
 		0C27DE7F23DA171B00BB9AFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C27DE7E23DA171B00BB9AFD /* Assets.xcassets */; };
 		0C27DE8A23DA179B00BB9AFD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C27DE8923DA179B00BB9AFD /* LaunchScreen.xib */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C118E5A23DE25BF0051B3D5 /* NumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberView.swift; sourceTree = "<group>"; };
 		0C27DE7223DA171A00BB9AFD /* UICreator-Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UICreator-Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C27DE7523DA171A00BB9AFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0C27DE7E23DA171B00BB9AFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 		0C27DE7423DA171A00BB9AFD /* UICreator-Tests */ = {
 			isa = PBXGroup;
 			children = (
+				0C118E5A23DE25BF0051B3D5 /* NumberView.swift */,
 				0C27DE8F23DA17EE00BB9AFD /* BaseNavigationController.swift */,
 				0C27DE9023DA17EE00BB9AFD /* CollectionView.swift */,
 				0C27DE8E23DA17EE00BB9AFD /* ForEachView.swift */,
@@ -219,6 +222,7 @@
 			files = (
 				0C27DE9523DA17EE00BB9AFD /* CollectionView.swift in Sources */,
 				0C27DE8C23DA17C800BB9AFD /* ContentView.swift in Sources */,
+				0C118E5B23DE25BF0051B3D5 /* NumberView.swift in Sources */,
 				0C27DE7623DA171A00BB9AFD /* AppDelegate.swift in Sources */,
 				0C27DE9623DA17EE00BB9AFD /* PagedView.swift in Sources */,
 				0C27DE9823DA181500BB9AFD /* SingupView.swift in Sources */,

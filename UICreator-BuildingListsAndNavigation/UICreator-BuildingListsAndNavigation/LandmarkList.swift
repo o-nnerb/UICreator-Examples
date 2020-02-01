@@ -12,16 +12,18 @@ import UICreator
 class LandmarkList: UICView {
 
     var body: ViewCreator {
-        UICList(style: .grouped, .init(
+        UICList(style: .grouped) {[
             UICForEach(landmarkData) { landmark in
-                Link {
-                    LandmarkRow(landmark: landmark)
-                        .margin(.leading, .trailing)
-                }.destination {
-                    LandmarkDetail(landmark: landmark)
+                UICRow {
+                    Link {
+                        LandmarkRow(landmark: landmark)
+                            .margin(.leading, .trailing)
+                    }.destination {
+                        LandmarkDetail(landmark: landmark)
+                    }
                 }
             }
-        )).insets()
+        ]}.insets()
         .navigation(title: "Landmarks")
         .navigation(prefersLargeTitles: true)
         .accessoryType(.disclosureIndicator)

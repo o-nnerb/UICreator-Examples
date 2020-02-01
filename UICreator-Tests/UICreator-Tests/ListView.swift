@@ -11,84 +11,6 @@ import UIKit
 import UIContainer
 import UICreator
 
-class NumberView: UICView, UIViewContext {
-    weak var numberLabel: UILabel!
-    weak var highlightedView: UIView!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    func configure(with number: Int) {
-        self.numberLabel.text = "\(number)"
-    }
-
-    init(number: Int) {
-        super.init()
-        self.context.number.value = number
-    }
-
-    class Context: UICreator.Context {
-        let number: Value<Int?> = .init(value: nil)
-    }
-
-    func bindContext(_ context: Context) {
-        context.number.sync { [weak self] in
-            self?.numberLabel.text = "\($0 ?? 0)"
-        }
-    }
-}
-
-extension NumberView {
-    var body: ViewCreator {
-        Child { [unowned self] in [
-            UICSpacer(vertical: 15, horizontal: 30) {
-                UICHStack {[
-                    UICVStack {[
-                        UICLabel("Detalhe")
-                            .vertical(hugging: .defaultHigh, compression: .required)
-                            .font(.callout)
-                            .text(color: .black),
-                        UICLabel("Número: ")
-                            .horizontal(hugging: .defaultHigh, compression: .required)
-                            .font(.body(weight: .bold))
-                            .text(color: .black)
-                    ]},
-                    UICLabel("1")
-                        .horizontal(compression: .required)
-                        .font(.systemFont(ofSize: 18))
-                        .text(color: .black)
-                        .text(alignment: .right)
-                        .as(&self.numberLabel)
-                        .toolbar {[
-                            UICSpacer()
-                                .background(color: .black)
-                                .insets(priority: .required)
-                        ]}.toolbar(isHidden: false)
-                        .toolbar(barTintColor: .black)
-                        .toolbar(isTranslucent: false)
-                ]}
-            }.insets(),
-            UICSpacer()
-                .background(color: .black)
-                .alpha(0)
-                .as(&self.highlightedView)
-        ]}.isUserInteractionEnabled(true)
-        .isExclusiveTouch(false)
-        .onTouchMaker {
-            $0.onBegan { touch in
-                self.animate(0.05) {_ in
-                    self.highlightedView.alpha = 0.15
-                }
-            }.onEnded { _ in
-                self.animate(0.075) {_ in
-                    self.highlightedView.alpha = 0
-                }
-            }.cancelWhenTouchMoves(true).cancelsTouches(inView: false)
-        }
-    }
-}
-
 class ListView: UICView {
     weak var tableView: UITableView!
     let removeRows: Value<[IndexPath]> = .init(value: [])
@@ -163,30 +85,19 @@ extension ListView {
     var body: ViewCreator {
         UICSpacer { [unowned self] in
             UICList(style: .plain) {[
-                UICSection {[
-                    UICRow {
-                        UICSpacer()
-                            .height(equalTo: 45)
-                            .background(color: .black)
-                    }
-                ]},
-
-                UICForEach(self.numbers) { number in
+                UICForEach(self.numbers) { section in
                     UICSection {[
                         UICHeader {
-                            Child {[
-                                UICBlur(blur: .extraLight),
-                                NumberView(number: number.0).insets()
-                            ]}
+                            NumberView(number: section.0)
                         },
 
-                        UICForEach(number.1) { number in
+                        UICForEach(section.1) { number in
                             UICRow {
                                 NumberView(number: number)
                             }.trailingActions {[
                                 UICContextualAction("Delete", style: .destructive)
                                     .deleteAction(with: .left) {
-                                        self.numbers.value.remove(at: $0.section - 1)
+                                        self.numbers.value.remove(at: $0.section)
                                 },
                                 UICContextualAction("Edit", style: .normal)
                                     .onAction { _ in
@@ -198,12 +109,12 @@ extension ListView {
                     ]}
                 }
             ]}.deleteRows(with: .left, self.removeRows) { [weak self] indexPaths in
-                indexPaths.forEach {
-                    self?.numbers.value[$0.section].1.removeFirst()
+                indexPaths.forEach { _ in
+                    self?.numbers.value.remove(at: 0)
                 }
             }.insertRows(with: .right, self.addRows) { [weak self] indexPaths in
                 indexPaths.forEach {
-                    self?.numbers.value[$0.section].1.append($0.section)
+                    self?.numbers.value[$0.section].1.append($0.row)
                 }
             }
             .row(height: UITableView.automaticDimension)
@@ -224,7 +135,7 @@ extension ListView {
                 .title(color: .black)
                 .onTap { _ in
                     self?.removeRows.value = (0..<10).map {
-                        IndexPath(row: 0, section: $0+1)
+                        IndexPath(row: 0, section: $0)
                     }
                 }
         })
@@ -233,7 +144,7 @@ extension ListView {
                 .title(color: .black)
                 .onTap { _ in
                     self?.addRows.value = (0..<10).map {
-                        IndexPath(row: 0, section: $0+1)
+                        IndexPath(row: self?.numbers.value[$0].1.count ?? 0, section: $0)
                     }
             }
         })
