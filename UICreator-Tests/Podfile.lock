@@ -1,0 +1,26 @@
+PODS:
+  - SnapKit (5.0.1)
+  - UIContainer (1.2.0-beta.4):
+    - SnapKit (~> 5.0.1)
+  - UICreator (1.0.0-alpha.7):
+    - SnapKit (~> 5.0.1)
+    - UIContainer (~> 1.2.0-beta.4)
+
+DEPENDENCIES:
+  - UIContainer (= 1.2.0-beta.4)
+  - UICreator (= 1.0.0-alpha.7)
+
+SPEC REPOS:
+  trunk:
+    - SnapKit
+    - UIContainer
+    - UICreator
+
+SPEC CHECKSUMS:
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  UIContainer: 6784815e668ee89f1afb22179e70186694c979d1
+  UICreator: b2c0d86ab38ade74865a7ed04caf43c8293bc175
+
+PODFILE CHECKSUM: b7b1a5d9509d76140ffdde7cfadf74ccdbdcc022
+
+COCOAPODS: 1.8.4
