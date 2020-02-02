@@ -151,16 +151,16 @@ extension ListView {
     }
 }
 
-#if DEBUG
-import SwiftUI
-
-@available(iOS 13, *)
-struct ListView_LivePreview: PreviewProvider {
-    static var previews: some SwiftUI.View {
-        LivePreview {
-            ContentView()
-        }.previewDevice(PreviewDevice(rawValue: "iPhone SE"))
-    }
-}
-
-#endif
+//#if DEBUG && canImport(SwiftUI)
+//import SwiftUI
+//
+//@available(iOS 13, *)
+//struct ListView_LivePreview: PreviewProvider {
+//    static var previews: some SwiftUI.View {
+//        LivePreview {
+//            ContentView()
+//        }.previewDevice(PreviewDevice(rawValue: "iPhone SE"))
+//    }
+//}
+//
+//#endif

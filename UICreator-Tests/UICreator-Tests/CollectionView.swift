@@ -88,9 +88,10 @@ extension CollectionView: TemplateView {
                         .vertical(hugging: .required, compression: .required)
                 },
 
-                UICForEach(self.numbers) { number in
+                UICForEach(Array(self.numbers.enumerated())) { number in
                     UICRow {
-                        BackgroundView(number)
+                        BackgroundView(number.element)
+                            .aspectRatio()
                     }
                 }
             ]}
@@ -98,12 +99,8 @@ extension CollectionView: TemplateView {
             UICCollectionLayoutSection {[
                 UICCollectionLayoutHeader(vertical: .estimated(150)),
 
-                UICCollectionLayoutGroup(vertical: .equalTo(60)) {[
-                    UICCollectionLayoutItem(horizontal: .flexible(1/2), numberOfElements: 2)
-                ]},
-
-                UICCollectionLayoutGroup(vertical: .equalTo(120)) {[
-                    UICCollectionLayoutItem(horizontal: .flexible(1/2), numberOfElements: 2)
+                UICCollectionLayoutGroup(horizontal: .flexible(1)) {[
+                    UICCollectionLayoutItem(horizontal: .flexible(1/4))
                 ]}
             ]}
         ]}
