@@ -71,69 +71,58 @@ class CollectionView: Root {
 }
 
 extension CollectionView: TemplateView {
-    private var firstGroup: CollectionLayoutElement {
-        .group(vertical: .equalTo(60)) {
-            .items(horizontal: .flexible(1/2), quantity: 2)
-        }
-    }
-
-    private var secondGroup: CollectionLayoutElement {
-        .group(vertical: .equalTo(120)) {
-            .items(horizontal: .flexible(1/2), quantity: 2)
-        }
-    }
-
-    private var thirdGroup: CollectionLayoutElement {
-        let first3items: CollectionLayoutElement = .group(horizontal: .flexible(1/3)) {
-            .items(vertical: .equalTo(60), quantity: 3)
-        }
-
-        return .group(vertical: .equalTo(60 * 3)) {
-            .sequence {[
-                first3items,
-                .item(vertical: .flexible(1), horizontal: .flexible(2/3))
-            ]}
-        }
+    private var thirdGroup: UICCollectionLayoutGroup {
+        UICCollectionLayoutGroup {[
+            UICCollectionLayoutGroup(horizontal: .flexible(1/3)) {[
+                UICCollectionLayoutItem(vertical: .equalTo(60), numberOfElements: 3)
+            ]},
+            UICCollectionLayoutItem(vertical: .flexible(1), horizontal: .flexible(2/3))
+        ]}
     }
 
     var body: ViewCreator {
-        UICVStack {[
-            UICPageControl(numberOfPages: 2)
-                .background(color: .black)
-                .onPageChanged {
-                    print(($0 as? UIPageControl)?.currentPage ?? "0")
-                }.as(&self.pageControl),
-            UICFlow {[
+        UICFlow {[
+            UICSection {[
+                UICHeader {
+                    UICLabel("This is a example of auto layout header")
+                        .vertical(hugging: .required, compression: .required)
+                },
+
                 UICForEach(self.numbers) { number in
                     UICRow {
                         BackgroundView(number)
                     }
                 }
-            ]}.layoutMaker {
-                .section {
-                    .sequence {[
-                        self.firstGroup,
-                        self.secondGroup
-                    ]}
-                }
-            }
-            .line(minimumSpacing: 0)
-            .interItem(minimumSpacing: 0)
-            .as(&self.collectionView)
-            .background(color: .clear)
-            .scroll(direction: .vertical)
-            .background {
-                Child {[
-                    UICImage(image: #imageLiteral(resourceName: "waterfall"))
-                        .content(mode: .scaleAspectFill)
-                        .clips(toBounds: true)
-                        .insets(),
-                    UICBlur(blur: .extraLight),
-                    UICSpacer()
-                        .background(color: .white)
-                        .safeArea(topEqualTo: 0)
+            ]}
+        ]}.layoutMaker {[
+            UICCollectionLayoutSection {[
+                UICCollectionLayoutHeader(vertical: .estimated(150)),
+
+                UICCollectionLayoutGroup(vertical: .equalTo(60)) {[
+                    UICCollectionLayoutItem(horizontal: .flexible(1/2), numberOfElements: 2)
+                ]},
+
+                UICCollectionLayoutGroup(vertical: .equalTo(120)) {[
+                    UICCollectionLayoutItem(horizontal: .flexible(1/2), numberOfElements: 2)
                 ]}
-            }
-        ]}.safeAreaInsets()
+            ]}
+        ]}
+        .line(minimumSpacing: 0)
+        .interItem(minimumSpacing: 0)
+        .scroll(direction: .vertical)
+        .as(&self.collectionView)
+        .background(color: .clear)
+        .background {
+            Child {[
+                UICImage(image: #imageLiteral(resourceName: "waterfall"))
+                    .content(mode: .scaleAspectFill)
+                    .clips(toBounds: true)
+                    .insets(),
+                UICBlur(blur: .extraLight),
+                UICSpacer()
+                    .background(color: .white)
+                    .safeArea(topEqualTo: 0)
+            ]}
+        }
     }
 }

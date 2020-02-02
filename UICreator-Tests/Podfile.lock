@@ -8,19 +8,22 @@ PODS:
 
 DEPENDENCIES:
   - UIContainer (= 1.2.0-beta.4)
-  - UICreator (= 1.0.0-alpha.7)
+  - UICreator (from `~/umobi/UICreator`)
 
 SPEC REPOS:
   trunk:
     - SnapKit
     - UIContainer
-    - UICreator
+
+EXTERNAL SOURCES:
+  UICreator:
+    :path: "~/umobi/UICreator"
 
 SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   UIContainer: 6784815e668ee89f1afb22179e70186694c979d1
   UICreator: b2c0d86ab38ade74865a7ed04caf43c8293bc175
 
-PODFILE CHECKSUM: b7b1a5d9509d76140ffdde7cfadf74ccdbdcc022
+PODFILE CHECKSUM: 2bb5a10125a091da2e2672f74edfd133bdf2b90a
 
 COCOAPODS: 1.8.4
