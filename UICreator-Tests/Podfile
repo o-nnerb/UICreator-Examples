@@ -6,7 +6,7 @@ target 'UICreator-Tests' do
   use_frameworks!
 
   # Pods for UICreator-Tests
-  pod "UIContainer", "1.2.0-beta.4"
+  pod "UIContainer", :path => "~/umobi/UIContainer"
   pod "UICreator", :path => "~/umobi/UICreator"
 
 end

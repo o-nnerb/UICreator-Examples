@@ -64,7 +64,7 @@ extension ListView {
                             $0.backgroundColor = [UIColor]([.black, .orange])[Int.random(in: 0...1)]
                     }
                 }
-            }
+            }.height(equalTo: 60)
         }
     }
 
@@ -120,7 +120,7 @@ extension ListView {
             .row(height: UITableView.automaticDimension)
             .row(estimatedHeight: 44)
             .as(&self.tableView)
-            .header(size: .init(width: 0, height: 60)) {
+            .header {
                 Header()
             }.background(color: .white)
             .background {

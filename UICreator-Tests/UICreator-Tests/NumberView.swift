@@ -43,7 +43,7 @@ extension NumberView {
                             .font(.body(weight: .bold))
                             .text(color: .black)
                     ]},
-                    UICLabel(self.number.asRelay)
+                    UICLabel(self.number)
                         .horizontal(compression: .required)
                         .font(.systemFont(ofSize: 18))
                         .text(color: .black)

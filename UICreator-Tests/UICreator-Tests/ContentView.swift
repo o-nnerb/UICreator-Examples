@@ -14,7 +14,7 @@ class ContentView: Root, TemplateView, ViewControllerType {
     var body: ViewCreator {
         UICSpacer {
             UICNavigation {
-                CollectionView()
+                SignupView()
             }
         }.background(color: .white)
     }
