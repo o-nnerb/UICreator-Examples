@@ -12,7 +12,6 @@ import UIContainer
 import UICreator
 
 class ListView: UICView {
-    weak var tableView: UITableView!
     let removeRows: Value<[IndexPath]> = .init(value: [])
     let addRows: Value<[IndexPath]> = .init(value: [])
 
@@ -25,11 +24,6 @@ class ListView: UICView {
     lazy var numbers: Value<[(Int, [Int])]> = {
         return .init(value: self.newNumbers())
     }()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.tableView.reloadData()
-    }
 
     func loop() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
@@ -52,6 +46,7 @@ extension ListView {
                                         .aspectRatio(priority: .required)
                                         .content(mode: .scaleAspectFill)
                                         .clips(toBounds: true)
+                                        .height(equalTo: 25)
                                 }
                             },
                             UICLabel("Hello World!")
@@ -64,7 +59,7 @@ extension ListView {
                             $0.backgroundColor = [UIColor]([.black, .orange])[Int.random(in: 0...1)]
                     }
                 }
-            }.height(equalTo: 60)
+            }
         }
     }
 
@@ -83,51 +78,54 @@ extension ListView {
 
 extension ListView {
     var body: ViewCreator {
-        UICSpacer { [unowned self] in
-            UICList(style: .plain) {[
-                UICForEach(self.numbers) { section in
-                    UICSection {[
-                        UICHeader {
-                            NumberView(number: section.0)
-                        },
+        Child {[
 
-                        UICForEach(section.1) { number in
-                            UICRow {
-                                NumberView(number: number)
-                            }.trailingActions {[
-                                UICContextualAction("Delete", style: .destructive)
-                                    .deleteAction(with: .left) {
-                                        self.numbers.value.remove(at: $0.section)
-                                },
-                                UICContextualAction("Edit", style: .normal)
-                                    .onAction { _ in
-                                        print("edit")
-                                        return true
+            UICSpacer { [unowned self] in
+                UICList(style: .plain) {[
+                    UICForEach(self.numbers) { section in
+                        UICSection {[
+                            UICHeader {
+                                NumberView(number: section.0)
+                            },
+
+                            UICForEach(section.1) { number in
+                                UICRow {
+                                    NumberView(number: number)
+                                }.trailingActions {[
+                                    UICContextualAction("Delete", style: .destructive)
+                                        .deleteAction(with: .left) {
+                                            self.numbers.value.remove(at: $0.section)
+                                    },
+                                    UICContextualAction("Edit", style: .normal)
+                                        .onAction { _ in
+                                            print("edit")
+                                            return true
                                     }
+                                    ]}
+                            }
                             ]}
+                    }
+                    ]}.deleteRows(with: .left, self.removeRows) { [weak self] indexPaths in
+                        indexPaths.forEach { _ in
+                            self?.numbers.value.remove(at: 0)
                         }
-                    ]}
+                }.insertRows(with: .right, self.addRows) { [weak self] indexPaths in
+                    indexPaths.forEach {
+                        self?.numbers.value[$0.section].1.append($0.row)
+                    }
                 }
-            ]}.deleteRows(with: .left, self.removeRows) { [weak self] indexPaths in
-                indexPaths.forEach { _ in
-                    self?.numbers.value.remove(at: 0)
-                }
-            }.insertRows(with: .right, self.addRows) { [weak self] indexPaths in
-                indexPaths.forEach {
-                    self?.numbers.value[$0.section].1.append($0.row)
+                .row(height: UITableView.automaticDimension)
+                .row(estimatedHeight: 44)
+                .header {
+                    Header()
+                }.background(color: .white)
+                    .background {
+                    Background()
                 }
             }
-            .row(height: UITableView.automaticDimension)
-            .row(estimatedHeight: 44)
-            .as(&self.tableView)
-            .header {
-                Header()
-            }.background(color: .white)
-            .background {
-                Background()
-            }
-        }
-        .safeArea(topEqualTo: 0)
+            .safeArea(topEqualTo: 0)
+            .insets(.leading, .trailing, .bottom)
+        ]}
         .navigation(largeTitleMode: .always)
         .navigation(prefersLargeTitles: true)
         .navigation(leftButton: { [weak self] in

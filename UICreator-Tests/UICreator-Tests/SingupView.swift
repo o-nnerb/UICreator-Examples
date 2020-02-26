@@ -31,12 +31,12 @@ extension UICText {
 }
 
 class SignupView: UICView {
-    weak var nameField: UITextField!
-    weak var lastNameField: UITextField!
-    weak var stateField: UITextField!
-    weak var cityField: UITextField!
-    weak var streetField: UITextField!
-    weak var datePicker: UIDatePicker!
+    weak var nameField: UIReference<UITextField>!
+    weak var lastNameField: UIReference<UITextField>!
+    weak var stateField: UIReference<UITextField>!
+    weak var cityField: UIReference<UITextField>!
+    weak var streetField: UIReference<UITextField>!
+    weak var datePicker: UIReference<UIDatePicker>!
 //    var datePicker: UIDatePicker!
 
     override func viewDidLoad() {

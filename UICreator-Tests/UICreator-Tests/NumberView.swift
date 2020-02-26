@@ -12,7 +12,7 @@ import UIContainer
 import UICreator
 
 class NumberView: UICView {
-    weak var highlightedView: UIView!
+    var highlightedView: UIReference<UIView>!
     let number: Value<String?> = .init(value: nil)
 
     override func viewDidLoad() {
@@ -59,11 +59,11 @@ extension NumberView {
         .onTouchMaker {
             $0.onBegan { touch in
                 self.animate(0.05) {_ in
-                    self.highlightedView.alpha = 0.15
+                    self.highlightedView.reference.alpha = 0.15
                 }
             }.onEnded { _ in
                 self.animate(0.075) {_ in
-                    self.highlightedView.alpha = 0
+                    self.highlightedView.reference.alpha = 0
                 }
             }.cancelWhenTouchMoves(true).cancelsTouches(inView: false)
         }

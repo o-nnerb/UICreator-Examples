@@ -14,8 +14,11 @@ class ContentView: Root, TemplateView, ViewControllerType {
     var body: ViewCreator {
         UICSpacer {
             UICNavigation {
-                SignupView()
+                MyLabel("Olá")
             }
         }.background(color: .white)
+            .onAppear {
+                print("[Appeared]", $0)
+        }
     }
 }

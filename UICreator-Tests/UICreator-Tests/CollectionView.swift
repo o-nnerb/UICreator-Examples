@@ -15,11 +15,15 @@ class MyLabel: UICViewRepresentable, TextElement {
     typealias View = UILabel
 
     required init(_ text: String?) {
-        self.uiView.text = text
+        self.onNotRendered {
+            ($0 as? View)?.text = text
+        }
     }
 
     required init(_ attributedText: NSAttributedString?) {
-        self.uiView.attributedText = attributedText
+        self.onNotRendered {
+            ($0 as? View)?.attributedText = attributedText
+        }
     }
 
     func makeUIView() -> View {
@@ -55,7 +59,6 @@ extension BackgroundView: TemplateView {
 }
 
 class CollectionView: Root {
-    weak var collectionView: UICollectionView!
     weak var pageControl: UIPageControl!
 
     lazy var numbers: [Int] = {
@@ -63,11 +66,6 @@ class CollectionView: Root {
             (Int(0)...Int(pow(255.0, 3))).randomElement()
         }
     }()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.collectionView.reloadData()
-    }
 }
 
 extension CollectionView: TemplateView {
@@ -107,7 +105,6 @@ extension CollectionView: TemplateView {
         .line(minimumSpacing: 0)
         .interItem(minimumSpacing: 0)
         .scroll(direction: .vertical)
-        .as(&self.collectionView)
         .background(color: .clear)
         .background {
             Child {[
