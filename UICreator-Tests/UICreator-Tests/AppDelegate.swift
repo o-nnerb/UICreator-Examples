@@ -26,9 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = window
         window.printCreatorTrace()
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-            window.rootViewController = .init()
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+//            window.rootViewController = .init()
+//        }
         
         return true
     }

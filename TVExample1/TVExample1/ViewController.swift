@@ -41,11 +41,11 @@ class ContentView: Root, TemplateView, ViewControllerType {
 }
 
 class SignupView: Root, TemplateView {
-    weak var nameField: UITextField!
-    weak var lastNameField: UITextField!
-    weak var stateField: UITextField!
-    weak var cityField: UITextField!
-    weak var streetField: UITextField!
+    @UICOutlet var nameField: UITextField!
+    @UICOutlet var lastNameField: UITextField!
+    @UICOutlet var stateField: UITextField!
+    @UICOutlet var cityField: UITextField!
+    @UICOutlet var streetField: UITextField!
 //    var datePicker: UIDatePicker!
 
     override func viewDidLoad() {
@@ -89,7 +89,7 @@ extension SignupView {
                             UICText.spacer {
                                 UICText.base("Nome")
                                     .keyboard(type: .asciiCapable)
-                                    .as(&self.nameField)
+                                    .as(self.$nameField)
                                     .onEditingChanged {
                                         $0.navigationItem.title = ($0 as? UITextField)?.text
                                     }.leftView {
@@ -99,17 +99,17 @@ extension SignupView {
                                                     UICRounder(radius: 0.5) {
                                                         UICSpacer()
                                                             .background(color: .red)
-                                                            .aspectRatio(priority: .low)
+                                                            .aspectRatio(priority: .defaultLow)
                                                     },
                                                     UICRounder(radius: 0.5) {
                                                         UICSpacer()
                                                             .background(color: .black)
-                                                            .aspectRatio(priority: .low)
+                                                            .aspectRatio(priority: .defaultLow)
                                                     },
                                                     UICRounder(radius: 0.5) {
                                                         UICSpacer()
                                                             .background(color: .green)
-                                                            .aspectRatio(priority: .low)
+                                                            .aspectRatio(priority: .defaultLow)
                                                     }
                                                 ]}.spacing(5)
                                             }
@@ -119,25 +119,25 @@ extension SignupView {
                             UICText.spacer {
                                 UICText.base("Sobrenome")
                                     .keyboard(type: .asciiCapable)
-                                    .as(&self.lastNameField)
+                                    .as(self.$lastNameField)
                             },
                             UICSpacer(vertical: 15, horizontal: 0) {
                                 UICVStack {[
                                     UICText.spacer {
                                         UICText.base("Estado")
                                             .keyboard(type: .asciiCapable)
-                                            .as(&self.stateField)
+                                            .as(self.$stateField)
                                     },
                                     UICText.spacer {
                                         UICText.base("Cidade")
                                             .keyboard(type: .asciiCapable)
-                                            .as(&self.cityField)
+                                            .as(self.$cityField)
                                     },
                                     UICHStack {[
                                         UICText.spacer {
                                             UICText.base("Rua")
                                                 .keyboard(type: .asciiCapable)
-                                                .as(&self.streetField)
+                                                .as(self.$streetField)
                                         },
                                         UICText.spacer {
                                             UICText.base("Número")

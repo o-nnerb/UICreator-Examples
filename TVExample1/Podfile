@@ -7,7 +7,7 @@ target 'TVExample1' do
 
   # Pods for TVExample1
   pod "SnapKit"
-  pod "UIContainer", :path => "~/umobi/UIContainer" 
-  pod "UICreator", :path => "~/umobi/UICreator"
+  pod "UIContainer", :path => "~/Documents/umobi/UIContainer"
+  pod "UICreator", :path => "~/Documents/umobi/UICreator"
 
 end

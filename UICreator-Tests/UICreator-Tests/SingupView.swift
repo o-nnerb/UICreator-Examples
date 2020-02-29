@@ -88,17 +88,17 @@ extension SignupView {
                                                     UICRounder(radius: 0.5) {
                                                         UICSpacer()
                                                             .background(color: .red)
-                                                            .aspectRatio(priority: .low)
+                                                            .aspectRatio(priority: .defaultLow)
                                                     },
                                                     UICRounder(radius: 0.5) {
                                                         UICSpacer()
                                                             .background(color: .black)
-                                                            .aspectRatio(priority: .low)
+                                                            .aspectRatio(priority: .defaultLow)
                                                     },
                                                     UICRounder(radius: 0.5) {
                                                         UICSpacer()
                                                             .background(color: .green)
-                                                            .aspectRatio(priority: .low)
+                                                            .aspectRatio(priority: .defaultLow)
                                                     }
                                                 ]}.spacing(5)
                                             }

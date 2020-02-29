@@ -11,9 +11,11 @@ import UIKit
 import UIContainer
 import UICreator
 
-class NumberView: UICView, UIViewContext {
-    weak var numberLabel: UILabel!
-    weak var highlightedView: UIView!
+class NumberView: UICView {
+    @UICOutlet var numberLabel: UILabel!
+    @UICOutlet var highlightedView: UIView!
+
+    let number: Int
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,18 +26,7 @@ class NumberView: UICView, UIViewContext {
     }
 
     init(number: Int) {
-        super.init()
-        self.context.number.value = number
-    }
-
-    class Context: UICreator.Context {
-        let number: Value<Int?> = .init(value: nil)
-    }
-
-    func bindContext(_ context: Context) {
-        context.number.sync { [weak self] in
-            self?.numberLabel.text = "\($0 ?? 0)"
-        }
+        self.number = number
     }
 }
 
@@ -54,12 +45,12 @@ extension NumberView {
                             .font(.body(weight: .bold))
                             .text(color: .black)
                     ]},
-                    UICLabel("1")
+                    UICLabel("\(self.number)")
                         .horizontal(compression: .required)
                         .font(.systemFont(ofSize: 18))
                         .text(color: .black)
                         .text(alignment: .right)
-                        .as(&self.numberLabel)
+                        .as(self.$numberLabel)
 //                        .toolbar(
 //                            UICSpacer()
 //                                .background(color: .black)
@@ -72,7 +63,7 @@ extension NumberView {
             UICSpacer()
                 .background(color: .black)
                 .alpha(0)
-                .as(&self.highlightedView)
+                .as(self.$highlightedView)
         ]}.isUserInteractionEnabled(true)
 //        .isExclusiveTouch(false)
         .onTouchMaker {
@@ -102,7 +93,7 @@ extension NumberView {
 //}
 
 class ListView: UICView {
-    weak var tableView: UITableView!
+    @UICOutlet var tableView: UITableView!
 
     func newNumbers() -> [Int] {
         return (1...100).map {
@@ -110,9 +101,9 @@ class ListView: UICView {
         }
     }
 
-    lazy var numbers: Value<[Int]> = {
-        return .init(value: self.newNumbers())
-    }()
+    @Value var numbers: [Int] = (1...100).map {
+        $0
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -121,7 +112,7 @@ class ListView: UICView {
 
     func loop() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-            self?.numbers.value = self?.newNumbers() ?? []
+            self?.numbers = self?.newNumbers() ?? []
             self?.loop()
         }
     }
@@ -136,7 +127,7 @@ extension ListView {
                     NumberView(number: 1).insets()
                 ]}
             },
-            UICForEach(self.numbers) { number in
+            UICForEach(self.$numbers) { number in
                 UICRow {
                     NumberView(number: number)
                 }
@@ -147,7 +138,7 @@ extension ListView {
         }
         .row(height: UITableView.automaticDimension)
         .row(estimatedHeight: 44)
-        .as(&self.tableView)
+        .as(self.$tableView)
         .header(size: .init(width: 0, height: 60)) {
             UICSpacer(spacing: 5) {
                 UICRounder(radius: 15) {
@@ -155,7 +146,7 @@ extension ListView {
                         UICHStack {[
                             UICDashed(color: .black) {
                                 UICRounder(radius: 0.5) {
-                                    UICImage(image: #imageLiteral(resourceName: "GettyImages-139496979"))
+                                    UICImage(image: nil)
                                         .aspectRatio(priority: .required)
                                         .content(mode: .scaleAspectFill)
                                         .clips(toBounds: true)
@@ -178,7 +169,7 @@ extension ListView {
 //            .navigation(prefersLargeTitles: true)
             .background {
                 Child {[
-                    UICImage(image: #imageLiteral(resourceName: "GettyImages-139496979"))
+                    UICImage(image: nil)
                         .content(mode: .scaleAspectFill)
                         .clips(toBounds: true)
                         .insets(),
