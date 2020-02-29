@@ -11,8 +11,8 @@ import UIKit
 import UICreator
 
 class PagedView: Root {
-    weak var pageView: UIPageControl!
-    weak var pageViewController: UICPageViewController!
+    @UICOutlet var pageView: UIPageControl!
+    @UICOutlet var pageViewController: UICPageViewController!
 
 }
 
@@ -40,7 +40,7 @@ extension PagedView: TemplateView {
                 UICSpacer(top: 0, bottom: 15, leading: 15, trailing: 15) {
                     UICVStack {[
                         UICPageControl(numberOfPages: 3)
-                            .as(&self.pageView)
+                            .as(self.$pageView)
                             .onPageChanged { _ in
                                 if self.pageView.currentPage != self.pageViewController.currentPage {
                                     self.pageViewController.currentPage = self.pageView.currentPage
@@ -92,7 +92,7 @@ extension PagedView: TemplateView {
                     ]}
                 }.insets()
             }.insets()
-            .as(&self.pageViewController)
+            .as(self.$pageViewController)
             .onPageChanged {
                 self.pageView.currentPage = $0
             }

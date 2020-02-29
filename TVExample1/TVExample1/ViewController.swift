@@ -30,13 +30,22 @@ extension UICText {
     }
 }
 
-class SignupView: UICView {
+class ContentView: Root, TemplateView, ViewControllerType {
+    var body: ViewCreator {
+        UICSpacer {
+            UICNavigation {
+                ListView()
+            }
+        }.background(color: .white)
+    }
+}
+
+class SignupView: Root, TemplateView {
     @UICOutlet var nameField: UITextField!
     @UICOutlet var lastNameField: UITextField!
     @UICOutlet var stateField: UITextField!
     @UICOutlet var cityField: UITextField!
     @UICOutlet var streetField: UITextField!
-    @UICOutlet var datePicker: UIDatePicker!
 //    var datePicker: UIDatePicker!
 
     override func viewDidLoad() {
@@ -49,7 +58,7 @@ extension SignupView {
     var body: ViewCreator {
         Child {[
             UICImage(image: nil)
-                .image(#imageLiteral(resourceName: "waterfall"))
+                .image(#imageLiteral(resourceName: "GettyImages-139496979"))
                 .content(mode: .scaleAspectFill)
                 .insets()
                 .clips(toBounds: true),
@@ -66,20 +75,22 @@ extension SignupView {
                 UICVStack {[
                     UICSpacer(spacing: 15) {
                         UICVStack {[
+                            UICSegmented {[
+                                    Segment(content: .text("Teste"))
+                                        .onSelected {
+                                            $0.navigationItem.title = "Teste"
+                                        }.isSelected(true),
+                                    Segment(content: .text("Opa"))
+                                        .onSelected {
+                                            $0.navigationItem.title = "Opa"
+                                        }
+                                ]}.background(color: .yellow)
+                                .selectedTintColor(.blue),
                             UICText.spacer {
                                 UICText.base("Nome")
                                     .keyboard(type: .asciiCapable)
                                     .as(self.$nameField)
-                                    .inputView {
-                                        UICInput(size: .init(width: UIScreen.main.bounds.width, height: 250), style: .keyboard) {
-                                            UICDatePicker(calendar: nil)
-                                                .maximumDate(.init())
-                                                .tintColor(.black)
-                                                .mode(.date)
-                                                .insets(priority: .required)
-                                                .as(self.$datePicker)
-                                        }
-                                    }.onEditingChanged {
+                                    .onEditingChanged {
                                         $0.navigationItem.title = ($0 as? UITextField)?.text
                                     }.leftView {
                                         UICContent {
@@ -111,7 +122,7 @@ extension SignupView {
                                     .as(self.$lastNameField)
                             },
                             UICSpacer(vertical: 15, horizontal: 0) {
-                                UICVStack(spacing: 30) {[
+                                UICVStack {[
                                     UICText.spacer {
                                         UICText.base("Estado")
                                             .keyboard(type: .asciiCapable)
@@ -122,7 +133,7 @@ extension SignupView {
                                             .keyboard(type: .asciiCapable)
                                             .as(self.$cityField)
                                     },
-                                    UICHStack(spacing: 30) {[
+                                    UICHStack {[
                                         UICText.spacer {
                                             UICText.base("Rua")
                                                 .keyboard(type: .asciiCapable)
@@ -133,17 +144,17 @@ extension SignupView {
                                                 .keyboard(type: .asciiCapable)
                                         }.width(equalToSuperview: 0.35)
                                         .navigation(title: "Cadastro")
-                                        .navigation(background: #imageLiteral(resourceName: "waterfall"))
+                                        .navigation(background: #imageLiteral(resourceName: "GettyImages-139496979"))
                                         .navigation(titleColor: .white)
-                                        .navigation(backButton: {
+                                        /*.navigation(backButton: {
                                             UICButton("Sair")
                                                 .title(color: .black)
                                                 .onTouchInside {
                                                     $0.navigation?.pop(animated: true)
                                                 }
-                                        })
-                                    ]}
-                                ]}
+                                        })*/
+                                    ]}.spacing(30)
+                                ]}.spacing(30)
                             },
                             UICText.spacer {
                                 UICText.base("Gênero")
@@ -155,14 +166,6 @@ extension SignupView {
                                 UICText.base("Senha")
                                     .secureText()
                             },
-                            UICHStack {[
-                                UICLabel("Aceito os termos")
-                                    .text(color: .black),
-                                UICSwitch(on: false)
-                                    .onValueChanged {
-                                        $0.navigationItem.title = "Aceito"
-                                    }
-                            ]},
                             UICSpacer()
                         ]}.spacing(30)
                     },
@@ -177,6 +180,27 @@ extension SignupView {
                                         $0.navigation?.push(animated: true) {
                                             SignupView()
                                         }
+                                    }.accessibily {
+                                        $0.onGrayScaleChanged {
+                                            $0.backgroundColor = UIAccessibility.isGrayscaleEnabled ? UIColor(white: 0.5, alpha: 1) : .brown
+                                        }
+                                    }
+                            }
+                        }.shadow(offset: .init(width: 2, height: 3))
+                        .shadow(radius: 3)
+                        .shadow(ocupacity: 0.45),
+                    UICSpacer(vertical: 0, horizontal: 15) {
+                            UICRounder(radius: 5) {
+                                UICButton("Present")
+                                    .title(color: .black)
+                                    .background(color: .brown)
+                                    .height(equalTo: 55)
+                                    .onTouchInside {
+                                        $0.navigationItem.title = "Submitted"
+                                        (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = UIViewController()
+//                                        $0.navigation?.present(animated: true) {
+//                                            ListView()
+//                                        }
                                     }.accessibily {
                                         $0.onGrayScaleChanged {
                                             $0.backgroundColor = UIAccessibility.isGrayscaleEnabled ? UIColor(white: 0.5, alpha: 1) : .brown

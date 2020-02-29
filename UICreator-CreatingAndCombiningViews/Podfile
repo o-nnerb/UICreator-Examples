@@ -5,7 +5,7 @@ target 'UICreator-CreatingAndCombiningViews' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  pod "UIContainer", '1.2.0-beta.4'
-  pod "UICreator", '1.0.0-alpha.7'
+  pod "UIContainer", "1.2.0-beta.5"
+  pod "UICreator", "1.0.0-alpha.8"
 
 end
