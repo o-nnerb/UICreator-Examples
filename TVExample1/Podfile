@@ -6,8 +6,8 @@ target 'TVExample1' do
   use_frameworks!
 
   # Pods for TVExample1
-  pod "SnapKit"
-  pod "UIContainer", :path => "~/Documents/umobi/UIContainer"
-  pod "UICreator", :path => "~/Documents/umobi/UICreator"
+
+  pod "UIContainer", "1.2.0-beta.5"
+  pod "UICreator", "1.0.0-alpha.8"
 
 end

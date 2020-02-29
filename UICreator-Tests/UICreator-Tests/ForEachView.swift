@@ -11,7 +11,7 @@ import UICreator
 import UIContainer
 
 class ForEachView: Root {
-    var array: Value<[Int]> = .init(value: [])
+    @Value var array: [Int] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,7 @@ class ForEachView: Root {
     func updateEvery1Seconds() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
             if Bool.random() {
-                self?.array.value.append(Int.random(in: 0..<1000))
+                self?.array.append(Int.random(in: 0..<1000))
             }
             self?.updateEvery1Seconds()
         }
@@ -33,7 +33,7 @@ extension ForEachView: TemplateView {
     var body: ViewCreator {
         UICVScroll {
             UICVStack {[
-                UICForEach(self.array) {
+                UICForEach(self.$array) {
                     NumberView(number: $0)
                 }
             ]}

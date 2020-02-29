@@ -18,7 +18,7 @@ class LandmarkDetail: UICView {
     }
 
     var body: ViewCreator {
-        UICSpacer {
+        Child {[
             UICVStack {[
                 MapView(coordinate: self.landmark.locationCoordinate)
                     .leading()
@@ -48,8 +48,11 @@ class LandmarkDetail: UICView {
                 ]}.safeArea(leadingEqualTo: 15),
 
                 UICSpacer()
-            ]}.alignment(.center)
-        }.safeArea(.top)
+            ]}
+            .alignment(.center)
+            .safeArea(.top)
+            .insets(.leading, .trailing, .bottom)
+        ]}
         .background(color: .white)
         .navigation(title: landmark.name)
         .navigation(largeTitleMode: .never)

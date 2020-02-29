@@ -31,12 +31,12 @@ extension UICText {
 }
 
 class SignupView: UICView {
-    weak var nameField: UIReference<UITextField>!
-    weak var lastNameField: UIReference<UITextField>!
-    weak var stateField: UIReference<UITextField>!
-    weak var cityField: UIReference<UITextField>!
-    weak var streetField: UIReference<UITextField>!
-    weak var datePicker: UIReference<UIDatePicker>!
+    @UICOutlet var nameField: UITextField!
+    @UICOutlet var lastNameField: UITextField!
+    @UICOutlet var stateField: UITextField!
+    @UICOutlet var cityField: UITextField!
+    @UICOutlet var streetField: UITextField!
+    @UICOutlet var datePicker: UIDatePicker!
 //    var datePicker: UIDatePicker!
 
     override func viewDidLoad() {
@@ -69,7 +69,7 @@ extension SignupView {
                             UICText.spacer {
                                 UICText.base("Nome")
                                     .keyboard(type: .asciiCapable)
-                                    .as(&self.nameField)
+                                    .as(self.$nameField)
                                     .inputView {
                                         UICInput(size: .init(width: UIScreen.main.bounds.width, height: 250), style: .keyboard) {
                                             UICDatePicker(calendar: nil)
@@ -77,7 +77,7 @@ extension SignupView {
                                                 .tintColor(.black)
                                                 .mode(.date)
                                                 .insets(priority: .required)
-                                                .as(&self.datePicker)
+                                                .as(self.$datePicker)
                                         }
                                     }.onEditingChanged {
                                         $0.navigationItem.title = ($0 as? UITextField)?.text
@@ -108,25 +108,25 @@ extension SignupView {
                             UICText.spacer {
                                 UICText.base("Sobrenome")
                                     .keyboard(type: .asciiCapable)
-                                    .as(&self.lastNameField)
+                                    .as(self.$lastNameField)
                             },
                             UICSpacer(vertical: 15, horizontal: 0) {
                                 UICVStack(spacing: 30) {[
                                     UICText.spacer {
                                         UICText.base("Estado")
                                             .keyboard(type: .asciiCapable)
-                                            .as(&self.stateField)
+                                            .as(self.$stateField)
                                     },
                                     UICText.spacer {
                                         UICText.base("Cidade")
                                             .keyboard(type: .asciiCapable)
-                                            .as(&self.cityField)
+                                            .as(self.$cityField)
                                     },
                                     UICHStack(spacing: 30) {[
                                         UICText.spacer {
                                             UICText.base("Rua")
                                                 .keyboard(type: .asciiCapable)
-                                                .as(&self.streetField)
+                                                .as(self.$streetField)
                                         },
                                         UICText.spacer {
                                             UICText.base("Número")

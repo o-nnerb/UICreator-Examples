@@ -11,15 +11,15 @@ import UIKit
 import UICreator
 
 class PagedView: Root {
-    weak var pageView: UIReference<UIPageControl>!
-    weak var pageViewController: UIReference<UICPageViewController>!
+    @UICOutlet var pageView: UIPageControl!
+    @UICOutlet var pageViewController: UICPageViewController!
 
 }
 
 extension PagedView: TemplateView {
     func moveToPage(_ page: Int) {
-        self.pageView.reference.currentPage = page
-        self.pageViewController.reference.currentPage = page
+        self.pageView.currentPage = page
+        self.pageViewController.currentPage = page
     }
     var body: ViewCreator {
         UICPage(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
@@ -40,10 +40,10 @@ extension PagedView: TemplateView {
                 UICSpacer(top: 0, bottom: 15, leading: 15, trailing: 15) {
                     UICVStack {[
                         UICPageControl(numberOfPages: 3)
-                            .as(&self.pageView)
+                            .as(self.$pageView)
                             .onPageChanged { _ in
-                                if self.pageView.reference.currentPage != self.pageViewController.reference.currentPage {
-                                    self.pageViewController.reference.currentPage = self.pageView.reference.currentPage
+                                if self.pageView.currentPage != self.pageViewController.currentPage {
+                                    self.pageViewController.currentPage = self.pageView.currentPage
                                 }
                             },
                         UICRounder(radius: 30) {
@@ -92,9 +92,9 @@ extension PagedView: TemplateView {
                     ]}
                 }.insets()
             }.insets()
-            .as(&self.pageViewController)
+            .as(self.$pageViewController)
             .onPageChanged {
-                self.pageView.reference.currentPage = $0
+                self.pageView.currentPage = $0
             }
     }
 }

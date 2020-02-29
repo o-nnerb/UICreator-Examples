@@ -12,8 +12,8 @@ import UIContainer
 import UICreator
 
 class NumberView: UICView {
-    var highlightedView: UIReference<UIView>!
-    let number: Value<String?> = .init(value: nil)
+    @UICOutlet var highlightedView: UIView!
+    @Value var number: String? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,7 @@ class NumberView: UICView {
 
     init(number: Int) {
         super.init()
-        self.number.value = "\(number)"
+        self.number = "\(number)"
     }
 
     class Context: UICreator.Context {
@@ -43,7 +43,7 @@ extension NumberView {
                             .font(.body(weight: .bold))
                             .text(color: .black)
                     ]},
-                    UICLabel(self.number)
+                    UICLabel(self.$number)
                         .horizontal(compression: .required)
                         .font(.systemFont(ofSize: 18))
                         .text(color: .black)
@@ -53,19 +53,21 @@ extension NumberView {
             UICSpacer()
                 .background(color: .black)
                 .alpha(0)
-                .as(&self.highlightedView)
+                .as(self.$highlightedView)
         ]}.isUserInteractionEnabled(true)
         .isExclusiveTouch(false)
         .onTouchMaker {
             $0.onBegan { touch in
                 self.animate(0.05) {_ in
-                    self.highlightedView.reference.alpha = 0.15
+                    self.highlightedView.alpha = 0.15
                 }
             }.onEnded { _ in
                 self.animate(0.075) {_ in
-                    self.highlightedView.reference.alpha = 0
+                    self.highlightedView.alpha = 0
                 }
-            }.cancelWhenTouchMoves(true).cancelsTouches(inView: false)
+            }
+            .cancelWhenTouchMoves(true)
+            .cancelsTouches(inView: false)
         }
     }
 }

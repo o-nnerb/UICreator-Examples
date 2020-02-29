@@ -1,34 +1,26 @@
 PODS:
   - EasyAnchor (3.0.0)
-  - SnapKit (5.0.1)
-  - UIContainer (1.2.0-beta.4):
-    - EasyAnchor
-  - UICreator (1.0.0-alpha.7):
+  - UIContainer (1.2.0-beta.5):
     - EasyAnchor (~> 3.0.0)
-    - UIContainer (~> 1.2.0-beta.4)
+  - UICreator (1.0.0-alpha.8):
+    - EasyAnchor (~> 3.0.0)
+    - UIContainer (~> 1.2.0-beta.5)
 
 DEPENDENCIES:
-  - SnapKit
-  - UIContainer (from `~/Documents/umobi/UIContainer`)
-  - UICreator (from `~/Documents/umobi/UICreator`)
+  - UIContainer (= 1.2.0-beta.5)
+  - UICreator (= 1.0.0-alpha.8)
 
 SPEC REPOS:
   trunk:
     - EasyAnchor
-    - SnapKit
-
-EXTERNAL SOURCES:
-  UIContainer:
-    :path: "~/Documents/umobi/UIContainer"
-  UICreator:
-    :path: "~/Documents/umobi/UICreator"
+    - UIContainer
+    - UICreator
 
 SPEC CHECKSUMS:
   EasyAnchor: ee8906196ef3db2ef1492a33d4c4c4a2e055531e
-  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  UIContainer: 39ae2ba7fbaad55bbcd7ba14b2e655ab5f281f7d
-  UICreator: 3f4062937efbd0a7c49922c94d36a3a8ec50cda7
+  UIContainer: a1ffe7d8bea2f8e1b38701c4d437042073e7b6e2
+  UICreator: b4e025d06d6a6e8b135946810df531ddd521aeca
 
-PODFILE CHECKSUM: 9af4fd8ecc0cd36d99fa71c7f46c7851d6e514db
+PODFILE CHECKSUM: a92094453becf45e470e6d3ce5c3953f41faed01
 
 COCOAPODS: 1.8.4

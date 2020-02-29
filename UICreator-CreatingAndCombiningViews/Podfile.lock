@@ -1,26 +1,26 @@
 PODS:
-  - SnapKit (5.0.1)
-  - UIContainer (1.2.0-beta.4):
-    - SnapKit (~> 5.0.1)
-  - UICreator (1.0.0-alpha.7):
-    - SnapKit (~> 5.0.1)
-    - UIContainer (~> 1.2.0-beta.4)
+  - EasyAnchor (3.0.0)
+  - UIContainer (1.2.0-beta.5):
+    - EasyAnchor (~> 3.0.0)
+  - UICreator (1.0.0-alpha.8):
+    - EasyAnchor (~> 3.0.0)
+    - UIContainer (~> 1.2.0-beta.5)
 
 DEPENDENCIES:
-  - UIContainer (= 1.2.0-beta.4)
-  - UICreator (= 1.0.0-alpha.7)
+  - UIContainer (= 1.2.0-beta.5)
+  - UICreator (= 1.0.0-alpha.8)
 
 SPEC REPOS:
   trunk:
-    - SnapKit
+    - EasyAnchor
     - UIContainer
     - UICreator
 
 SPEC CHECKSUMS:
-  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  UIContainer: 6784815e668ee89f1afb22179e70186694c979d1
-  UICreator: b2c0d86ab38ade74865a7ed04caf43c8293bc175
+  EasyAnchor: ee8906196ef3db2ef1492a33d4c4c4a2e055531e
+  UIContainer: a1ffe7d8bea2f8e1b38701c4d437042073e7b6e2
+  UICreator: b4e025d06d6a6e8b135946810df531ddd521aeca
 
-PODFILE CHECKSUM: 0a10b2dd9fb8a3075993c11644b85bf192109066
+PODFILE CHECKSUM: 855441d54e9687bee35b5e6e893ba4f62bb43746
 
 COCOAPODS: 1.8.4

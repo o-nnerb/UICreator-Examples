@@ -12,8 +12,8 @@ import UIContainer
 import UICreator
 
 class ListView: UICView {
-    let removeRows: Value<[IndexPath]> = .init(value: [])
-    let addRows: Value<[IndexPath]> = .init(value: [])
+    @Value var removeRows: [IndexPath] = []
+    @Value var addRows: [IndexPath] = []
 
     func newNumbers() -> [(Int, [Int])] {
         return (1...100).map {
@@ -21,13 +21,13 @@ class ListView: UICView {
         }
     }
 
-    lazy var numbers: Value<[(Int, [Int])]> = {
-        return .init(value: self.newNumbers())
-    }()
+    @Value var numbers: [(Int, [Int])] = (1...100).map {
+        ($0, [$0])
+    }
 
     func loop() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-            self?.numbers.value = self?.newNumbers() ?? []
+            self?.numbers = self?.newNumbers() ?? []
             self?.loop()
         }
     }
@@ -79,10 +79,9 @@ extension ListView {
 extension ListView {
     var body: ViewCreator {
         Child {[
-
             UICSpacer { [unowned self] in
                 UICList(style: .plain) {[
-                    UICForEach(self.numbers) { section in
+                    UICForEach(self.$numbers) { section in
                         UICSection {[
                             UICHeader {
                                 NumberView(number: section.0)
@@ -94,7 +93,7 @@ extension ListView {
                                 }.trailingActions {[
                                     UICContextualAction("Delete", style: .destructive)
                                         .deleteAction(with: .left) {
-                                            self.numbers.value.remove(at: $0.section)
+                                            self.numbers.remove(at: $0.section)
                                     },
                                     UICContextualAction("Edit", style: .normal)
                                         .onAction { _ in
@@ -105,13 +104,13 @@ extension ListView {
                             }
                             ]}
                     }
-                    ]}.deleteRows(with: .left, self.removeRows) { [weak self] indexPaths in
+                    ]}.deleteRows(with: .left, self.$removeRows) { [weak self] indexPaths in
                         indexPaths.forEach { _ in
-                            self?.numbers.value.remove(at: 0)
+                            self?.numbers.remove(at: 0)
                         }
-                }.insertRows(with: .right, self.addRows) { [weak self] indexPaths in
+                }.insertRows(with: .right, self.$addRows) { [weak self] indexPaths in
                     indexPaths.forEach {
-                        self?.numbers.value[$0.section].1.append($0.row)
+                        self?.numbers[$0.section].1.append($0.row)
                     }
                 }
                 .row(height: UITableView.automaticDimension)
@@ -132,7 +131,7 @@ extension ListView {
             UICButton("Delete")
                 .title(color: .black)
                 .onTap { _ in
-                    self?.removeRows.value = (0..<10).map {
+                    self?.removeRows = (0..<10).map {
                         IndexPath(row: 0, section: $0)
                     }
                 }
@@ -141,8 +140,8 @@ extension ListView {
             UICButton("Add")
                 .title(color: .black)
                 .onTap { _ in
-                    self?.addRows.value = (0..<10).map {
-                        IndexPath(row: self?.numbers.value[$0].1.count ?? 0, section: $0)
+                    self?.addRows = (0..<10).map {
+                        IndexPath(row: self?.numbers[$0].1.count ?? 0, section: $0)
                     }
             }
         })
