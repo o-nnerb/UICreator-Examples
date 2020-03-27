@@ -16,7 +16,7 @@ class CristoRedentor: UICView {
                 .leading()
                 .height(equalTo: 300),
 
-            Child {[
+            UICZStack {[
                 UICCenter {
                     CircleImage()
                         .bottom()
