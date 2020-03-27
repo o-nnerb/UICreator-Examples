@@ -26,7 +26,7 @@ extension PagedView: TemplateView {
             .pages(direction: .reverse) {[
                 BackgroundView(254333),
                 BackgroundView(10254333),
-                Child {[
+                UICZStack {[
                     BackgroundView(50254333),
                     UICTop {
                         UICButton("Tap here!")
@@ -47,7 +47,7 @@ extension PagedView: TemplateView {
                                 }
                             },
                         UICRounder(radius: 30) {
-                            Child {[
+                            UICZStack {[
                                 UICBlur(blur: .dark),
                                 UICSpacer(vertical: 15, horizontal: 30) {
                                     UICHStack(spacing: 15) {[

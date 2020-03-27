@@ -65,7 +65,7 @@ extension ListView {
 
     class Background: UICView {
         var body: ViewCreator {
-            Child {[
+            UICZStack {[
                 UICImage(image: #imageLiteral(resourceName: "waterfall"))
                     .content(mode: .scaleAspectFill)
                     .clips(toBounds: true)
@@ -78,7 +78,7 @@ extension ListView {
 
 extension ListView {
     var body: ViewCreator {
-        Child {[
+        UICZStack {[
             UICSpacer { [unowned self] in
                 UICList(style: .plain) {[
                     UICForEach(self.$numbers) { section in

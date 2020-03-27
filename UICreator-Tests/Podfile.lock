@@ -7,20 +7,28 @@ PODS:
     - UIContainer (~> 1.2.0-beta.5)
 
 DEPENDENCIES:
-  - UIContainer (= 1.2.0-beta.5)
-  - UICreator (= 1.0.0-alpha.8)
+  - EasyAnchor (from `https://github.com/brennobemoura/EasyAnchor`)
+  - UIContainer (from `~/Documents/umobi/UIContainer`)
+  - UICreator (from `~/Documents/umobi/UICreator`)
 
-SPEC REPOS:
-  trunk:
-    - EasyAnchor
-    - UIContainer
-    - UICreator
+EXTERNAL SOURCES:
+  EasyAnchor:
+    :git: https://github.com/brennobemoura/EasyAnchor
+  UIContainer:
+    :path: "~/Documents/umobi/UIContainer"
+  UICreator:
+    :path: "~/Documents/umobi/UICreator"
+
+CHECKOUT OPTIONS:
+  EasyAnchor:
+    :commit: e1ca7fbb9d2132d1a6c090ccf937f347d709df10
+    :git: https://github.com/brennobemoura/EasyAnchor
 
 SPEC CHECKSUMS:
   EasyAnchor: ee8906196ef3db2ef1492a33d4c4c4a2e055531e
   UIContainer: a1ffe7d8bea2f8e1b38701c4d437042073e7b6e2
   UICreator: b4e025d06d6a6e8b135946810df531ddd521aeca
 
-PODFILE CHECKSUM: 8ee5918dcde8c8c1e67b86070001e3fe07981b63
+PODFILE CHECKSUM: 01b036ccca196f6a0a3ee3c1f3f2239c4a4b8dd6
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.1

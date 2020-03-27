@@ -56,7 +56,7 @@ class SignupView: Root, TemplateView {
 extension SignupView {
 
     var body: ViewCreator {
-        Child {[
+        UICZStack {[
             UICImage(image: nil)
                 .image(#imageLiteral(resourceName: "GettyImages-139496979"))
                 .content(mode: .scaleAspectFill)

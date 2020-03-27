@@ -7,7 +7,7 @@ target 'TVExample1' do
 
   # Pods for TVExample1
 
-  pod "UIContainer", "1.2.0-beta.5"
-  pod "UICreator", "1.0.0-alpha.8"
-
+  pod "UIContainer", :path => "~/Documents/umobi/UIContainer"
+  pod "UICreator", :path => "~/Documents/umobi/UICreator"
+  pod "EasyAnchor", :git => "https://www.github.com/brennobemoura/EasyAnchor"
 end

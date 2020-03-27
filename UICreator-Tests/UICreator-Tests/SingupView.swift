@@ -47,7 +47,7 @@ class SignupView: UICView {
 extension SignupView {
 
     var body: ViewCreator {
-        Child {[
+        UICZStack {[
             UICImage(image: nil)
                 .image(#imageLiteral(resourceName: "waterfall"))
                 .content(mode: .scaleAspectFill)

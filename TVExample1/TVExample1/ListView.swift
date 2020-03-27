@@ -32,7 +32,7 @@ class NumberView: UICView {
 
 extension NumberView {
     var body: ViewCreator {
-        Child {[ 
+        UICZStack {[
             UICSpacer(vertical: 15, horizontal: 30) { [unowned self] in
                 UICHStack {[
                     UICVStack {[
@@ -122,7 +122,7 @@ extension ListView {
     var body: ViewCreator {
         UICList(style: .plain) {[
             UICHeader {
-                Child {[
+                UICZStack {[
                     UICBlur(blur: .extraLight),
                     NumberView(number: 1).insets()
                 ]}
@@ -168,7 +168,7 @@ extension ListView {
 //            .navigation(largeTitleMode: .always)
 //            .navigation(prefersLargeTitles: true)
             .background {
-                Child {[
+                UICZStack {[
                     UICImage(image: nil)
                         .content(mode: .scaleAspectFill)
                         .clips(toBounds: true)

@@ -107,7 +107,7 @@ extension CollectionView: TemplateView {
         .scroll(direction: .vertical)
         .background(color: .clear)
         .background {
-            Child {[
+            UICZStack {[
                 UICImage(image: #imageLiteral(resourceName: "waterfall"))
                     .content(mode: .scaleAspectFill)
                     .clips(toBounds: true)

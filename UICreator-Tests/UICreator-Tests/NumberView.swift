@@ -23,18 +23,15 @@ class NumberView: UICView {
         super.init()
         self.number = "\(number)"
     }
-
-    class Context: UICreator.Context {
-    }
 }
 
 extension NumberView {
     var body: ViewCreator {
-        Child { [unowned self] in [
+        UICZStack { [unowned self] in [
             UICSpacer(vertical: 15, horizontal: 30) {
                 UICHStack {[
                     UICVStack {[
-                        UICLabel("Detalhe")
+                        MyLabel("Detalhe")
                             .vertical(hugging: .defaultHigh, compression: .required)
                             .font(.callout)
                             .text(color: .black),
