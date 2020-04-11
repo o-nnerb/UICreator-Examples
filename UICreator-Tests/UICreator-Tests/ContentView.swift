@@ -16,7 +16,7 @@ class ContentView: Root, TemplateView, ViewControllerType {
             UICNavigation {
                 ForEachView()
             }
-        }.background(color: .white)
+        }.backgroundColor(.white)
             .onAppear {
                 print("[Appeared]", $0)
         }

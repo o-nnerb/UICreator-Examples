@@ -34,21 +34,21 @@ extension NumberView {
                         MyLabel("Detalhe")
                             .vertical(hugging: .defaultHigh, compression: .required)
                             .font(.callout)
-                            .text(color: .black),
+                            .textColor(.black),
                         UICLabel("Número: ")
                             .horizontal(hugging: .defaultHigh, compression: .required)
                             .font(.body(weight: .bold))
-                            .text(color: .black)
+                            .textColor(.black)
                     ]},
                     UICLabel(self.$number)
                         .horizontal(compression: .required)
                         .font(.systemFont(ofSize: 18))
-                        .text(color: .black)
-                        .text(alignment: .right)
+                        .textColor(.black)
+                        .textAlignment(.right)
                 ]}
             }.insets(),
             UICSpacer()
-                .background(color: .black)
+                .backgroundColor(.black)
                 .alpha(0)
                 .as(self.$highlightedView)
         ]}.isUserInteractionEnabled(true)
