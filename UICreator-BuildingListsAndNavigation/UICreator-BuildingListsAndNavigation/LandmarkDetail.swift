@@ -53,7 +53,7 @@ class LandmarkDetail: UICView {
             .safeArea(.top)
             .insets(.leading, .trailing, .bottom)
         ]}
-        .background(color: .white)
+        .backgroundColor(.white)
         .navigation(title: landmark.name)
         .navigation(largeTitleMode: .never)
     }

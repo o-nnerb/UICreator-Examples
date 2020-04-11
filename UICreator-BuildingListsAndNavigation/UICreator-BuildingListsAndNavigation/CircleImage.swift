@@ -23,10 +23,10 @@ class CircleImage: UICView {
                 UICImage(image: self.image)
                     .aspectRatio()
                     .content(mode: .scaleAspectFill)
-            }.border(width: 4)
-            .border(color: .white)
-        }.shadow(radius: 10)
-        .shadow(ocupacity: 0.3)
+            }.borderWidth(4)
+            .borderColor(.white)
+        }.shadowRadius(10)
+        .shadowOcupacity(0.3)
     }
 }
 

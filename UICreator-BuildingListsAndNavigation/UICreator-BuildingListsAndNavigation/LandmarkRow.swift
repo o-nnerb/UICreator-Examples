@@ -22,7 +22,7 @@ class LandmarkRow: UICView {
                     .aspectRatio()
                     .height(equalTo: 50)
                     .content(mode: .scaleAspectFill)
-                    .clips(toBounds: true),
+                    .clipsToBounds(true),
                 UICLabel(self.landmark.name),
                 UICSpacer()
             ]}.spacing(15)

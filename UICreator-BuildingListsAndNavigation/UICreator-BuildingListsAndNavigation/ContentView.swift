@@ -15,6 +15,6 @@ class ContentView: UICView {
             UICNavigation {
                 LandmarkList()
             }
-        }.background(color: .white)
+        }.backgroundColor(.white)
     }
 }
