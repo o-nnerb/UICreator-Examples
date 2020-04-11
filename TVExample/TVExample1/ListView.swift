@@ -39,21 +39,21 @@ extension NumberView {
                         UICLabel("Detalhe")
                             .vertical(hugging: .defaultHigh, compression: .required)
                             .font(.callout)
-                            .text(color: .black),
+                            .textColor(.black),
                         UICLabel("Número: ")
                             .horizontal(hugging: .defaultHigh, compression: .required)
                             .font(.body(weight: .bold))
-                            .text(color: .black)
+                            .textColor(.black)
                     ]},
                     UICLabel("\(self.number)")
                         .horizontal(compression: .required)
                         .font(.systemFont(ofSize: 18))
-                        .text(color: .black)
-                        .text(alignment: .right)
+                        .textColor(.black)
+                        .textAlignment(.right)
                         .as(self.$numberLabel)
 //                        .toolbar(
 //                            UICSpacer()
-//                                .background(color: .black)
+//                                .backgroundColor(.black)
 //                                .insets(priority: .required)
 //                        ).toolbar(isHidden: false)
 //                        .toolbar(barTintColor: .black)
@@ -61,7 +61,7 @@ extension NumberView {
                 ]}
             }.insets(),
             UICSpacer()
-                .background(color: .black)
+                .backgroundColor(.black)
                 .alpha(0)
                 .as(self.$highlightedView)
         ]}.isUserInteractionEnabled(true)
@@ -149,21 +149,21 @@ extension ListView {
                                     UICImage(image: nil)
                                         .aspectRatio(priority: .required)
                                         .content(mode: .scaleAspectFill)
-                                        .clips(toBounds: true)
+                                        .clipsToBounds(true)
                                 }
                             },
                             UICLabel("Hello World!")
                                 .font(.boldSystemFont(ofSize: 18))
-                                .text(color: .white)
+                                .textColor(.white)
                                 .navigation(title: "Lista Numérica")
                         ]}.spacing(15)
-                    }.background(color: .orange)
+                    }.backgroundColor(.orange)
                         .onTap {
                             $0.backgroundColor = [UIColor]([.black, .orange])[Int.random(in: 0...1)]
                     }
                 }
             }
-        }.background(color: .white)
+        }.backgroundColor(.white)
             .safeArea(topEqualTo: 0)
 //            .navigation(largeTitleMode: .always)
 //            .navigation(prefersLargeTitles: true)
@@ -171,7 +171,7 @@ extension ListView {
                 UICZStack {[
                     UICImage(image: nil)
                         .content(mode: .scaleAspectFill)
-                        .clips(toBounds: true)
+                        .clipsToBounds(true)
                         .insets(),
                     UICBlur(blur: .extraLight)
                 ]}
