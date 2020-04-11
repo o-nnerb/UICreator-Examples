@@ -13,6 +13,6 @@ class ContentView: UICView {
     var body: ViewCreator {
         UICSpacer {
             CristoRedentor()
-        }.background(color: .white)
+        }.backgroundColor(.white)
     }
 }
