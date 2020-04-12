@@ -27,7 +27,7 @@ class LandmarkList: UICView {
         .navigation(title: "Landmarks")
         .navigation(prefersLargeTitles: true)
         .accessoryType(.disclosureIndicator)
-        .background(color: .white)
+        .backgroundColor(.white)
         .separator(style: .singleLine)
     }
 }

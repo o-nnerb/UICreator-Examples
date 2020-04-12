@@ -18,13 +18,13 @@ class LandmarkDetail: UICView {
     }
 
     var body: ViewCreator {
-        Child {[
+        UICZStack {[
             UICVStack {[
                 MapView(coordinate: self.landmark.locationCoordinate)
                     .leading()
                     .height(equalTo: 300),
 
-                Child {[
+                UICZStack {[
                     UICCenter {
                         CircleImage(image: self.landmark.image)
                             .insets(.top)
@@ -53,7 +53,7 @@ class LandmarkDetail: UICView {
             .safeArea(.top)
             .insets(.leading, .trailing, .bottom)
         ]}
-        .background(color: .white)
+        .backgroundColor(.white)
         .navigation(title: landmark.name)
         .navigation(largeTitleMode: .never)
     }

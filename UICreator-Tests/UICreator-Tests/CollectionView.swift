@@ -54,7 +54,7 @@ class BackgroundView: Root {
 extension BackgroundView: TemplateView {
     var body: ViewCreator {
         UICSpacer()
-            .background(color: self.color)
+            .backgroundColor(self.color)
     }
 }
 
@@ -105,16 +105,16 @@ extension CollectionView: TemplateView {
         .line(minimumSpacing: 0)
         .interItem(minimumSpacing: 0)
         .scroll(direction: .vertical)
-        .background(color: .clear)
+        .backgroundColor(.clear)
         .background {
-            Child {[
+            UICZStack {[
                 UICImage(image: #imageLiteral(resourceName: "waterfall"))
                     .content(mode: .scaleAspectFill)
-                    .clips(toBounds: true)
+                    .clipsToBounds(true)
                     .insets(),
                 UICBlur(blur: .extraLight),
                 UICSpacer()
-                    .background(color: .white)
+                    .backgroundColor(.white)
                     .safeArea(topEqualTo: 0)
             ]}
         }

@@ -20,9 +20,13 @@ class ForEachView: Root {
     }
 
     func updateEvery1Seconds() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { [weak self] in
             if Bool.random() {
                 self?.array.append(Int.random(in: 0..<1000))
+            } else {
+                if !(self?.array.isEmpty ?? true) {
+                    self?.array.removeFirst()
+                }
             }
             self?.updateEvery1Seconds()
         }

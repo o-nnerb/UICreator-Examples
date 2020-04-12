@@ -45,16 +45,16 @@ extension ListView {
                                     UICImage(image: #imageLiteral(resourceName: "waterfall"))
                                         .aspectRatio(priority: .required)
                                         .content(mode: .scaleAspectFill)
-                                        .clips(toBounds: true)
+                                        .clipsToBounds(true)
                                         .height(equalTo: 25)
                                 }
                             },
                             UICLabel("Hello World!")
                                 .font(.boldSystemFont(ofSize: 18))
-                                .text(color: .white)
+                                .textColor(.white)
                                 .navigation(title: "Lista Numérica")
                         ]}
-                    }.background(color: .orange)
+                    }.backgroundColor(.orange)
                         .onTap {
                             $0.backgroundColor = [UIColor]([.black, .orange])[Int.random(in: 0...1)]
                     }
@@ -65,10 +65,10 @@ extension ListView {
 
     class Background: UICView {
         var body: ViewCreator {
-            Child {[
+            UICZStack {[
                 UICImage(image: #imageLiteral(resourceName: "waterfall"))
                     .content(mode: .scaleAspectFill)
-                    .clips(toBounds: true)
+                    .clipsToBounds(true)
                     .insets(),
                 UICBlur(blur: .extraLight)
             ]}
@@ -78,7 +78,7 @@ extension ListView {
 
 extension ListView {
     var body: ViewCreator {
-        Child {[
+        UICZStack {[
             UICSpacer { [unowned self] in
                 UICList(style: .plain) {[
                     UICForEach(self.$numbers) { section in
@@ -117,7 +117,7 @@ extension ListView {
                 .row(estimatedHeight: 44)
                 .header {
                     Header()
-                }.background(color: .white)
+                }.backgroundColor(.white)
                     .background {
                     Background()
                 }

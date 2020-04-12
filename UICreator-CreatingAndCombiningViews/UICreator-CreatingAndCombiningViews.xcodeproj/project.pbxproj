@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,11 +14,10 @@
 		0C27DE3623DA135100BB9AFD /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C27DE3223DA135100BB9AFD /* MapView.swift */; };
 		0C27DE3723DA135100BB9AFD /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C27DE3323DA135100BB9AFD /* CircleImage.swift */; };
 		0C27DE3823DA135100BB9AFD /* CristoRedentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C27DE3423DA135100BB9AFD /* CristoRedentor.swift */; };
-		B4760758E45741DFE061AF8D /* Pods_UICreator_CreatingAndCombiningViews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D39DAFC5BE4B227B5CCF6074 /* Pods_UICreator_CreatingAndCombiningViews.framework */; };
+		0CCFE7AA24428E850044D3B1 /* UICreator in Frameworks */ = {isa = PBXBuildFile; productRef = 0CCFE7A924428E850044D3B1 /* UICreator */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0186A424A91053A385D3739C /* Pods-UICreator-CreatingAndCombiningViews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UICreator-CreatingAndCombiningViews.debug.xcconfig"; path = "Target Support Files/Pods-UICreator-CreatingAndCombiningViews/Pods-UICreator-CreatingAndCombiningViews.debug.xcconfig"; sourceTree = "<group>"; };
 		0C27DE1623DA11FB00BB9AFD /* UICreator-CreatingAndCombiningViews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UICreator-CreatingAndCombiningViews.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C27DE1923DA11FB00BB9AFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0C27DE2223DA11FC00BB9AFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -28,8 +27,6 @@
 		0C27DE3223DA135100BB9AFD /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		0C27DE3323DA135100BB9AFD /* CircleImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
 		0C27DE3423DA135100BB9AFD /* CristoRedentor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CristoRedentor.swift; sourceTree = "<group>"; };
-		5F3BC2CA37C48FC843563468 /* Pods-UICreator-CreatingAndCombiningViews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UICreator-CreatingAndCombiningViews.release.xcconfig"; path = "Target Support Files/Pods-UICreator-CreatingAndCombiningViews/Pods-UICreator-CreatingAndCombiningViews.release.xcconfig"; sourceTree = "<group>"; };
-		D39DAFC5BE4B227B5CCF6074 /* Pods_UICreator_CreatingAndCombiningViews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UICreator_CreatingAndCombiningViews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,7 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4760758E45741DFE061AF8D /* Pods_UICreator_CreatingAndCombiningViews.framework in Frameworks */,
+				0CCFE7AA24428E850044D3B1 /* UICreator in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -49,8 +46,6 @@
 			children = (
 				0C27DE1823DA11FB00BB9AFD /* UICreator-CreatingAndCombiningViews */,
 				0C27DE1723DA11FB00BB9AFD /* Products */,
-				D87C9E0DE790430F31EE4C06 /* Pods */,
-				7D28A1AA53F6DFD01C25420C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,23 +72,6 @@
 			path = "UICreator-CreatingAndCombiningViews";
 			sourceTree = "<group>";
 		};
-		7D28A1AA53F6DFD01C25420C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				D39DAFC5BE4B227B5CCF6074 /* Pods_UICreator_CreatingAndCombiningViews.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		D87C9E0DE790430F31EE4C06 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				0186A424A91053A385D3739C /* Pods-UICreator-CreatingAndCombiningViews.debug.xcconfig */,
-				5F3BC2CA37C48FC843563468 /* Pods-UICreator-CreatingAndCombiningViews.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -101,17 +79,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0C27DE2A23DA11FC00BB9AFD /* Build configuration list for PBXNativeTarget "UICreator-CreatingAndCombiningViews" */;
 			buildPhases = (
-				DC8A1571EF7172BE9C0E08BF /* [CP] Check Pods Manifest.lock */,
 				0C27DE1223DA11FB00BB9AFD /* Sources */,
 				0C27DE1323DA11FB00BB9AFD /* Frameworks */,
 				0C27DE1423DA11FB00BB9AFD /* Resources */,
-				53D3CF11A9BDFA63B7AD6CD7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "UICreator-CreatingAndCombiningViews";
+			packageProductDependencies = (
+				0CCFE7A924428E850044D3B1 /* UICreator */,
+			);
 			productName = "UICreator-CreatingAndCombiningViews";
 			productReference = 0C27DE1623DA11FB00BB9AFD /* UICreator-CreatingAndCombiningViews.app */;
 			productType = "com.apple.product-type.application";
@@ -140,6 +119,9 @@
 				Base,
 			);
 			mainGroup = 0C27DE0D23DA11FB00BB9AFD;
+			packageReferences = (
+				0CCFE7A824428E850044D3B1 /* XCRemoteSwiftPackageReference "UICreator" */,
+			);
 			productRefGroup = 0C27DE1723DA11FB00BB9AFD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -160,48 +142,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		53D3CF11A9BDFA63B7AD6CD7 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-UICreator-CreatingAndCombiningViews/Pods-UICreator-CreatingAndCombiningViews-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-UICreator-CreatingAndCombiningViews/Pods-UICreator-CreatingAndCombiningViews-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UICreator-CreatingAndCombiningViews/Pods-UICreator-CreatingAndCombiningViews-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DC8A1571EF7172BE9C0E08BF /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-UICreator-CreatingAndCombiningViews-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0C27DE1223DA11FB00BB9AFD /* Sources */ = {
@@ -335,7 +275,6 @@
 		};
 		0C27DE2B23DA11FC00BB9AFD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0186A424A91053A385D3739C /* Pods-UICreator-CreatingAndCombiningViews.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "UICreator-CreatingAndCombiningViews/Info.plist";
@@ -353,7 +292,6 @@
 		};
 		0C27DE2C23DA11FC00BB9AFD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5F3BC2CA37C48FC843563468 /* Pods-UICreator-CreatingAndCombiningViews.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "UICreator-CreatingAndCombiningViews/Info.plist";
@@ -391,6 +329,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0CCFE7A824428E850044D3B1 /* XCRemoteSwiftPackageReference "UICreator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/umobi/UICreator.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = "1.0.0-alpha";
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0CCFE7A924428E850044D3B1 /* UICreator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0CCFE7A824428E850044D3B1 /* XCRemoteSwiftPackageReference "UICreator" */;
+			productName = UICreator;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0C27DE0E23DA11FB00BB9AFD /* Project object */;
 }

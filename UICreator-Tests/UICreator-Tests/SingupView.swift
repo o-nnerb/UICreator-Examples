@@ -14,8 +14,8 @@ extension UICText {
     static func base(_ placeholder: String) -> UICText {
         UICText(placeholder: placeholder)
             .font(UIFont.boldSystemFont(ofSize: 24))
-            .text(color: .white)
-            .border(style: .none)
+            .textColor(.white)
+            .borderStyle(.none)
             .height(equalTo: 55)
             .placeholder(color: .white)
             .placeholder(font: .systemFont(ofSize: 24, weight: .regular))
@@ -24,9 +24,9 @@ extension UICText {
     static func spacer(_ handler: @escaping () -> ViewCreator) -> UICSpacer {
         UICSpacer(vertical: 0, horizontal: 10) {
             handler()
-        }.border(color: .white)
-        .border(width: 1)
-        .corner(radius: 5)
+        }.borderColor(.white)
+        .borderWidth(1)
+        .cornerRadius(5)
     }
 }
 
@@ -47,20 +47,20 @@ class SignupView: UICView {
 extension SignupView {
 
     var body: ViewCreator {
-        Child {[
+        UICZStack {[
             UICImage(image: nil)
                 .image(#imageLiteral(resourceName: "waterfall"))
                 .content(mode: .scaleAspectFill)
                 .insets()
-                .clips(toBounds: true),
+                .clipsToBounds(true),
             UICVStack {
                 (0...20).map {
                     UICSpacer()
-                        .background(color: .init(white: CGFloat($0) / 40, alpha: 1))
+                        .backgroundColor(.init(white: CGFloat($0) / 40, alpha: 1))
                 }
             }.distribution(.fillEqually),
             UICSpacer()
-                .background(color: .black)
+                .backgroundColor(.black)
                 .alpha(0.35),
             UICScroll {
                 UICVStack {[
@@ -68,7 +68,7 @@ extension SignupView {
                         UICVStack {[
                             UICText.spacer {
                                 UICText.base("Nome")
-                                    .keyboard(type: .asciiCapable)
+                                    .keyboardType(.asciiCapable)
                                     .as(self.$nameField)
                                     .inputView {
                                         UICInput(size: .init(width: UIScreen.main.bounds.width, height: 250), style: .keyboard) {
@@ -87,17 +87,17 @@ extension SignupView {
                                                 UICHStack {[
                                                     UICRounder(radius: 0.5) {
                                                         UICSpacer()
-                                                            .background(color: .red)
+                                                            .backgroundColor(.red)
                                                             .aspectRatio(priority: .defaultLow)
                                                     },
                                                     UICRounder(radius: 0.5) {
                                                         UICSpacer()
-                                                            .background(color: .black)
+                                                            .backgroundColor(.black)
                                                             .aspectRatio(priority: .defaultLow)
                                                     },
                                                     UICRounder(radius: 0.5) {
                                                         UICSpacer()
-                                                            .background(color: .green)
+                                                            .backgroundColor(.green)
                                                             .aspectRatio(priority: .defaultLow)
                                                     }
                                                 ]}.spacing(5)
@@ -107,30 +107,30 @@ extension SignupView {
                             },
                             UICText.spacer {
                                 UICText.base("Sobrenome")
-                                    .keyboard(type: .asciiCapable)
+                                    .keyboardType(.asciiCapable)
                                     .as(self.$lastNameField)
                             },
                             UICSpacer(vertical: 15, horizontal: 0) {
                                 UICVStack(spacing: 30) {[
                                     UICText.spacer {
                                         UICText.base("Estado")
-                                            .keyboard(type: .asciiCapable)
+                                            .keyboardType(.asciiCapable)
                                             .as(self.$stateField)
                                     },
                                     UICText.spacer {
                                         UICText.base("Cidade")
-                                            .keyboard(type: .asciiCapable)
+                                            .keyboardType(.asciiCapable)
                                             .as(self.$cityField)
                                     },
                                     UICHStack(spacing: 30) {[
                                         UICText.spacer {
                                             UICText.base("Rua")
-                                                .keyboard(type: .asciiCapable)
+                                                .keyboardType(.asciiCapable)
                                                 .as(self.$streetField)
                                         },
                                         UICText.spacer {
                                             UICText.base("Número")
-                                                .keyboard(type: .asciiCapable)
+                                                .keyboardType(.asciiCapable)
                                         }.width(equalToSuperview: 0.35)
                                         .navigation(title: "Cadastro")
                                         .navigation(background: #imageLiteral(resourceName: "waterfall"))
@@ -153,11 +153,11 @@ extension SignupView {
                             },
                             UICText.spacer {
                                 UICText.base("Senha")
-                                    .secureText()
+                                    .isSecureTextEntry()
                             },
                             UICHStack {[
                                 UICLabel("Aceito os termos")
-                                    .text(color: .black),
+                                    .textColor(.black),
                                 UICSwitch(on: false)
                                     .onValueChanged {
                                         $0.navigationItem.title = "Aceito"
@@ -170,7 +170,7 @@ extension SignupView {
                             UICRounder(radius: 5) {
                                 UICButton("Save")
                                     .title(color: .black)
-                                    .background(color: .brown)
+                                    .backgroundColor(.brown)
                                     .height(equalTo: 55)
                                     .onTouchInside {
                                         $0.navigationItem.title = "Submitted"
@@ -183,12 +183,12 @@ extension SignupView {
                                         }
                                     }
                             }
-                        }.shadow(offset: .init(width: 2, height: 3))
-                        .shadow(radius: 3)
-                        .shadow(ocupacity: 0.45)
+                        }.shadowOffset(.init(width: 2, height: 3))
+                        .shadowRadius(3)
+                        .shadowOcupacity(0.45)
                 ]}
             }.insets()
             .insets(behavior: .always)
-        ]}.background(color: .white)
+        ]}.backgroundColor(.white)
     }
 }
