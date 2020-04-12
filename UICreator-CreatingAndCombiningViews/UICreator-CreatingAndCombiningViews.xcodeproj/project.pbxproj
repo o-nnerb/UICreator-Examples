@@ -335,8 +335,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/umobi/UICreator.git";
 			requirement = {
-				branch = develop;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = "1.0.0-alpha";
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
