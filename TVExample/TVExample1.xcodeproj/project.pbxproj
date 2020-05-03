@@ -301,7 +301,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 13;
+				TVOS_DEPLOYMENT_TARGET = 13.3;
 			};
 			name = Debug;
 		};
@@ -318,7 +318,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 13;
+				TVOS_DEPLOYMENT_TARGET = 13.3;
 			};
 			name = Release;
 		};
@@ -350,8 +350,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/umobi/UICreator.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = "1.0.0-alpha";
+				branch = develop;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

@@ -23,9 +23,9 @@
         "package": "UICreator",
         "repositoryURL": "https://github.com/umobi/UICreator.git",
         "state": {
-          "branch": null,
-          "revision": "ebaf32851e3c8d440477d879298d4b5643f24a4a",
-          "version": "1.0.0-alpha.9"
+          "branch": "develop",
+          "revision": "1fe77190418d1914d1429cec0254fca2f4c5eb2c",
+          "version": null
         }
       }
     ]

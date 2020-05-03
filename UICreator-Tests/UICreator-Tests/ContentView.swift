@@ -10,15 +10,25 @@ import Foundation
 import UICreator
 import UIContainer
 
-class ContentView: Root, TemplateView, ViewControllerType {
+class ContentView: UICView {
     var body: ViewCreator {
         UICSpacer {
             UICNavigation {
-                ForEachView()
+                UICTab {[
+                    UICTabItem(title: "Group 1") {
+                        UICSpacer()
+                            .backgroundColor(.red)
+                    },
+                    UICTabItem(title: "Group 2") {
+                        UICSpacer()
+                            .backgroundColor(.yellow)
+                    },
+                    UICTabItem(title: "Group 3") {
+                        UICSpacer()
+                            .backgroundColor(.black)
+                    }
+                ]}
             }
-        }.backgroundColor(.white)
-            .onAppear {
-                print("[Appeared]", $0)
         }
     }
 }

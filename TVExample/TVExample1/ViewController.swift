@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import UIContainer
 import UICreator
 
 extension UICText {
@@ -30,7 +29,7 @@ extension UICText {
     }
 }
 
-class ContentView: Root, TemplateView, ViewControllerType {
+class ContentView: Root, TemplateView {
     var body: ViewCreator {
         UICSpacer {
             UICNavigation {
@@ -93,7 +92,7 @@ extension SignupView {
                                     .onEditingChanged {
                                         $0.navigationItem.title = ($0 as? UITextField)?.text
                                     }.leftView {
-                                        UICContent {
+                                        UICSpacer {
                                             UICSpacer(spacing: 5) {
                                                 UICHStack {[
                                                     UICRounder(radius: 0.5) {
@@ -113,7 +112,8 @@ extension SignupView {
                                                     }
                                                 ]}.spacing(5)
                                             }
-                                        }.content(mode: .scaleAspectFit).height(equalTo: 55)
+                                        }
+                                        .height(equalTo: 55)
                                     }
                             },
                             UICText.spacer {

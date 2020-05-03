@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import UIContainer
 import UICreator
 
 class NumberView: UICView {
@@ -179,7 +178,7 @@ extension ListView {
     }
 }
 
-#if DEBUG
+#if DEBUG && UICREATOR_SUIPREVIEWS
 import SwiftUI
 
 @available(iOS 13, *)
