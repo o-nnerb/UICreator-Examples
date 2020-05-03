@@ -32,7 +32,7 @@ class LandmarkList: UICView {
     }
 }
 
-#if DEBUG
+#if DEBUG && UICREATOR_SUIPREVIEWS
 
 import SwiftUI
 

@@ -8,7 +8,6 @@
 
 import UIKit
 import UICreator
-import UIContainer
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,9 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
 
         let window = UIWindow(frame: UIScreen.main.bounds)
-        window.rootViewController = ContainerController(UICHost {
+        window.rootViewController = UICHostingView {
             ContentView()
-        })
+        }
         window.makeKeyAndVisible()
         self.window = window
 

@@ -14,7 +14,6 @@ class LandmarkDetail: UICView {
 
     init(landmark: Landmark) {
         self.landmark = landmark
-        super.init()
     }
 
     var body: ViewCreator {
@@ -59,7 +58,7 @@ class LandmarkDetail: UICView {
     }
 }
 
-#if DEBUG
+#if DEBUG && UICREATOR_SUIPREVIEWS
 
 import SwiftUI
 

@@ -8,6 +8,7 @@
 
 import Foundation
 import UICreator
+import UIKit
 
 class CircleImage: UICView {
     var body: ViewCreator {
@@ -23,7 +24,7 @@ class CircleImage: UICView {
     }
 }
 
-#if DEBUG
+#if DEBUG && UICREATOR_SUIPREVIEWS
 import SwiftUI
 
 struct CircleImage_Preview: PreviewProvider {

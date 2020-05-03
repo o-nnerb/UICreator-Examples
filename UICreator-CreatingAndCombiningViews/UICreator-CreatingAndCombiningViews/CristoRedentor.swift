@@ -43,7 +43,7 @@ class CristoRedentor: UICView {
     }
 }
 
-#if DEBUG
+#if DEBUG && UICREATOR_SUIPREVIEWS
 import SwiftUI
 
 struct CristoRedentor_Preview: PreviewProvider {

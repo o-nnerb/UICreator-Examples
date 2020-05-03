@@ -12,11 +12,10 @@ class LandmarkRow: UICView {
     let landmark: Landmark
     init(landmark: Landmark) {
         self.landmark = landmark
-        super.init()
     }
 
     var body: ViewCreator {
-        UICSpacer(vertical: 5) {
+        UICSpacer(vertical: 5) { [unowned self] in
             UICHStack {[
                 UICImage(image: self.landmark.image)
                     .aspectRatio()
@@ -30,7 +29,7 @@ class LandmarkRow: UICView {
     }
 }
 
-#if DEBUG
+#if DEBUG && UICREATOR_SUIPREVIEWS
 
 import SwiftUI
 
