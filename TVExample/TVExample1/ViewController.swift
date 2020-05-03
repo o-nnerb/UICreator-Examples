@@ -29,7 +29,7 @@ extension UICText {
     }
 }
 
-class ContentView: Root, TemplateView {
+class ContentView: UICView {
     var body: ViewCreator {
         UICSpacer {
             UICNavigation {
@@ -39,17 +39,12 @@ class ContentView: Root, TemplateView {
     }
 }
 
-class SignupView: Root, TemplateView {
+class SignupView: UICView {
     @UICOutlet var nameField: UITextField!
     @UICOutlet var lastNameField: UITextField!
     @UICOutlet var stateField: UITextField!
     @UICOutlet var cityField: UITextField!
     @UICOutlet var streetField: UITextField!
-//    var datePicker: UIDatePicker!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
 }
 
 extension SignupView {

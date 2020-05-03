@@ -16,10 +16,6 @@ class NumberView: UICView {
 
     let number: Int
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
     func configure(with number: Int) {
         self.numberLabel.text = "\(number)"
     }
@@ -104,8 +100,7 @@ class ListView: UICView {
         $0
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func viewDidLoad() {
         self.tableView.reloadData()
     }
 
