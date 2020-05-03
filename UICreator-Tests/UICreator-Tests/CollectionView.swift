@@ -33,7 +33,7 @@ class MyLabel: UICViewRepresentable, TextElement {
     func updateView(_ view: UILabel) {}
 }
 
-class BackgroundView: Root {
+class BackgroundView: UICView {
     let randomNumber: Int
 
     var color: UIColor {
@@ -49,16 +49,14 @@ class BackgroundView: Root {
     init(_ randomNumber: Int) {
         self.randomNumber = randomNumber
     }
-}
 
-extension BackgroundView: TemplateView {
     var body: ViewCreator {
         UICSpacer()
             .backgroundColor(self.color)
     }
 }
 
-class CollectionView: Root {
+class CollectionView: UICView {
     weak var pageControl: UIPageControl!
 
     lazy var numbers: [Int] = {
@@ -66,9 +64,7 @@ class CollectionView: Root {
             (Int(0)...Int(pow(255.0, 3))).randomElement()
         }
     }()
-}
-
-extension CollectionView: TemplateView {
+    
     private var thirdGroup: UICCollectionLayoutGroup {
         UICCollectionLayoutGroup {[
             UICCollectionLayoutGroup(horizontal: .flexible(1/3)) {[
@@ -79,7 +75,7 @@ extension CollectionView: TemplateView {
     }
 
     var body: ViewCreator {
-        UICFlow {[
+        UICFlow { [unowned self] in [
             UICSection {[
                 UICHeader {
                     UICLabel("This is a example of auto layout header")

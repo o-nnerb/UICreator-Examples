@@ -37,17 +37,9 @@ class SignupView: UICView {
     @UICOutlet var cityField: UITextField!
     @UICOutlet var streetField: UITextField!
     @UICOutlet var datePicker: UIDatePicker!
-//    var datePicker: UIDatePicker!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-}
-
-extension SignupView {
 
     var body: ViewCreator {
-        UICZStack {[
+        UICZStack { [unowned self] in [
             UICImage(image: nil)
                 .image(#imageLiteral(resourceName: "waterfall"))
                 .content(mode: .scaleAspectFill)
@@ -82,7 +74,7 @@ extension SignupView {
                                     }.onEditingChanged {
                                         $0.navigationItem.title = ($0 as? UITextField)?.text
                                     }.leftView {
-                                        UICContent {
+                                        UICSpacer {
                                             UICSpacer(spacing: 5) {
                                                 UICHStack {[
                                                     UICRounder(radius: 0.5) {
@@ -102,7 +94,8 @@ extension SignupView {
                                                     }
                                                 ]}.spacing(5)
                                             }
-                                        }.content(mode: .scaleAspectFit).height(equalTo: 55)
+                                        }
+                                        .height(equalTo: 55)
                                     }
                             },
                             UICText.spacer {

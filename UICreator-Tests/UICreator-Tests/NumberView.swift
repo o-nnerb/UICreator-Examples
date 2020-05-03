@@ -15,12 +15,7 @@ class NumberView: UICView {
     @UICOutlet var highlightedView: UIView!
     @Value var number: String? = nil
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
     init(number: Int) {
-        super.init()
         self.number = "\(number)"
     }
 }

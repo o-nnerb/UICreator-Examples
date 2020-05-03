@@ -78,8 +78,8 @@ extension ListView {
 
 extension ListView {
     var body: ViewCreator {
-        UICZStack {[
-            UICSpacer { [unowned self] in
+        UICZStack { [unowned self] in [
+            UICSpacer {
                 UICList(style: .plain) {[
                     UICForEach(self.$numbers) { section in
                         UICSection {[

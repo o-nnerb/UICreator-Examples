@@ -10,12 +10,10 @@ import Foundation
 import UICreator
 import UIContainer
 
-class ForEachView: Root {
+class ForEachView: UICView {
     @Value var array: [Int] = []
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    func viewDidLoad() {
         self.updateEvery1Seconds()
     }
 
@@ -31,11 +29,9 @@ class ForEachView: Root {
             self?.updateEvery1Seconds()
         }
     }
-}
 
-extension ForEachView: TemplateView {
     var body: ViewCreator {
-        UICVScroll {
+        UICVScroll { [unowned self] in 
             UICVStack {[
                 UICForEach(self.$array) {
                     NumberView(number: $0)
