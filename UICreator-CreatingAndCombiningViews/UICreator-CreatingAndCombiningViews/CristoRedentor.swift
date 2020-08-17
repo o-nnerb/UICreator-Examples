@@ -23,7 +23,7 @@ class CristoRedentor: UICView {
                 }
                 .top(equalTo: -130)
             }
-            
+
             UICSpacer()
                 .height(equalTo: 15)
             

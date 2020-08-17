@@ -16,15 +16,18 @@ class LandmarkRow: UICView {
 
     var body: ViewCreator {
         UICSpacer(vertical: 5) { [unowned self] in
-            UICHStack {[
+            UICHStack {
                 UICImage(image: self.landmark.image)
                     .aspectRatio()
                     .height(equalTo: 50)
                     .content(mode: .scaleAspectFill)
-                    .clipsToBounds(true),
-                UICLabel(self.landmark.name),
+                    .clipsToBounds(true)
+
+                UICLabel(self.landmark.name)
+
                 UICSpacer()
-            ]}.spacing(15)
+            }
+            .spacing(15)
         }
     }
 }
