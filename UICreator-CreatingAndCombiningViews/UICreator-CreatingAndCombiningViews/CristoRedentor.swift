@@ -11,35 +11,42 @@ import UICreator
 
 class CristoRedentor: UICView {
     var body: ViewCreator {
-        UICVStack {[
+        UICVStack {
             MapView()
                 .leading()
-                .height(equalTo: 300),
-
-            UICZStack {[
+                .height(equalTo: 300)
+            
+            UICZStack {
                 UICCenter {
                     CircleImage()
                         .bottom()
-                }.top(equalTo: -130)
-            ]},
-
-            UICSpacer()
-                .height(equalTo: 15),
+                }
+                .top(equalTo: -130)
+            }
             
-            UICVStack {[
+            UICSpacer()
+                .height(equalTo: 15)
+            
+            UICVStack {
                 UICLabel("Cristo Redentor")
-                    .font(.title1),
-                UICHStack {[
+                    .font(.title1)
+                
+                UICHStack {
                     UICLabel("Rio de Janeiro")
-                        .font(.subheadline),
-                    UICSpacer(),
+                        .font(.subheadline)
+                    
+                    UICSpacer()
+                    
                     UICLabel("Brasil")
                         .font(.subheadline)
-                ]}
-            ]}.safeArea(leadingEqualTo: 15),
-
+                }
+            }
+            .safeArea(leadingEqualTo: 15)
+            
             UICSpacer()
-        ]}.insets().alignment(.center)
+        }
+        .insets()
+        .alignment(.center)
     }
 }
 

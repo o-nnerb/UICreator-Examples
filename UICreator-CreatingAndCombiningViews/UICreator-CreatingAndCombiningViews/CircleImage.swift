@@ -17,9 +17,11 @@ class CircleImage: UICView {
                 UICImage(image: UIImage(named: "cristoredentor"))
                     .aspectRatio()
                     .content(mode: .scaleAspectFill)
-            }.borderWidth(4)
+            }
+            .borderWidth(4)
             .borderColor(.white)
-        }.shadowRadius(10)
+        }
+        .shadowRadius(10)
         .shadowOcupacity(0.3)
     }
 }
