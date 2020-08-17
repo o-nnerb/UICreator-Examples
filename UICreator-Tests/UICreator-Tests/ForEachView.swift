@@ -8,16 +8,9 @@
 
 import Foundation
 import UICreator
-import UIContainer
 
-class ForEachView: Root {
+class ForEachView: UICView {
     @Value var array: [Int] = []
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        self.updateEvery1Seconds()
-    }
 
     func updateEvery1Seconds() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { [weak self] in
@@ -31,16 +24,17 @@ class ForEachView: Root {
             self?.updateEvery1Seconds()
         }
     }
-}
 
-extension ForEachView: TemplateView {
     var body: ViewCreator {
-        UICVScroll {
-            UICVStack {[
+        UICVScroll { [unowned self] in
+            UICVStack {
                 UICForEach(self.$array) {
                     NumberView(number: $0)
                 }
-            ]}
+            }
+        }
+        .onInTheScene { [weak self] _ in
+            self?.updateEvery1Seconds()
         }
     }
 }

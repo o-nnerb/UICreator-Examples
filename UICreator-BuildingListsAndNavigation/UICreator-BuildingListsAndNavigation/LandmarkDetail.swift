@@ -14,52 +14,56 @@ class LandmarkDetail: UICView {
 
     init(landmark: Landmark) {
         self.landmark = landmark
-        super.init()
     }
 
     var body: ViewCreator {
-        UICZStack {[
-            UICVStack {[
+        UICZStack {
+            UICVStack {
                 MapView(coordinate: self.landmark.locationCoordinate)
                     .leading()
-                    .height(equalTo: 300),
+                    .height(equalTo: 300)
 
-                UICZStack {[
+                UICZStack {
                     UICCenter {
                         CircleImage(image: self.landmark.image)
                             .insets(.top)
                             .height(equalTo: 260)
-                    }.top(equalTo: -130)
-                ]},
+                    }
+                    .top(equalTo: -130)
+                }
 
                 UICSpacer()
-                    .height(equalTo: 15),
+                    .height(equalTo: 15)
 
-                UICVStack {[
+                UICVStack {
                     UICLabel(self.landmark.name)
-                        .font(.title1),
-                    UICHStack {[
+                        .font(.title1)
+
+                    UICHStack {
                         UICLabel(self.landmark.city)
-                            .font(.subheadline),
-                        UICSpacer(),
+                            .font(.subheadline)
+
+                        UICSpacer()
+
                         UICLabel(self.landmark.country)
                             .font(.subheadline)
-                    ]}
-                ]}.safeArea(leadingEqualTo: 15),
+                    }
+                }
+                .safeArea(leadingEqualTo: 15)
 
                 UICSpacer()
-            ]}
+            }
             .alignment(.center)
             .safeArea(.top)
             .insets(.leading, .trailing, .bottom)
-        ]}
+        }
         .backgroundColor(.white)
         .navigation(title: landmark.name)
         .navigation(largeTitleMode: .never)
     }
 }
 
-#if DEBUG
+#if DEBUG && UICREATOR_SUIPREVIEWS
 
 import SwiftUI
 

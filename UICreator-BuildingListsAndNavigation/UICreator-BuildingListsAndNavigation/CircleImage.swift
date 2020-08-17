@@ -8,13 +8,13 @@
 
 import Foundation
 import UICreator
+import UIKit
 
 class CircleImage: UICView {
     let image: UIImage
 
     init(image: UIImage) {
         self.image = image
-        super.init()
     }
 
     var body: ViewCreator {
@@ -30,7 +30,7 @@ class CircleImage: UICView {
     }
 }
 
-#if DEBUG
+#if DEBUG && UICREATOR_SUIPREVIEWS
 
 import SwiftUI
 

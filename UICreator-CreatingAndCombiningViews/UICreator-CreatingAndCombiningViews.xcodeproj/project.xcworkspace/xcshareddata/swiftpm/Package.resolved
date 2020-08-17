@@ -6,17 +6,8 @@
         "repositoryURL": "https://github.com/umobi/ConstraintBuilder",
         "state": {
           "branch": null,
-          "revision": "c1308f1acb96aa3af6050a94d5efbcee46962d48",
-          "version": "1.0.2"
-        }
-      },
-      {
-        "package": "UIContainer",
-        "repositoryURL": "https://github.com/umobi/UIContainer",
-        "state": {
-          "branch": null,
-          "revision": "a57f860850141107756f0ab1a9ec175c41109f19",
-          "version": "1.2.0-beta.10"
+          "revision": "82d2e6591cf2d8aa24858dc798dff42ff14b94f0",
+          "version": "2.0.0"
         }
       },
       {
@@ -24,8 +15,8 @@
         "repositoryURL": "https://github.com/umobi/UICreator.git",
         "state": {
           "branch": null,
-          "revision": "ebaf32851e3c8d440477d879298d4b5643f24a4a",
-          "version": "1.0.0-alpha.9"
+          "revision": "99c1465dbe086bdc2edb8450ed684837fb439b5c",
+          "version": "1.0.2"
         }
       }
     ]

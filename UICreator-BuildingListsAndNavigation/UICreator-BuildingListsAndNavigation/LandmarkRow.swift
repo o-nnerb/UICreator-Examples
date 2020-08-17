@@ -12,25 +12,27 @@ class LandmarkRow: UICView {
     let landmark: Landmark
     init(landmark: Landmark) {
         self.landmark = landmark
-        super.init()
     }
 
     var body: ViewCreator {
-        UICSpacer(vertical: 5) {
-            UICHStack {[
+        UICSpacer(vertical: 5) { [unowned self] in
+            UICHStack {
                 UICImage(image: self.landmark.image)
                     .aspectRatio()
                     .height(equalTo: 50)
                     .content(mode: .scaleAspectFill)
-                    .clipsToBounds(true),
-                UICLabel(self.landmark.name),
+                    .clipsToBounds(true)
+
+                UICLabel(self.landmark.name)
+
                 UICSpacer()
-            ]}.spacing(15)
+            }
+            .spacing(15)
         }
     }
 }
 
-#if DEBUG
+#if DEBUG && UICREATOR_SUIPREVIEWS
 
 import SwiftUI
 

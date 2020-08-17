@@ -8,17 +8,14 @@
 
 import Foundation
 import UICreator
-import UIContainer
 
-class ContentView: Root, TemplateView, ViewControllerType {
+class ContentView: UICView {
     var body: ViewCreator {
         UICSpacer {
             UICNavigation {
                 ForEachView()
             }
-        }.backgroundColor(.white)
-            .onAppear {
-                print("[Appeared]", $0)
         }
+        .backgroundColor(.white)
     }
 }

@@ -44,4 +44,8 @@ class BaseNavigationController: UINavigationController {
 
 import UICreator
 
-typealias Navigation = UICNavigation.Other<BaseNavigationController>
+class Navigation: UICNavigation,UICNavigationExtendable {
+    func makeNavigationController(_ rootViewController: UIViewController) -> UINavigationController {
+        BaseNavigationController(rootViewController: rootViewController)
+    }
+}

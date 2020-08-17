@@ -30,7 +30,7 @@ class MapView: UIViewCreator, UICViewRepresentable {
     }
 }
 
-#if DEBUG
+#if DEBUG && UICREATOR_SUIPREVIEWS
 
 import SwiftUI
 class MapView_Preview: PreviewProvider {

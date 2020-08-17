@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import UIContainer
 import UICreator
 
 class NumberView: UICView {
@@ -16,10 +15,6 @@ class NumberView: UICView {
     @UICOutlet var highlightedView: UIView!
 
     let number: Int
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
 
     func configure(with number: Int) {
         self.numberLabel.text = "\(number)"
@@ -32,52 +27,51 @@ class NumberView: UICView {
 
 extension NumberView {
     var body: ViewCreator {
-        UICZStack {[
-            UICSpacer(vertical: 15, horizontal: 30) { [unowned self] in
-                UICHStack {[
-                    UICVStack {[
-                        UICLabel("Detalhe")
-                            .vertical(hugging: .defaultHigh, compression: .required)
-                            .font(.callout)
-                            .textColor(.black),
-                        UICLabel("Número: ")
-                            .horizontal(hugging: .defaultHigh, compression: .required)
-                            .font(.body(weight: .bold))
+        UICSpacer { [unowned self] in
+            UICZStack {
+                UICSpacer(vertical: 15, horizontal: 30) {
+                    UICHStack {
+                        UICVStack {
+                            UICLabel("Detalhe")
+                                .vertical(hugging: .defaultHigh, compression: .required)
+                                .font(.callout)
+                                .textColor(.black)
+
+                            UICLabel("Número: ")
+                                .horizontal(hugging: .defaultHigh, compression: .required)
+                                .font(.body(weight: .bold))
+                                .textColor(.black)
+                        }
+
+                        UICLabel("\(self.number)")
+                            .horizontal(compression: .required)
+                            .font(.systemFont(ofSize: 18))
                             .textColor(.black)
-                    ]},
-                    UICLabel("\(self.number)")
-                        .horizontal(compression: .required)
-                        .font(.systemFont(ofSize: 18))
-                        .textColor(.black)
-                        .textAlignment(.right)
-                        .as(self.$numberLabel)
-//                        .toolbar(
-//                            UICSpacer()
-//                                .backgroundColor(.black)
-//                                .insets(priority: .required)
-//                        ).toolbar(isHidden: false)
-//                        .toolbar(barTintColor: .black)
-//                        .toolbar(isTranslucent: false)
-                ]}
-            }.insets(),
-            UICSpacer()
-                .backgroundColor(.black)
-                .alpha(0)
-                .as(self.$highlightedView)
-        ]}.isUserInteractionEnabled(true)
-//        .isExclusiveTouch(false)
-        .onTouchMaker {
-            $0.onBegan { touch in
-                self.animate(0.05) {_ in
-                    self.highlightedView.alpha = 0.15
+                            .textAlignment(.right)
+                            .as(self.$numberLabel)
+                    }
                 }
-            }.onEnded { _ in
-                self.animate(0.075) {_ in
-                    self.highlightedView.alpha = 0
+                .insets()
+
+                UICSpacer()
+                    .backgroundColor(.black)
+                    .alpha(0)
+                    .as(self.$highlightedView)
+            }
+            .isUserInteractionEnabled(true)
+            .onTouchMaker {
+                $0.onBegan { touch in
+                    self.animate(0.05) {_ in
+                        self.highlightedView.alpha = 0.15
+                    }
                 }
-            }.cancelsTouches(inView: false)
-//            .cancelWhenTouchMoves(true)
-//                .cancelsTouches(inView: false)
+                .onEnded { _ in
+                    self.animate(0.075) {_ in
+                        self.highlightedView.alpha = 0
+                    }
+                }
+                .cancelsTouches(inView: false)
+            }
         }
     }
 }
@@ -105,8 +99,7 @@ class ListView: UICView {
         $0
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func viewDidLoad() {
         self.tableView.reloadData()
     }
 
@@ -120,30 +113,31 @@ class ListView: UICView {
 
 extension ListView {
     var body: ViewCreator {
-        UICList(style: .plain) {[
+        UICList(style: .plain) {
             UICHeader {
-                UICZStack {[
-                    UICBlur(blur: .extraLight),
+                UICZStack {
+                    UICBlur(blur: .extraLight)
                     NumberView(number: 1).insets()
-                ]}
-            },
+                }
+            }
+
             UICForEach(self.$numbers) { number in
                 UICRow {
                     NumberView(number: number)
                 }
             }
-        ]}
+        }
         .onInTheScene { _ in
             self.loop()
         }
         .row(height: UITableView.automaticDimension)
         .row(estimatedHeight: 44)
         .as(self.$tableView)
-        .header(size: .init(width: 0, height: 60)) {
+        .header(size: CGSize(width: 0, height: 60)) {
             UICSpacer(spacing: 5) {
                 UICRounder(radius: 15) {
                     UICSpacer(spacing: 15) {
-                        UICHStack {[
+                        UICHStack {
                             UICDashed(color: .black) {
                                 UICRounder(radius: 0.5) {
                                     UICImage(image: nil)
@@ -151,35 +145,35 @@ extension ListView {
                                         .content(mode: .scaleAspectFill)
                                         .clipsToBounds(true)
                                 }
-                            },
+                            }
                             UICLabel("Hello World!")
                                 .font(.boldSystemFont(ofSize: 18))
                                 .textColor(.white)
                                 .navigation(title: "Lista Numérica")
-                        ]}.spacing(15)
-                    }.backgroundColor(.orange)
-                        .onTap {
-                            $0.backgroundColor = [UIColor]([.black, .orange])[Int.random(in: 0...1)]
+                        }
+                        .spacing(15)
+                    }
+                    .backgroundColor(.orange)
+                    .onTap {
+                        $0.backgroundColor = [UIColor]([.black, .orange])[Int.random(in: 0...1)]
                     }
                 }
             }
         }.backgroundColor(.white)
             .safeArea(topEqualTo: 0)
-//            .navigation(largeTitleMode: .always)
-//            .navigation(prefersLargeTitles: true)
             .background {
-                UICZStack {[
+                UICZStack {
                     UICImage(image: nil)
                         .content(mode: .scaleAspectFill)
                         .clipsToBounds(true)
-                        .insets(),
+                        .insets()
                     UICBlur(blur: .extraLight)
-                ]}
+                }
         }
     }
 }
 
-#if DEBUG
+#if DEBUG && UICREATOR_SUIPREVIEWS
 import SwiftUI
 
 @available(iOS 13, *)

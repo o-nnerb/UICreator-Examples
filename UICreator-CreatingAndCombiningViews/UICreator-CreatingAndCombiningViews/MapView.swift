@@ -10,7 +10,7 @@ import Foundation
 import UICreator
 import MapKit
 
-class MapView: UIViewCreator, UICViewRepresentable {
+class MapView: UICViewRepresentable {
     typealias View = MKMapView
 
     func makeUIView() -> MKMapView {
@@ -26,7 +26,7 @@ class MapView: UIViewCreator, UICViewRepresentable {
     }
 }
 
-#if DEBUG
+#if DEBUG && UICREATOR_SUIPREVIEWS
 
 import SwiftUI
 class MapView_Preview: PreviewProvider {

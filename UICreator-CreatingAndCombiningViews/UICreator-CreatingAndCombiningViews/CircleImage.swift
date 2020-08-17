@@ -8,6 +8,7 @@
 
 import Foundation
 import UICreator
+import UIKit
 
 class CircleImage: UICView {
     var body: ViewCreator {
@@ -16,14 +17,16 @@ class CircleImage: UICView {
                 UICImage(image: UIImage(named: "cristoredentor"))
                     .aspectRatio()
                     .content(mode: .scaleAspectFill)
-            }.borderWidth(4)
+            }
+            .borderWidth(4)
             .borderColor(.white)
-        }.shadowRadius(10)
+        }
+        .shadowRadius(10)
         .shadowOcupacity(0.3)
     }
 }
 
-#if DEBUG
+#if DEBUG && UICREATOR_SUIPREVIEWS
 import SwiftUI
 
 struct CircleImage_Preview: PreviewProvider {
