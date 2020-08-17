@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import UIContainer
 import UICreator
 
 class NumberView: UICView {
@@ -18,35 +17,40 @@ class NumberView: UICView {
     init(number: Int) {
         self.number = "\(number)"
     }
-}
 
-extension NumberView {
     var body: ViewCreator {
-        UICZStack { [unowned self] in [
-            UICSpacer(vertical: 15, horizontal: 30) {
-                UICHStack {[
-                    UICVStack {[
-                        MyLabel("Detalhe")
-                            .vertical(hugging: .defaultHigh, compression: .required)
-                            .font(.callout)
-                            .textColor(.black),
-                        UICLabel("Número: ")
-                            .horizontal(hugging: .defaultHigh, compression: .required)
-                            .font(.body(weight: .bold))
+        UICSpacer { [unowned self] in
+            UICZStack {
+                UICSpacer(vertical: 15, horizontal: 30) {
+                    UICHStack {
+                        UICVStack {
+                            MyLabel("Detalhe")
+                                .vertical(hugging: .defaultHigh, compression: .required)
+                                .font(.callout)
+                                .textColor(.black)
+                            
+                            UICLabel("Número: ")
+                                .horizontal(hugging: .defaultHigh, compression: .required)
+                                .font(.body(weight: .bold))
+                                .textColor(.black)
+                        }
+                        
+                        UICLabel(self.$number)
+                            .horizontal(compression: .required)
+                            .font(.systemFont(ofSize: 18))
                             .textColor(.black)
-                    ]},
-                    UICLabel(self.$number)
-                        .horizontal(compression: .required)
-                        .font(.systemFont(ofSize: 18))
-                        .textColor(.black)
-                        .textAlignment(.right)
-                ]}
-            }.insets(),
-            UICSpacer()
-                .backgroundColor(.black)
-                .alpha(0)
-                .as(self.$highlightedView)
-        ]}.isUserInteractionEnabled(true)
+                            .textAlignment(.right)
+                    }
+                }
+                .insets()
+                
+                UICSpacer()
+                    .backgroundColor(.black)
+                    .alpha(0)
+                    .as(self.$highlightedView)
+            }
+        }
+        .isUserInteractionEnabled(true)
         .isExclusiveTouch(false)
         .onTouchMaker {
             $0.onBegan { touch in

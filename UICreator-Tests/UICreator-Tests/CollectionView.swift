@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import UIContainer
 import UICreator
 
 class MyLabel: UICViewRepresentable, TextElement {
@@ -64,23 +63,25 @@ class CollectionView: UICView {
             (Int(0)...Int(pow(255.0, 3))).randomElement()
         }
     }()
-    
+
+
     private var thirdGroup: UICCollectionLayoutGroup {
-        UICCollectionLayoutGroup {[
-            UICCollectionLayoutGroup(horizontal: .flexible(1/3)) {[
+        UICCollectionLayoutGroup {
+            UICCollectionLayoutGroup(horizontal: .flexible(1/3)) {
                 UICCollectionLayoutItem(vertical: .equalTo(60), numberOfElements: 3)
-            ]},
+            }
+
             UICCollectionLayoutItem(vertical: .flexible(1), horizontal: .flexible(2/3))
-        ]}
+        }
     }
 
     var body: ViewCreator {
-        UICFlow { [unowned self] in [
-            UICSection {[
+        UICFlow {
+            UICSection {
                 UICHeader {
                     UICLabel("This is a example of auto layout header")
                         .vertical(hugging: .required, compression: .required)
-                },
+                }
 
                 UICForEach(Array(self.numbers.enumerated())) { number in
                     UICRow {
@@ -88,31 +89,34 @@ class CollectionView: UICView {
                             .aspectRatio()
                     }
                 }
-            ]}
-        ]}.layoutMaker {[
-            UICCollectionLayoutSection {[
-                UICCollectionLayoutHeader(vertical: .estimated(150)),
+            }
+        }
+        .layoutMaker {
+            UICCollectionLayoutSection {
+                UICCollectionLayoutHeader(vertical: .estimated(150))
 
-                UICCollectionLayoutGroup(horizontal: .flexible(1)) {[
+                UICCollectionLayoutGroup(horizontal: .flexible(1)) {
                     UICCollectionLayoutItem(horizontal: .flexible(1/4))
-                ]}
-            ]}
-        ]}
+                }
+            }
+        }
         .line(minimumSpacing: 0)
         .interItem(minimumSpacing: 0)
         .scroll(direction: .vertical)
         .backgroundColor(.clear)
         .background {
-            UICZStack {[
+            UICZStack {
                 UICImage(image: #imageLiteral(resourceName: "waterfall"))
                     .content(mode: .scaleAspectFill)
                     .clipsToBounds(true)
-                    .insets(),
-                UICBlur(blur: .extraLight),
+                    .insets()
+
+                UICBlur(blur: .extraLight)
+
                 UICSpacer()
                     .backgroundColor(.white)
                     .safeArea(topEqualTo: 0)
-            ]}
+            }
         }
     }
 }

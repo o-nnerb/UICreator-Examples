@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import UIContainer
 import UICreator
 
 class ListView: UICView {
@@ -39,7 +38,7 @@ extension ListView {
             UICSpacer(spacing: 5) {
                 UICRounder(radius: 15) {
                     UICSpacer(spacing: 15) {
-                        UICHStack(spacing: 15) {[
+                        UICHStack(spacing: 15) {
                             UICDashed(color: .black) {
                                 UICRounder(radius: 0.5) {
                                     UICImage(image: #imageLiteral(resourceName: "waterfall"))
@@ -48,15 +47,17 @@ extension ListView {
                                         .clipsToBounds(true)
                                         .height(equalTo: 25)
                                 }
-                            },
+                            }
+
                             UICLabel("Hello World!")
                                 .font(.boldSystemFont(ofSize: 18))
                                 .textColor(.white)
                                 .navigation(title: "Lista Numérica")
-                        ]}
-                    }.backgroundColor(.orange)
-                        .onTap {
-                            $0.backgroundColor = [UIColor]([.black, .orange])[Int.random(in: 0...1)]
+                        }
+                    }
+                    .backgroundColor(.orange)
+                    .onTap {
+                        $0.backgroundColor = [UIColor]([.black, .orange])[Int.random(in: 0...1)]
                     }
                 }
             }
@@ -65,50 +66,57 @@ extension ListView {
 
     class Background: UICView {
         var body: ViewCreator {
-            UICZStack {[
+            UICZStack {
                 UICImage(image: #imageLiteral(resourceName: "waterfall"))
                     .content(mode: .scaleAspectFill)
                     .clipsToBounds(true)
-                    .insets(),
+                    .insets()
+                
                 UICBlur(blur: .extraLight)
-            ]}
+            }
         }
     }
 }
 
 extension ListView {
     var body: ViewCreator {
-        UICZStack { [unowned self] in [
-            UICSpacer {
-                UICList(style: .plain) {[
+        UICZStack {
+            UICSpacer { [unowned self] in
+                UICList(style: .plain) {
                     UICForEach(self.$numbers) { section in
-                        UICSection {[
+                        UICSection {
                             UICHeader {
                                 NumberView(number: section.0)
-                            },
+                                    .insets(.leading, .trailing)
+                            }
 
                             UICForEach(section.1) { number in
                                 UICRow {
                                     NumberView(number: number)
-                                }.trailingActions {[
+                                        .insets(.leading, .trailing)
+                                }
+                                .trailingActions {
                                     UICContextualAction("Delete", style: .destructive)
                                         .deleteAction(with: .left) {
                                             self.numbers.remove(at: $0.section)
-                                    },
+                                    }
+
                                     UICContextualAction("Edit", style: .normal)
                                         .onAction { _ in
                                             print("edit")
                                             return true
                                     }
-                                    ]}
+                                    }
                             }
-                            ]}
-                    }
-                    ]}.deleteRows(with: .left, self.$removeRows) { [weak self] indexPaths in
-                        indexPaths.forEach { _ in
-                            self?.numbers.remove(at: 0)
                         }
-                }.insertRows(with: .right, self.$addRows) { [weak self] indexPaths in
+                    }
+                }
+                .deleteRows(with: .left, self.$removeRows) { [weak self] indexPaths in
+                    indexPaths.forEach { _ in
+                        self?.numbers.remove(at: 0)
+                    }
+                }
+                .insertRows(with: .right, self.$addRows) { [weak self] indexPaths in
                     indexPaths.forEach {
                         self?.numbers[$0.section].1.append($0.row)
                     }
@@ -117,14 +125,15 @@ extension ListView {
                 .row(estimatedHeight: 44)
                 .header {
                     Header()
-                }.backgroundColor(.white)
-                    .background {
+                }
+                .backgroundColor(.white)
+                .background {
                     Background()
                 }
             }
             .safeArea(topEqualTo: 0)
             .insets(.leading, .trailing, .bottom)
-        ]}
+        }
         .navigation(largeTitleMode: .always)
         .navigation(prefersLargeTitles: true)
         .navigation(leftButton: { [weak self] in
@@ -147,17 +156,3 @@ extension ListView {
         })
     }
 }
-
-//#if DEBUG && canImport(SwiftUI)
-//import SwiftUI
-//
-//@available(iOS 13, *)
-//struct ListView_LivePreview: PreviewProvider {
-//    static var previews: some SwiftUI.View {
-//        LivePreview {
-//            ContentView()
-//        }.previewDevice(PreviewDevice(rawValue: "iPhone SE"))
-//    }
-//}
-//
-//#endif
