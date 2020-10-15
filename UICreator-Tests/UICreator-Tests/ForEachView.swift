@@ -21,6 +21,7 @@ class ForEachView: UICView {
                     self?.array.removeFirst()
                 }
             }
+            
             self?.updateEvery1Seconds()
         }
     }

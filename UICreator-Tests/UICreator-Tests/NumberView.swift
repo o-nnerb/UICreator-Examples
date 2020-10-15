@@ -11,6 +11,7 @@ import UIKit
 import UICreator
 
 class NumberView: UICView {
+    @Property(\.sizeCategory) var sizeCategory
     @UICOutlet var highlightedView: UIView!
     @Value var number: String? = nil
 
@@ -34,13 +35,16 @@ class NumberView: UICView {
                                 .font(.body(weight: .bold))
                                 .textColor(.black)
                         }
-                        
+
+                        UICSpacer()
+                            .isHidden(self.$sizeCategory.map { $0 >= .accessibilityMedium })
+
                         UICLabel(self.$number)
                             .horizontal(compression: .required)
-                            .font(.systemFont(ofSize: 18))
+                            .font(.body)
                             .textColor(.black)
-                            .textAlignment(.right)
                     }
+                    .axis(self.$sizeCategory.map { $0 >= .accessibilityMedium ? .vertical : .horizontal })
                 }
                 .insets()
                 
@@ -65,5 +69,6 @@ class NumberView: UICView {
             .cancelWhenTouchMoves(true)
             .cancelsTouches(inView: false)
         }
+        .dynamicProperty(self._sizeCategory)
     }
 }
