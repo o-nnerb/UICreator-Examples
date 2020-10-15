@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C27DE1A23DA11FB00BB9AFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C27DE1923DA11FB00BB9AFD /* AppDelegate.swift */; };
+		0C27DE1A23DA11FB00BB9AFD /* CreatingAndCombiningViewsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C27DE1923DA11FB00BB9AFD /* CreatingAndCombiningViewsApp.swift */; };
 		0C27DE2323DA11FC00BB9AFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C27DE2223DA11FC00BB9AFD /* Assets.xcassets */; };
 		0C27DE2E23DA12EE00BB9AFD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C27DE2D23DA12EE00BB9AFD /* LaunchScreen.xib */; };
 		0C27DE3023DA130B00BB9AFD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C27DE2F23DA130B00BB9AFD /* ContentView.swift */; };
@@ -19,7 +19,7 @@
 
 /* Begin PBXFileReference section */
 		0C27DE1623DA11FB00BB9AFD /* UICreator-CreatingAndCombiningViews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UICreator-CreatingAndCombiningViews.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0C27DE1923DA11FB00BB9AFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0C27DE1923DA11FB00BB9AFD /* CreatingAndCombiningViewsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatingAndCombiningViewsApp.swift; sourceTree = "<group>"; };
 		0C27DE2223DA11FC00BB9AFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C27DE2723DA11FC00BB9AFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C27DE2D23DA12EE00BB9AFD /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
@@ -65,7 +65,7 @@
 				0C27DE3423DA135100BB9AFD /* CristoRedentor.swift */,
 				0C27DE3223DA135100BB9AFD /* MapView.swift */,
 				0C27DE2F23DA130B00BB9AFD /* ContentView.swift */,
-				0C27DE1923DA11FB00BB9AFD /* AppDelegate.swift */,
+				0C27DE1923DA11FB00BB9AFD /* CreatingAndCombiningViewsApp.swift */,
 				0C27DE2223DA11FC00BB9AFD /* Assets.xcassets */,
 				0C27DE2D23DA12EE00BB9AFD /* LaunchScreen.xib */,
 				0C27DE2723DA11FC00BB9AFD /* Info.plist */,
@@ -160,7 +160,7 @@
 				0C27DE3823DA135100BB9AFD /* CristoRedentor.swift in Sources */,
 				0C27DE3623DA135100BB9AFD /* MapView.swift in Sources */,
 				0C27DE3723DA135100BB9AFD /* CircleImage.swift in Sources */,
-				0C27DE1A23DA11FB00BB9AFD /* AppDelegate.swift in Sources */,
+				0C27DE1A23DA11FB00BB9AFD /* CreatingAndCombiningViewsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,7 +344,7 @@
 			repositoryURL = "https://github.com/umobi/UICreator.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.2;
+				minimumVersion = 1.1.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

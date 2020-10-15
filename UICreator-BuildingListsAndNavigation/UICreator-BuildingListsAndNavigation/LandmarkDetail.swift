@@ -6,10 +6,12 @@
 //  Copyright © 2020 CocoaPods. All rights reserved.
 //
 
-import Foundation
 import UICreator
+import UIKit
 
 class LandmarkDetail: UICView {
+    @Property(\.sizeCategory) var sizeCategory
+
     let landmark: Landmark
 
     init(landmark: Landmark) {
@@ -17,7 +19,7 @@ class LandmarkDetail: UICView {
     }
 
     var body: ViewCreator {
-        UICZStack {
+        UICZStack { [unowned self] in
             UICVStack {
                 MapView(coordinate: self.landmark.locationCoordinate)
                     .leading()
@@ -44,10 +46,12 @@ class LandmarkDetail: UICView {
                             .font(.subheadline)
 
                         UICSpacer()
+                            .isHidden(self.$sizeCategory.map { $0 >= .accessibilityMedium })
 
                         UICLabel(self.landmark.country)
                             .font(.subheadline)
                     }
+                    .axis(self.$sizeCategory.map { $0 >= .accessibilityMedium ? .vertical : .horizontal })
                 }
                 .safeArea(leadingEqualTo: 15)
 
@@ -60,6 +64,7 @@ class LandmarkDetail: UICView {
         .backgroundColor(.white)
         .navigation(title: landmark.name)
         .navigation(largeTitleMode: .never)
+        .dynamicProperty(self._sizeCategory)
     }
 }
 

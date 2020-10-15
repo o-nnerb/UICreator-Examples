@@ -6,10 +6,12 @@
 //  Copyright © 2020 CocoaPods. All rights reserved.
 //
 
-import Foundation
 import UICreator
+import UIKit
 
 class CristoRedentor: UICView {
+    @Property(\.sizeCategory) var sizeCategory
+
     var body: ViewCreator {
         UICVStack {
             MapView()
@@ -36,17 +38,19 @@ class CristoRedentor: UICView {
                         .font(.subheadline)
                     
                     UICSpacer()
+                        .isHidden(self.$sizeCategory.map { $0 >= .accessibilityMedium })
                     
                     UICLabel("Brasil")
                         .font(.subheadline)
                 }
+                .axis(self.$sizeCategory.map { $0 >= .accessibilityMedium ? .vertical : .horizontal })
             }
             .safeArea(leadingEqualTo: 15)
             
             UICSpacer()
         }
-        .insets()
         .alignment(.center)
+        .dynamicProperty(self._sizeCategory)
     }
 }
 

@@ -11,10 +11,9 @@ import UICreator
 
 class ContentView: UICView {
     var body: ViewCreator {
-        UICSpacer {
-            UICNavigation {
-                LandmarkList()
-            }
-        }.backgroundColor(.white)
+        UICNavigation {
+            LandmarkList()
+        }
+        .backgroundColor(.white)
     }
 }
