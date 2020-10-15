@@ -17,11 +17,6 @@ class LandmarkList: UICView {
                 UICRow {
                     LandmarkRow(landmark: landmark)
                         .margin(.leading, .trailing)
-                        .onTap {
-                            $0.navigation?.push(animated: true) {
-                                LandmarkDetail(landmark: landmark)
-                            }
-                        }
                 }
             }
         }

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C118E5B23DE25BF0051B3D5 /* NumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C118E5A23DE25BF0051B3D5 /* NumberView.swift */; };
-		0C27DE7623DA171A00BB9AFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C27DE7523DA171A00BB9AFD /* AppDelegate.swift */; };
+		0C27DE7623DA171A00BB9AFD /* TestsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C27DE7523DA171A00BB9AFD /* TestsApp.swift */; };
 		0C27DE7F23DA171B00BB9AFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C27DE7E23DA171B00BB9AFD /* Assets.xcassets */; };
 		0C27DE8A23DA179B00BB9AFD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C27DE8923DA179B00BB9AFD /* LaunchScreen.xib */; };
 		0C27DE8C23DA17C800BB9AFD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C27DE8B23DA17C800BB9AFD /* ContentView.swift */; };
@@ -24,7 +24,7 @@
 /* Begin PBXFileReference section */
 		0C118E5A23DE25BF0051B3D5 /* NumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberView.swift; sourceTree = "<group>"; };
 		0C27DE7223DA171A00BB9AFD /* UICreator-Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UICreator-Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0C27DE7523DA171A00BB9AFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0C27DE7523DA171A00BB9AFD /* TestsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsApp.swift; sourceTree = "<group>"; };
 		0C27DE7E23DA171B00BB9AFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C27DE8323DA171B00BB9AFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C27DE8923DA179B00BB9AFD /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 				0C27DE8E23DA17EE00BB9AFD /* ForEachView.swift */,
 				0C27DE8D23DA17EE00BB9AFD /* ListView.swift */,
 				0C27DE9123DA17EE00BB9AFD /* PagedView.swift */,
-				0C27DE7523DA171A00BB9AFD /* AppDelegate.swift */,
+				0C27DE7523DA171A00BB9AFD /* TestsApp.swift */,
 				0C27DE8B23DA17C800BB9AFD /* ContentView.swift */,
 				0C27DE9723DA181500BB9AFD /* SingupView.swift */,
 				0C27DE8923DA179B00BB9AFD /* LaunchScreen.xib */,
@@ -163,7 +163,7 @@
 				0C27DE9523DA17EE00BB9AFD /* CollectionView.swift in Sources */,
 				0C27DE8C23DA17C800BB9AFD /* ContentView.swift in Sources */,
 				0C118E5B23DE25BF0051B3D5 /* NumberView.swift in Sources */,
-				0C27DE7623DA171A00BB9AFD /* AppDelegate.swift in Sources */,
+				0C27DE7623DA171A00BB9AFD /* TestsApp.swift in Sources */,
 				0C27DE9623DA17EE00BB9AFD /* PagedView.swift in Sources */,
 				0C27DE9823DA181500BB9AFD /* SingupView.swift in Sources */,
 				0C27DE9223DA17EE00BB9AFD /* ListView.swift in Sources */,
@@ -352,7 +352,7 @@
 			repositoryURL = "https://github.com/umobi/UICreator.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.2;
+				minimumVersion = 1.1.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
