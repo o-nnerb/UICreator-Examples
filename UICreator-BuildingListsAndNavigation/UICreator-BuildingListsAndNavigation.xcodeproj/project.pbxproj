@@ -33,6 +33,7 @@
 		0C27DE6023DA14D400BB9AFD /* Landmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Landmark.swift; sourceTree = "<group>"; };
 		0C27DE6123DA14D400BB9AFD /* CircleImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
 		0C27DE6223DA14D400BB9AFD /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		0CF108772547887E006B9638 /* UICreator */ = {isa = PBXFileReference; lastKnownFileType = folder; name = UICreator; path = ../../../UICreator; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +67,7 @@
 		0C27DE4423DA142700BB9AFD /* UICreator-BuildingListsAndNavigation */ = {
 			isa = PBXGroup;
 			children = (
+				0CF108772547887E006B9638 /* UICreator */,
 				0C27DE6023DA14D400BB9AFD /* Landmark.swift */,
 				0C27DE5D23DA14D400BB9AFD /* LandmarkDetail.swift */,
 				0C27DE5F23DA14D400BB9AFD /* LandmarkList.swift */,

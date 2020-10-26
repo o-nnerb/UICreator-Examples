@@ -10,19 +10,19 @@ import Foundation
 import UICreator
 import UIKit
 
-class CircleImage: UICView {
-    let image: UIImage
+struct CircleImage: UICView {
+    let image: UICImage
 
-    init(image: UIImage) {
+    init(_ image: UICImage) {
         self.image = image
     }
 
     var body: ViewCreator {
         UICSpacer {
             UICCircle {
-                UICImage(image: self.image)
+                self.image
                     .aspectRatio()
-                    .content(mode: .scaleAspectFill)
+                    .contentMode(.fill)
             }
             .borderWidth(4)
             .borderColor(.white)

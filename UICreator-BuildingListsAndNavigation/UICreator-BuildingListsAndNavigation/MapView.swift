@@ -10,7 +10,8 @@ import Foundation
 import UICreator
 import MapKit
 
-class MapView: UIViewCreator, UICViewRepresentable {
+struct MapView: UIViewCreator, UICViewRepresentable {
+
     typealias View = MKMapView
 
     let coordinate: CLLocationCoordinate2D
@@ -23,20 +24,9 @@ class MapView: UIViewCreator, UICViewRepresentable {
         MKMapView()
     }
 
-    func updateView(_ view: MKMapView) {
+    func updateUIView(_ uiView: MKMapView) {
         let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
         let region = MKCoordinateRegion(center: coordinate, span: span)
-        view.setRegion(region, animated: true)
+        uiView.setRegion(region, animated: true)
     }
 }
-
-#if DEBUG && UICREATOR_SUIPREVIEWS
-
-import SwiftUI
-class MapView_Preview: PreviewProvider {
-    static var previews: some View {
-        LivePreview(MapView(coordinate: landmarkData[0].locationCoordinate))
-    }
-}
-
-#endif

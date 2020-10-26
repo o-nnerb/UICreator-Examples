@@ -9,7 +9,7 @@
 import UICreator
 import UIKit
 
-class LandmarkDetail: UICView {
+struct LandmarkDetail: UICView {
     @Property(\.sizeCategory) var sizeCategory
 
     let landmark: Landmark
@@ -19,7 +19,7 @@ class LandmarkDetail: UICView {
     }
 
     var body: ViewCreator {
-        UICZStack { [unowned self] in
+        UICZStack {
             UICVStack {
                 MapView(coordinate: self.landmark.locationCoordinate)
                     .leading()
@@ -27,7 +27,7 @@ class LandmarkDetail: UICView {
 
                 UICZStack {
                     UICCenter {
-                        CircleImage(image: self.landmark.image)
+                        CircleImage(UICImage(uiImage: self.landmark.image))
                             .insets(.top)
                             .height(equalTo: 260)
                     }
@@ -41,7 +41,7 @@ class LandmarkDetail: UICView {
                     UICLabel(self.landmark.name)
                         .font(.title1)
 
-                    UICHStack {
+                    UICStack(axis: self.$sizeCategory.map { $0 >= .accessibilityMedium ? .vertical : .horizontal }) {
                         UICLabel(self.landmark.city)
                             .font(.subheadline)
 
@@ -51,7 +51,6 @@ class LandmarkDetail: UICView {
                         UICLabel(self.landmark.country)
                             .font(.subheadline)
                     }
-                    .axis(self.$sizeCategory.map { $0 >= .accessibilityMedium ? .vertical : .horizontal })
                 }
                 .safeArea(leadingEqualTo: 15)
 

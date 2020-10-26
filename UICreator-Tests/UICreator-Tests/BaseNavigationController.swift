@@ -44,8 +44,18 @@ class BaseNavigationController: UINavigationController {
 
 import UICreator
 
-class Navigation: UICNavigation,UICNavigationExtendable {
-    func makeNavigationController(_ rootViewController: UIViewController) -> UINavigationController {
-        BaseNavigationController(rootViewController: rootViewController)
+class Navigation: UICViewControllerRepresentable {
+    typealias ViewController = BaseNavigationController
+
+    let content: () -> ViewCreator
+
+    init(_ content: @escaping () -> ViewCreator) {
+        self.content = content
     }
+
+    func makeUIViewController() -> BaseNavigationController {
+        BaseNavigationController(rootViewController: UICHostingController(rootView: self.content()))
+    }
+
+    func updateUIViewController(_ uiViewController: BaseNavigationController) {}
 }

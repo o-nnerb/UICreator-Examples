@@ -10,7 +10,7 @@ import Foundation
 import UICreator
 import UIKit
 
-class LandmarkRow: UICView {
+struct LandmarkRow: UICView {
     @Value var isPushing: Bool = false
     @Property(\.sizeCategory) var sizeCategory
 
@@ -21,16 +21,16 @@ class LandmarkRow: UICView {
     }
 
     var body: ViewCreator {
-        UICNavigationLink(self.$isPushing) { [unowned self] in
+        UICNavigationLink {
             LandmarkDetail(landmark: landmark)
         } content: {
-            UICSpacer(vertical: 5) { [unowned self] in
-                UICHStack {
+            UICSpacer(vertical: 5) {
+                UICHStack(spacing: 15) {
                     UICCenter {
-                        UICImage(image: self.landmark.image)
+                        UICImage(uiImage: self.landmark.image)
                             .aspectRatio()
                             .height(equalTo: 50)
-                            .content(mode: .scaleAspectFill)
+                            .contentMode(.fill)
                             .clipsToBounds(true)
                             .insets(.leading, .trailing)
                     }
@@ -43,10 +43,6 @@ class LandmarkRow: UICView {
                     UICSpacer()
                         .isHidden(self.$sizeCategory.map { $0 >= .accessibilityMedium })
                 }
-                .spacing(15)
-            }
-            .onTap { _ in
-                self.isPushing = true
             }
             .dynamicProperty(self._sizeCategory)
         }

@@ -35,6 +35,7 @@
 		0C27DE9023DA17EE00BB9AFD /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		0C27DE9123DA17EE00BB9AFD /* PagedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagedView.swift; sourceTree = "<group>"; };
 		0C27DE9723DA181500BB9AFD /* SingupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingupView.swift; sourceTree = "<group>"; };
+		0C40B9952547241E00393F89 /* UICreator */ = {isa = PBXFileReference; lastKnownFileType = folder; name = UICreator; path = ../../../UICreator; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +69,7 @@
 		0C27DE7423DA171A00BB9AFD /* UICreator-Tests */ = {
 			isa = PBXGroup;
 			children = (
+				0C40B9952547241E00393F89 /* UICreator */,
 				0C118E5A23DE25BF0051B3D5 /* NumberView.swift */,
 				0C27DE8F23DA17EE00BB9AFD /* BaseNavigationController.swift */,
 				0C27DE9023DA17EE00BB9AFD /* CollectionView.swift */,

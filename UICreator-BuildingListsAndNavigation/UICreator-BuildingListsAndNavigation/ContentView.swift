@@ -14,6 +14,7 @@ class ContentView: UICView {
         UICNavigation {
             LandmarkList()
         }
+        .eraseToAnyView()
         .backgroundColor(.white)
     }
 }

@@ -10,20 +10,21 @@ import Foundation
 import UIKit
 import UICreator
 
-class NumberView: UICView {
+struct NumberView: UICView {
     @Property(\.sizeCategory) var sizeCategory
     @UICOutlet var highlightedView: UIView!
     @Value var number: String? = nil
+    @Value var alpha: CGFloat = .zero
 
     init(number: Int) {
         self.number = "\(number)"
     }
 
     var body: ViewCreator {
-        UICSpacer { [unowned self] in
+        UICSpacer {
             UICZStack {
                 UICSpacer(vertical: 15, horizontal: 30) {
-                    UICHStack {
+                    UICStack(axis: self.$sizeCategory.map { $0 >= .accessibilityMedium ? .vertical : .horizontal }) {
                         UICVStack {
                             MyLabel("Detalhe")
                                 .vertical(hugging: .defaultHigh, compression: .required)
@@ -44,30 +45,31 @@ class NumberView: UICView {
                             .font(.body)
                             .textColor(.black)
                     }
-                    .axis(self.$sizeCategory.map { $0 >= .accessibilityMedium ? .vertical : .horizontal })
                 }
                 .insets()
                 
                 UICSpacer()
                     .backgroundColor(.black)
-                    .alpha(0)
+                    .alpha(self.$alpha)
                     .as(self.$highlightedView)
             }
         }
         .isUserInteractionEnabled(true)
         .isExclusiveTouch(false)
         .onTouchMaker {
-            $0.onBegan { touch in
-                self.animate(0.05) {_ in
-                    self.highlightedView.alpha = 0.15
+            Touch()
+                .cancelWhenTouchMoves(true)
+                .cancelsTouches(inView: false)
+                .onBegan { touch in
+                    UIView.animate(withDuration: 0.05) {
+                        self.alpha = 0.15
+                    }
                 }
-            }.onEnded { _ in
-                self.animate(0.075) {_ in
-                    self.highlightedView.alpha = 0
+                .onEnded { _ in
+                    UIView.animate(withDuration: 0.075) {
+                        self.alpha = 0
+                    }
                 }
-            }
-            .cancelWhenTouchMoves(true)
-            .cancelsTouches(inView: false)
         }
         .dynamicProperty(self._sizeCategory)
     }

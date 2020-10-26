@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import UICreator
 
-class ListView: UICView {
+struct ListView: UICView {
     @Value var removeRows: [IndexPath] = []
     @Value var addRows: [IndexPath] = []
 
@@ -25,15 +25,90 @@ class ListView: UICView {
     }
 
     func loop() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-            self?.numbers = self?.newNumbers() ?? []
-            self?.loop()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.numbers = self.newNumbers()
+            self.loop()
         }
+    }
+
+    var body: ViewCreator {
+        UICZStack {
+            UICSpacer {
+                UICList(.plain) {
+                    UICForEach(self.$numbers) { section in
+                        UICSection {
+                            UICHeader {
+                                NumberView(number: section.0)
+                                    .insets(.leading, .trailing)
+                            }
+
+                            UICForEach(section.1) { number in
+                                UICRow {
+                                    NumberView(number: number)
+                                        .insets(.leading, .trailing)
+                                }
+                                .trailingActions {
+                                    UICContextualAction("Delete", style: .destructive)
+                                        .deleteAction(with: .left) {
+                                            self.numbers.remove(at: $0.section)
+                                        }
+
+                                    UICContextualAction("Edit", style: .normal)
+                                        .onAction { _ in
+                                            print("edit")
+                                            return true
+                                        }
+                                }
+                            }
+                        }
+                    }
+                }
+                .deleteRows(with: .left, self.$removeRows) { indexPaths in
+                    indexPaths.forEach { _ in
+                        self.numbers.remove(at: 0)
+                    }
+                }
+                .insertRows(with: .right, self.$addRows) { indexPaths in
+                    indexPaths.forEach {
+                        self.numbers[$0.section].1.append($0.row)
+                    }
+                }
+                .header {
+                    Header()
+                }
+                .backgroundColor(.white)
+                .background {
+                    Background()
+                }
+            }
+            .safeArea(topEqualTo: 0)
+            .insets(.leading, .trailing, .bottom)
+        }
+        .navigation(largeTitleMode: .always)
+        .navigation(prefersLargeTitles: true)
+        .navigation(leftButton: {
+            UICButton("Delete")
+                .titleColor(.black)
+                .onTap { _ in
+                    self.removeRows = (0..<10).map {
+                        IndexPath(row: 0, section: $0)
+                    }
+                }
+        })
+        .navigation(rightButton: {
+            UICButton("Add")
+                .titleColor(.black)
+                .onTap { _ in
+                    self.addRows = (0..<10).map {
+                        IndexPath(row: self.numbers[$0].1.count, section: $0)
+                    }
+            }
+        })
     }
 }
 
 extension ListView {
-    class Header: UICView {
+    struct Header: UICView {
         var body: ViewCreator {
             UICSpacer(spacing: 5) {
                 UICRounder(radius: 15) {
@@ -41,9 +116,9 @@ extension ListView {
                         UICHStack(spacing: 15) {
                             UICDashed(color: .black) {
                                 UICRounder(radius: 0.5) {
-                                    UICImage(image: #imageLiteral(resourceName: "waterfall"))
+                                    UICImage(uiImage: #imageLiteral(resourceName: "waterfall"))
                                         .aspectRatio(priority: .required)
-                                        .content(mode: .scaleAspectFill)
+                                        .contentMode(.fill)
                                         .clipsToBounds(true)
                                         .height(equalTo: 25)
                                 }
@@ -64,95 +139,16 @@ extension ListView {
         }
     }
 
-    class Background: UICView {
+    struct Background: UICView {
         var body: ViewCreator {
             UICZStack {
-                UICImage(image: #imageLiteral(resourceName: "waterfall"))
-                    .content(mode: .scaleAspectFill)
+                UICImage(uiImage: #imageLiteral(resourceName: "waterfall"))
+                    .contentMode(.fill)
                     .clipsToBounds(true)
                     .insets()
                 
-                UICBlur(blur: .extraLight)
+                UICBlur(.extraLight)
             }
         }
-    }
-}
-
-extension ListView {
-    var body: ViewCreator {
-        UICZStack {
-            UICSpacer { [unowned self] in
-                UICList(style: .plain) {
-                    UICForEach(self.$numbers) { section in
-                        UICSection {
-                            UICHeader {
-                                NumberView(number: section.0)
-                                    .insets(.leading, .trailing)
-                            }
-
-                            UICForEach(section.1) { number in
-                                UICRow {
-                                    NumberView(number: number)
-                                        .insets(.leading, .trailing)
-                                }
-                                .trailingActions {
-                                    UICContextualAction("Delete", style: .destructive)
-                                        .deleteAction(with: .left) {
-                                            self.numbers.remove(at: $0.section)
-                                    }
-
-                                    UICContextualAction("Edit", style: .normal)
-                                        .onAction { _ in
-                                            print("edit")
-                                            return true
-                                    }
-                                    }
-                            }
-                        }
-                    }
-                }
-                .deleteRows(with: .left, self.$removeRows) { [weak self] indexPaths in
-                    indexPaths.forEach { _ in
-                        self?.numbers.remove(at: 0)
-                    }
-                }
-                .insertRows(with: .right, self.$addRows) { [weak self] indexPaths in
-                    indexPaths.forEach {
-                        self?.numbers[$0.section].1.append($0.row)
-                    }
-                }
-                .row(height: UITableView.automaticDimension)
-                .row(estimatedHeight: 44)
-                .header {
-                    Header()
-                }
-                .backgroundColor(.white)
-                .background {
-                    Background()
-                }
-            }
-            .safeArea(topEqualTo: 0)
-            .insets(.leading, .trailing, .bottom)
-        }
-        .navigation(largeTitleMode: .always)
-        .navigation(prefersLargeTitles: true)
-        .navigation(leftButton: { [weak self] in
-            UICButton("Delete")
-                .title(color: .black)
-                .onTap { _ in
-                    self?.removeRows = (0..<10).map {
-                        IndexPath(row: 0, section: $0)
-                    }
-                }
-        })
-        .navigation(rightButton: { [weak self] in
-            UICButton("Add")
-                .title(color: .black)
-                .onTap { _ in
-                    self?.addRows = (0..<10).map {
-                        IndexPath(row: self?.numbers[$0].1.count ?? 0, section: $0)
-                    }
-            }
-        })
     }
 }

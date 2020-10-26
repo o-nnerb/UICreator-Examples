@@ -12,7 +12,7 @@ import UICreator
 class LandmarkList: UICView {
 
     var body: ViewCreator {
-        UICList(style: .grouped) {
+        UICList(.grouped) {
             UICForEach(landmarkData) { landmark in
                 UICRow {
                     LandmarkRow(landmark: landmark)
@@ -24,18 +24,6 @@ class LandmarkList: UICView {
         .navigation(prefersLargeTitles: true)
         .accessoryType(.disclosureIndicator)
         .backgroundColor(.white)
-        .separator(style: .singleLine)
+        .separatorStyle(.singleLine)
     }
 }
-
-#if DEBUG && UICREATOR_SUIPREVIEWS
-
-import SwiftUI
-
-struct LandmarkList_Preview: PreviewProvider {
-    static var previews: some View {
-        LivePreview(LandmarkList())
-    }
-}
-
-#endif

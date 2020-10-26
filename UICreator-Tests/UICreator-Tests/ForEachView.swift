@@ -9,33 +9,33 @@
 import Foundation
 import UICreator
 
-class ForEachView: UICView {
+struct ForEachView: UICView {
     @Value var array: [Int] = []
 
     func updateEvery1Seconds() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             if Bool.random() {
-                self?.array.append(Int.random(in: 0..<1000))
+                self.array.append(Int.random(in: 0..<1000))
             } else {
-                if !(self?.array.isEmpty ?? true) {
-                    self?.array.removeFirst()
+                if !self.array.isEmpty {
+                    self.array.removeFirst()
                 }
             }
             
-            self?.updateEvery1Seconds()
+            self.updateEvery1Seconds()
         }
     }
 
     var body: ViewCreator {
-        UICVScroll { [unowned self] in
+        UICVScroll {
             UICVStack {
                 UICForEach(self.$array) {
                     NumberView(number: $0)
                 }
             }
         }
-        .onInTheScene { [weak self] _ in
-            self?.updateEvery1Seconds()
+        .onInTheScene { _ in
+            self.updateEvery1Seconds()
         }
     }
 }

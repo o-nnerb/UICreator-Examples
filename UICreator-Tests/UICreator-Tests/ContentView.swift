@@ -9,11 +9,12 @@
 import Foundation
 import UICreator
 
-class ContentView: UICView {
+struct ContentView: UICView {
     var body: ViewCreator {
         UICNavigation {
-            ForEachView()
+            CollectionView()
         }
+        .eraseToAnyView()
         .backgroundColor(.white)
     }
 }

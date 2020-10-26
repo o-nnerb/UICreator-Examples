@@ -10,29 +10,50 @@ import Foundation
 import UIKit
 import UICreator
 
-class MyLabel: UICViewRepresentable, TextElement {
+struct MyLabel: UICViewRepresentable {
     typealias View = UILabel
 
-    required init(_ text: String?) {
-        self.onNotRendered {
-            ($0 as? View)?.text = text
-        }
+    private enum Content {
+        case string(String?)
+        case attributedText(NSAttributedString?)
     }
 
-    required init(_ attributedText: NSAttributedString?) {
-        self.onNotRendered {
-            ($0 as? View)?.attributedText = attributedText
-        }
+    @Relay private var content: Content
+
+    init(_ text: String?) {
+        self._content = .constant(.string(text))
+    }
+
+    init(_ text: Relay<String?>) {
+        self._content = text.map { .string($0) }
+    }
+
+
+    init(_ attributedText: NSAttributedString?) {
+        self._content = .constant(.attributedText(attributedText))
+    }
+
+    init(_ attributedText: Relay<NSAttributedString?>) {
+        self._content = attributedText.map { .attributedText($0) }
     }
 
     func makeUIView() -> View {
-        return .init()
+        View()
     }
 
-    func updateView(_ view: UILabel) {}
+    func updateUIView(_ view: UILabel) {
+        self.$content.sync { [weak view] in
+            switch $0 {
+            case .string(let string):
+                view?.text = string
+            case .attributedText(let attributedText):
+                view?.attributedText = attributedText
+            }
+        }
+    }
 }
 
-class BackgroundView: UICView {
+struct BackgroundView: UICView {
     let randomNumber: Int
 
     var color: UIColor {
@@ -55,10 +76,10 @@ class BackgroundView: UICView {
     }
 }
 
-class CollectionView: UICView {
+struct CollectionView: UICView {
     weak var pageControl: UIPageControl!
 
-    lazy var numbers: [Int] = {
+    let numbers: [Int] = {
         (0...100).compactMap { _ in
             (Int(0)...Int(pow(255.0, 3))).randomElement()
         }
@@ -106,12 +127,12 @@ class CollectionView: UICView {
         .backgroundColor(.clear)
         .background {
             UICZStack {
-                UICImage(image: #imageLiteral(resourceName: "waterfall"))
-                    .content(mode: .scaleAspectFill)
+                UICImage(uiImage: #imageLiteral(resourceName: "waterfall"))
+                    .contentMode(.fill)
                     .clipsToBounds(true)
                     .insets()
 
-                UICBlur(blur: .extraLight)
+                UICBlur(.extraLight)
 
                 UICSpacer()
                     .backgroundColor(.white)

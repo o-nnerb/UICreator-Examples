@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import UICreator
 
-class PagedView: UICView {
+struct PagedView: UICView {
     @UICOutlet var pageView: UIPageControl!
     @UICOutlet var pageViewController: UICPage.ViewController!
 
@@ -94,10 +94,8 @@ class PagedView: UICView {
 //                    ]}
 //            }.insets()
 //        }
-        .insets()
-        .as(self.$pageViewController)
-        .onPageChanged {
-            self.pageView.currentPage = $0
-        }
+            .as(self.$pageViewController)
+            .eraseToAnyView()
+            .insets()
     }
 }
