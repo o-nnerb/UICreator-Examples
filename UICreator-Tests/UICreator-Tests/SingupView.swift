@@ -84,7 +84,7 @@ struct SignupView: UICView {
                                     TextField(placeholder: "Nome", self.$name)
                                         .keyboardType(.asciiCapable)
                                         .inputView {
-                                            UICInput(style: .keyboard) {
+                                            UICInput(height: 250, style: .keyboard) {
                                                 UICDatePicker(
                                                     maximumDate: .init(),
                                                     selectedDate: self.$date

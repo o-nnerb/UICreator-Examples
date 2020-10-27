@@ -11,32 +11,25 @@ import UIKit
 import UICreator
 
 struct PagedView: UICView {
-    @UICOutlet var pageView: UIPageControl!
-    @UICOutlet var pageViewController: UICPage.ViewController!
-
-    func moveToPage(_ page: Int) {
-        self.pageView.currentPage = page
-        self.pageViewController.currentPage = page
-    }
+    @Value var selectedIndex: Int = .zero
 
     var body: ViewCreator {
-        UICPage(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-            .pages(direction: .reverse) {
-                BackgroundView(254333)
+        UICHPage(currentPage: self.$selectedIndex) {
+            BackgroundView(254333)
 
-                BackgroundView(10254333)
+            BackgroundView(10254333)
 
-                UICZStack {
-                    BackgroundView(50254333)
+            UICZStack {
+                BackgroundView(50254333)
 
-                    UICTop {
-                        UICButton("Tap here!")
-                            .onTouchInside {
-                                $0.window?.rootViewController = .init()
-                        }
+                UICTop {
+                    UICButton("Tap here!")
+                        .onTouchInside {
+                            $0.window?.rootViewController = .init()
                     }
-                    .safeAreaInsets()
                 }
+                .safeAreaInsets()
+            }
         }
 //        .addIndicator(atLocation: .bottom) {
 //            UICSpacer(top: 0, bottom: 15, leading: 15, trailing: 15) {
@@ -94,7 +87,6 @@ struct PagedView: UICView {
 //                    ]}
 //            }.insets()
 //        }
-            .as(self.$pageViewController)
             .eraseToAnyView()
             .insets()
     }

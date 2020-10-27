@@ -10,9 +10,10 @@ import Foundation
 import UICreator
 
 struct ContentView: UICView {
+
     var body: ViewCreator {
         UICNavigation {
-            CollectionView()
+            SignupView(.constant(false))
         }
         .eraseToAnyView()
         .backgroundColor(.white)
