@@ -12,7 +12,6 @@ import UIKit
 
 struct LandmarkRow: UICView {
     @Value var isPushing: Bool = false
-    @Property(\.sizeCategory) var sizeCategory
 
     let landmark: Landmark
 
@@ -39,24 +38,8 @@ struct LandmarkRow: UICView {
                         .font(.body)
                         .vertical(hugging: .defaultHigh, compression: .required)
                         .numberOfLines(.zero)
-
-                    UICSpacer()
-                        .isHidden(self.$sizeCategory.map { $0 >= .accessibilityMedium })
                 }
             }
-            .dynamicProperty(self._sizeCategory)
         }
     }
 }
-
-#if DEBUG && UICREATOR_SUIPREVIEWS
-
-import SwiftUI
-
-struct LandmarkRow_Preview: PreviewProvider {
-    static var previews: some View {
-        LivePreview(LandmarkRow(landmark: landmarkData[0]))
-    }
-}
-
-#endif

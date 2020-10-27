@@ -39,13 +39,11 @@ struct ListView: UICView {
                         UICSection {
                             UICHeader {
                                 NumberView(number: section.0)
-                                    .insets(.leading, .trailing)
                             }
 
                             UICForEach(section.1) { number in
                                 UICRow {
                                     NumberView(number: number)
-                                        .insets(.leading, .trailing)
                                 }
                                 .trailingActions {
                                     UICContextualAction("Delete", style: .destructive)

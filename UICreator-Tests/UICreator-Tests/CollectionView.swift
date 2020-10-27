@@ -77,14 +77,12 @@ struct BackgroundView: UICView {
 }
 
 struct CollectionView: UICView {
-    weak var pageControl: UIPageControl!
-
+    
     let numbers: [Int] = {
         (0...100).compactMap { _ in
             (Int(0)...Int(pow(255.0, 3))).randomElement()
         }
     }()
-
 
     private var thirdGroup: UICCollectionLayoutGroup {
         UICCollectionLayoutGroup {
@@ -102,6 +100,7 @@ struct CollectionView: UICView {
                 UICHeader {
                     UICLabel("This is a example of auto layout header")
                         .vertical(hugging: .required, compression: .required)
+                        .insets()
                 }
 
                 UICForEach(Array(self.numbers.enumerated())) { number in

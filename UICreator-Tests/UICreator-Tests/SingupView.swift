@@ -20,14 +20,16 @@ extension SignupView {
             .placeholderFont(.systemFont(ofSize: 24, weight: .regular))
     }
 
-    func Spacer(_ handler: @escaping () -> ViewCreator) -> UICModifiedView<RounderView> {
-        UICRounder(radius: .zero) {
-            UICSpacer(vertical: 0, horizontal: 10) {
-                handler()
+    func Spacer(_ handler: @escaping () -> ViewCreator) -> UICAnyView {
+        UICAnyView(
+            UICRounder(radius: .zero) {
+                UICSpacer(vertical: 0, horizontal: 10) {
+                    handler()
+                }
             }
-        }
-        .borderColor(.white)
-        .borderWidth(1)
+            .borderColor(.white)
+            .borderWidth(1)
+        )
     }
 }
 
@@ -196,11 +198,9 @@ struct SignupView: UICView {
                                         self.navigationTitle = "Submitted"
                                         self.isSignupPushing = true
                                     }
-                                    .accessibily {
-                                        UIAccessibilityCreator()
-                                            .onGrayScaleChanged {
-                                                $0.backgroundColor = UIAccessibility.isGrayscaleEnabled ? UIColor(white: 0.5, alpha: 1) : .brown
-                                            }
+                                    .makeAccessibility()
+                                    .onGrayScaleChanged {
+                                        $0.backgroundColor = UIAccessibility.isGrayscaleEnabled ? UIColor(white: 0.5, alpha: 1) : .brown
                                     }
                             }
                         }
