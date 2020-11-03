@@ -20,9 +20,7 @@ struct LandmarkRow: UICView {
     }
 
     var body: ViewCreator {
-        UICNavigationLink {
-            LandmarkDetail(landmark: landmark)
-        } content: {
+        UICNavigationLink(destination: LandmarkDetail(landmark: landmark)) {
             UICSpacer(vertical: 5) {
                 UICHStack(spacing: 15) {
                     UICCenter {
